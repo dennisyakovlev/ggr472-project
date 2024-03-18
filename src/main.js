@@ -3,11 +3,70 @@ mapboxgl.accessToken = "pk.eyJ1IjoiZGVubmlzeWFrb3ZsZXY0MCIsImEiOiJjbHMyNnViazIwM
 const map = new mapboxgl.Map({
 	container: 'my-map', // container ID
 	style: 'mapbox://styles/dennisyakovlev40/clskppghq03u401p2c3184488', // my edited monochrone
-	center: [-73.9, 40.7], // starting position [lng, lat], aim at NYC
-	zoom: 9, // starting tile zoom
+	center: [-85.9, 50.7], // starting position [lng, lat], aim at NYC
+	zoom: 4, // starting tile zoom
+    pitch: 45
 });
 
+function addDataAndLayers()
+{
+    map.addSource('sites-data', {
+        'type': 'geojson',
+        'data': 'https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/contaminated_sites_ON.geojson'
+    });
+
+    map.addSource('air-data', {
+        'type': 'geojson',
+        'data': 'https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/airpollution_subset.geojson'
+    });
+
+
+    var airData = map.addLayer({
+        'id': 'air-data-layer',
+        'type': 'fill-extrusion',
+        'source': 'air-data',
+        'paint': {
+            'fill-extrusion-color': '#aaa',
+            'fill-extrusion-height': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                15,
+                0,
+                15.05,
+                ['get', 'Shape_Area']
+            ],
+            'fill-extrusion-opacity': 1
+
+        }
+    });
+    map.addLayer({
+        'id': 'air-data-layer-border',
+        'type': 'line',
+        'source': 'air-data',
+        'paint': {
+            'line-color': 'black'
+        }
+    });
+
+    var sitesData = map.addLayer({
+        'id': 'sites-data-layer',
+        'type': 'circle',
+        'source': 'sites-data',
+        'paint': {
+            'circle-color': 'red'
+        }
+    });
+
+    
+
+}
+
 map.on("load", () => {
+    map.addControl(new mapboxgl.NavigationControl()); // add nav controls
+
+    addDataAndLayers();
+
 
     const btn1 = new Button('btn-1');
     var stateTransitions = 1;
