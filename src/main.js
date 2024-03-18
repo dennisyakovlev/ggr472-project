@@ -26,18 +26,7 @@ function addDataAndLayers()
         'type': 'fill-extrusion',
         'source': 'air-data',
         'paint': {
-            'fill-extrusion-color': '#aaa',
-            'fill-extrusion-height': [
-                'interpolate',
-                ['linear'],
-                ['zoom'],
-                15,
-                0,
-                15.05,
-                ['get', 'Shape_Area']
-            ],
-            'fill-extrusion-opacity': 1
-
+            
         }
     });
     map.addLayer({
@@ -57,9 +46,6 @@ function addDataAndLayers()
             'circle-color': 'red'
         }
     });
-
-    
-
 }
 
 map.on("load", () => {
@@ -68,15 +54,33 @@ map.on("load", () => {
     addDataAndLayers();
 
 
-    const btn1 = new Button('btn-1');
-    var stateTransitions = 1;
-    btn1.addOnFunc(function(e) {
-        transitionFunc(e, stateTransitions);
-        stateTransitions += 1;
-    });
-    btn1.addOffFunc(function(e) {
-        transitionFunc(e, stateTransitions);
-        stateTransitions += 1;
-    });
+    // const btn1 = new Button('btn-1');
+    // var stateTransitions = 1;
+    // btn1.addOnFunc(function(e) {
+    //     transitionFunc(e, stateTransitions);
+    //     stateTransitions += 1;
+    // });
+    // btn1.addOffFunc(function(e) {
+    //     transitionFunc(e, stateTransitions);
+    //     stateTransitions += 1;
+    // });
+
+    // const menu = new Menu('menu-1');
+    // menu.enableAnim();
+
+    // var stateTransitions = 1;
+    // menu.addOnFunc(function(e, state) {
+    //     console.log('IN')
+    //     // transitionFunc(e, stateTransitions);
+    //     // stateTransitions += 1;
+    // });
+    // menu.addOffFunc(function(e, state) {
+    //     console.log('OUT')
+    // }); 
 
 });
+
+$(document).ready(function() {
+    const menu = new Menu('menu-1');
+    menu.enableAnim();
+})

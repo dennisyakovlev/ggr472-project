@@ -11,10 +11,27 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet'/>
   </head>
   <body>
-    <div class="button" id="btn-1">
+    <div class="hamburger-menu map-front">
+      <div class="hamburger-menu-button" id="menu-1">
+        <div class="hamburger-menu-center">
+          <div class="hamburger-menu-bar"></div>
+          <div class="hamburger-menu-bar hamburger-menu-bar-mid"></div>
+          <div class="hamburger-menu-bar"></div>
+        </div>
+      </div>
+      <div class="hamburger-menu-content menu-anim-start">
+        <div class="hamburger-menu-content-layout">
+          <div class="button map-front" id="btn-1">
+            <p class="text-anim-mid">State One</p>
+            <p class="text-anim-start">State Two</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="button map-front" id="btn-1">
       <p class="text-anim-mid">State One</p>
       <p class="text-anim-start">State Two</p>
-    </div>
+    </div> -->
     <div id="my-map" class="map-container"></div>
   </body>
 

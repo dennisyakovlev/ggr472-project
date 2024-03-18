@@ -1,6 +1,6 @@
-const buttons = {};
+const _animatables = {};
 
-class Button
+class Animatable
 {
     _onClick(e)
     {
@@ -8,7 +8,7 @@ class Button
         this.state += 1;
         for (const [id,func] of Object.entries(funcs))
         {
-            func(e)
+            func(e, this.state)
         }
     }
 
@@ -20,14 +20,14 @@ class Button
         this.onIds = 0;
         this.offIds = 0;
         this.state = 0;
-        buttons[this.id] = this;
+        _animatables[this.id] = this;
 
         // we want to pass down e so forced to use function(e) instead of e =>
         //      as using this in later gives class instance
         $(`#${this.id}`).on('click', function(e) {
             const id = $(this).attr('id');
-            if (id in buttons) buttons[id]._onClick(e);
-            else throw new Error(`didn't find ${id} in buttons`)
+            if (id in _animatables) _animatables[id]._onClick(e);
+            else throw new Error(`didn't find ${id} in _animatables`)
         });
     }
 
@@ -60,45 +60,66 @@ class Button
     }
 };
 
-/*
-transition for values of stateTransitions indicating classes which should be
-    on text at end of animation
+class Button extends Animatable
+{
+    _transitionFunction(e, state)
+    {   
+        const children = $(e.currentTarget).children();
+        const text1 = children[0];
+        const text2 = children[1];
 
-text1
-    0: anim-mid
-    1: anim-mid anim-out
-    2: anim-start anim-in
-    3: anim-mid anim-out
-    4: anim-start anim-in
-
-text2
-    0: anim-start
-    1: anim-start anim-in
-    2: anim-start anim-out
-    3: anim-start anim-in
-    4: anim-start anim-out
-*/
-const transitionFunc = function(e, stateTransitions) {
-    const children = $(e.currentTarget).children();
-    const text1 = children[0];
-    const text2 = children[1];
-
-    if (stateTransitions%2==1)
-    {
-        $(text1)
-            .removeClass('text-anim-start text-anim-in')
-            .addClass('text-anim-mid text-anim-out');
-        $(text2)
-            .removeClass('text-anim-out')
-            .addClass('text-anim-in');
+        if (state%2==1)
+        {
+            $(text1)
+                .removeClass(`text-anim-start text-anim-in`)
+                .addClass(`text-anim-mid text-anim-out`);
+            $(text2)
+                .removeClass(`text-anim-out`)
+                .addClass(`text-anim-in`);
+        }
+        else
+        {
+            $(text1)
+                .removeClass(`text-anim-mid text-anim-out`)
+                .addClass(`text-anim-start text-anim-in`);
+            $(text2)
+                .removeClass(`text-anim-in`)
+                .addClass(`text-anim-out`);
+        }
     }
-    else
+
+    enableAnim()
     {
-        $(text1)
-            .removeClass('text-anim-mid text-anim-out')
-            .addClass('text-anim-start text-anim-in');
-        $(text2)
-            .removeClass('text-anim-in')
-            .addClass('text-anim-out');
+        this.addOnFunc(this._transitionFunction);
+        this.addOffFunc(this._transitionFunction)
+    }
+};
+
+class Menu extends Animatable
+{
+    _transitionFunction(e, state)
+    {
+        const children = $(e.currentTarget).parent().children();
+        const content = children[1]; 
+        console.log(e)
+        if (state%2==1)
+        {
+            console.log(content, e)
+            $(content)
+                .removeClass('menu-anim-mid menu-anim-out')
+                .addClass(`menu-anim-in menu-anim-start`);
+        }
+        else
+        {
+            $(content)
+                .removeClass('menu-anim-start menu-anim-in')
+                .addClass('menu-anim-mid menu-anim-out');
+        }
+    }
+
+    enableAnim()
+    {
+        this.addOnFunc(this._transitionFunction);
+        this.addOffFunc(this._transitionFunction);
     }
 };
