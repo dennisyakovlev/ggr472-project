@@ -83,4 +83,7 @@ map.on("load", () => {
 $(document).ready(function() {
     const menu = new Menu('menu-1');
     menu.enableAnim();
+
+    const btn1 = new Button('btn-2');
+    btn1.enableAnim();
 })

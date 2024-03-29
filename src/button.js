@@ -106,14 +106,14 @@ class Menu extends Animatable
         {
             console.log(content, e)
             $(content)
-                .removeClass('menu-anim-mid menu-anim-out')
+                .removeClass('menu-anim-mid menu-anim-out no-pointer')
                 .addClass(`menu-anim-in menu-anim-start`);
         }
         else
         {
             $(content)
                 .removeClass('menu-anim-start menu-anim-in')
-                .addClass('menu-anim-mid menu-anim-out');
+                .addClass('menu-anim-mid menu-anim-out no-pointer');
         }
     }
 
