@@ -50,6 +50,7 @@
 .menu-anim-mid {
     margin: 0 0 0 0;
     opacity: 1;
+    pointer-events: all;
 }
 .menu-anim-in {
     animation: menu-key-anim-in 0.2s;
@@ -82,4 +83,8 @@
         opacity: 0;
         margin-left: -50px;
     }
+}
+
+.no-pointer {
+    pointer-events: none;
 }
