@@ -5,7 +5,7 @@ const map = new mapboxgl.Map({
 	style: 'mapbox://styles/dennisyakovlev40/clskppghq03u401p2c3184488', // my edited monochrone
 	center: [-85.9, 50.7], // starting position [lng, lat], aim at NYC
 	zoom: 4, // starting tile zoom
-    pitch: 45
+    pitch: 0
 });
 
 const DATA_NAME = {
@@ -27,7 +27,6 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
     .catch(err => {
         throw new Error('Problem loading');
     });
-
 
 fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/contaminated_sites.geojson')
     .then(response => response.json())
@@ -75,24 +74,24 @@ function addData()
 function addLayers()
 {
     // main data
-    var dataFill = map.addLayer({
-        'id': 'data-layer',
-        'type': 'fill',
-        'source': DATA_NAME.MAIN,
-        'layout': {},
-        'paint': {
-            'fill-color': 'red'
-        }
-    });
-    var dataBorders = map.addLayer({
-        'id': 'data-border',
-        'type': 'line',
-        'source': DATA_NAME.MAIN,
-        'layout': {},
-        'paint': {
-            'line-color': 'blue'
-        }
-    });
+    // var dataFill = map.addLayer({
+    //     'id': 'data-layer',
+    //     'type': 'fill',
+    //     'source': DATA_NAME.MAIN,
+    //     'layout': {},
+    //     'paint': {
+    //         'fill-color': 'red'
+    //     }
+    // });
+    // var dataBorders = map.addLayer({
+    //     'id': 'data-border',
+    //     'type': 'line',
+    //     'source': DATA_NAME.MAIN,
+    //     'layout': {},
+    //     'paint': {
+    //         'line-color': 'blue'
+    //     }
+    // });
 
     // contaimated sites
     var sitesCircle = map.addLayer({
@@ -115,22 +114,39 @@ function addLayers()
     });
 }
 
-function dataParse(data)
+function generateHexGrid(bbox, data, hexSize)
+{
+    const hexGrid = turf.hexGrid(bbox, hexSize, 'kilometers');
+    const collected = turf.collect(hexGrid, data, "FederalSiteIdentifier", "values");
+
+    return collected;
+}
+
+function getBoundingBoxfromData(data)
 {
     const features = turf.featureCollection(data.features);
     const bbox = turf.envelope(features);
     const poly = turf.polygon(bbox.geometry.coordinates);
     const bboxTrans = turf.transformScale(poly.geometry, 1.2);
     const newBbox = turf.envelope(bboxTrans);
-    const hexGrid = turf.hexGrid(newBbox.bbox, 50, 'kilometers');
-    const collected = turf.collect(hexGrid, data, "FederalSiteIdentifier", "values")
 
-    return collected
+    return newBbox.bbox;
 }
 
-function addHexGrid()
+
+
+function getScreenAsFeature()
 {
-    // const processedData = dataParse();
+    const obj = map.getBounds();
+    const sw = turf.feature({
+        'type': 'Point',
+        'coordinates': [obj._sw.lng, obj._sw.lat]
+    });
+    const ne = turf.feature({
+        'type': 'Point',
+        'coordinates': [obj._ne.lng, obj._ne.lat]
+    });
+    return {'features': [sw, ne]};
 }
 
 function loadingRemove()
@@ -152,7 +168,6 @@ map.on("load", () => {
 
             addData();
             addLayers();
-            addHexGrid();
 
             console.log('READY')
             setTimeout(e => loadingRemove(), 1000);
@@ -166,6 +181,30 @@ map.on("load", () => {
         }
         count += 1;
     }, 250);
+});
+
+map.on('click', () => {
+    const screenBbox = getScreenAsFeature();
+    const dist = turf.distance(screenBbox.features[0], screenBbox.features[1], {'units': 'kilometers'});
+    const bbox = getBoundingBoxfromData(screenBbox);
+    const hexGridSites = generateHexGrid(bbox, DATA[DATA_NAME.SITES], dist/100);
+
+    // contaminated sites
+    map.addSource(`${DATA_NAME.SITES}-hex-1`, {
+        'type': 'geojson',
+        'data': hexGridSites
+    });
+
+    map.addLayer({
+        id: `${DATA_NAME.SITES}-hex-layer-1`,
+        type: 'fill',
+        source: `${DATA_NAME.SITES}-hex-1`,
+        layout: {},
+        paint: {
+            'fill-color': 'blue',
+            'fill-opacity': 0.6
+        }
+    });
 });
 
 $(document).ready(function() {
