@@ -100,11 +100,22 @@ class Menu extends Animatable
     _transitionFunction(e, state)
     {
         const children = $(e.currentTarget).parent().children();
-        const content = children[1]; 
-        console.log(e)
+        let content = null;
+        for (const child of children)
+        {
+            if (child.className.includes("hamburger-menu-content"))
+            {
+                content = child;
+                break;
+            }
+        }
+        if (content == null)
+        {
+            Error('do you have menu content?');
+        }
+
         if (state%2==1)
         {
-            console.log(content, e)
             $(content)
                 .removeClass('menu-anim-mid menu-anim-out no-pointer')
                 .addClass(`menu-anim-in menu-anim-start`);

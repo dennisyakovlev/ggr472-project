@@ -161,7 +161,6 @@ map.on("load", () => {
     var count = 0;
     var dontQuit = false;
     const timer = setInterval(function() {
-        console.log(fetched)
         if (fetched == 3 && dontQuit == false)
         {
             dontQuit = true;
@@ -208,9 +207,17 @@ map.on('click', () => {
 });
 
 $(document).ready(function() {
-    const menu = new Menu('menu-1');
-    menu.enableAnim();
+    const menu1 = new Menu('menu-btn-1');
+    menu1.enableAnim();
+    const menu2 = new Menu('menu-btn-2');
+    menu2.enableAnim();
 
-    const btn1 = new Button('btn-2');
+    const btn1 = new Button('btn-1');
     btn1.enableAnim();
+
+    const btn2 = new Button('btn-2');
+    btn2.enableAnim();
+
+    const btn3 = new Button('btn-3');
+    btn3.enableAnim();
 })
