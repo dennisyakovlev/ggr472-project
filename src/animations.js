@@ -58,6 +58,11 @@ class Animatable
         if (!(id in this.offEvents)) throw new Error(`key ${id} not in off funcs`)
         delete this.offEvents[id]
     }
+
+    getState()
+    {
+        return this.state;
+    }
 };
 
 class Button extends Animatable
@@ -92,6 +97,11 @@ class Button extends Animatable
     {
         this.addOnFunc(this._transitionFunction);
         this.addOffFunc(this._transitionFunction)
+    }
+
+    forceTransition()
+    {
+        this._onClick({'currentTarget': $(`#${this.id}`)});
     }
 };
 

@@ -19,21 +19,20 @@
         position: absolute;
     }
 
-#menu-1 {
+#menu-main {
     width: 250px;
-    height: 265px;
+    height: 315px;
     left: 20px;
     top: 20px;
     position: absolute;
     opacity: 1;
 }
-#menu-2 {
+#menu-sites {
     width: 250px;
     height: 265px;
     left: 20px;
     bottom: 45px;
     position: absolute;
-    opacity: 1;
 }
 
 .hamburger-menu-button-bottom {

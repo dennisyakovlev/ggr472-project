@@ -1,27 +1,9 @@
-mapboxgl.accessToken = "pk.eyJ1IjoiZGVubmlzeWFrb3ZsZXY0MCIsImEiOiJjbHMyNnViazIwMHB5MmpvNHlvc3B2bDQ2In0.nTDRJJnhgM_EW8tSwyOchg";
-
-const map = new mapboxgl.Map({
-	container: 'my-map', // container ID
-	style: 'mapbox://styles/dennisyakovlev40/clskppghq03u401p2c3184488', // my edited monochrone
-	center: [-85.9, 50.7], // starting position [lng, lat], aim at NYC
-	zoom: 4, // starting tile zoom
-    pitch: 0
-});
-
-const DATA_NAME = {
-    MAIN: 'data-main',
-    SITES: 'data-sites',
-    PLANTS: 'data-plants'
-};
-
-var DATA = {};
 var fetched = 0;
 
 fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/data.geojson')
     .then(response => response.json())
     .then(response => {
-        console.log('a')
-        DATA[DATA_NAME.MAIN] = response;
+        DATA[dataName(DATA_NAME.MAIN)] = response;
         fetched += 1;
     })
     .catch(err => {
@@ -31,8 +13,7 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
 fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/contaminated_sites.geojson')
     .then(response => response.json())
     .then(response => {
-        console.log('b')
-        DATA[DATA_NAME.SITES] = response;
+        DATA[dataName(DATA_NAME.SITES)] = response;
         fetched += 1;
     })
     .catch(err => {
@@ -42,8 +23,7 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
 fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/water_facilities.geojson')
     .then(response => response.json())
     .then(response => {
-        console.log('c')
-        DATA[DATA_NAME.PLANTS] = response;
+        DATA[dataName(DATA_NAME.PLANTS)] = response;
         fetched += 1;
     })
     .catch(err => {
@@ -53,87 +33,73 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
 function addData()
 {
     // main data
-    map.addSource(DATA_NAME.MAIN, {
+    map.addSource(dataName(DATA_NAME.MAIN), {
         'type': 'geojson',
-        'data': DATA[DATA_NAME.MAIN]
+        'data': DATA[dataName(DATA_NAME.MAIN)]
     });
 
     // contaminated sites
-    map.addSource(DATA_NAME.SITES, {
+    map.addSource(dataName(DATA_NAME.SITES), {
         'type': 'geojson',
-        'data': DATA[DATA_NAME.SITES]
+        'data': DATA[dataName(DATA_NAME.SITES)]
     });
 
     // treatment plants
-    map.addSource(DATA_NAME.PLANTS, {
+    map.addSource(dataName(DATA_NAME.PLANTS), {
         'type': 'geojson',
-        'data': DATA[DATA_NAME.PLANTS]
+        'data': DATA[dataName(DATA_NAME.PLANTS)]
     });
 }
 
 function addLayers()
 {
     // main data
-    // var dataFill = map.addLayer({
-    //     'id': 'data-layer',
-    //     'type': 'fill',
-    //     'source': DATA_NAME.MAIN,
-    //     'layout': {},
-    //     'paint': {
-    //         'fill-color': 'red'
-    //     }
-    // });
-    // var dataBorders = map.addLayer({
-    //     'id': 'data-border',
-    //     'type': 'line',
-    //     'source': DATA_NAME.MAIN,
-    //     'layout': {},
-    //     'paint': {
-    //         'line-color': 'blue'
-    //     }
-    // });
+    var dataFill = map.addLayer({
+        'id': layerName(DATA_NAME.MAIN),
+        'type': 'fill',
+        'source': dataName(DATA_NAME.MAIN),
+        'layout': {},
+        'paint': {
+            'fill-color': 'red'
+        }
+    });
+    var dataBorders = map.addLayer({
+        'id': 'data-border',
+        'type': 'line',
+        'source': dataName(DATA_NAME.MAIN),
+        'layout': {},
+        'paint': {
+            'line-color': 'blue'
+        }
+    });
 
     // contaimated sites
-    var sitesCircle = map.addLayer({
-        'id': 'sites-layer',
+    map.addLayer({
+        'id': layerName(DATA_NAME.SITES),
         'type': 'circle',
-        'source': DATA_NAME.SITES,
+        'source': dataName(DATA_NAME.SITES),
         'paint': {
-            'circle-color': 'purple'
+            'circle-color': 'orange',
+            'circle-opacity': 0,
+            'circle-radius': 5,
+            'circle-stroke-width': 1,
+            'circle-stroke-color': 'black',
+            'circle-stroke-opacity': 0,
+            'circle-opacity-transition': { duration: 250 },
+            'circle-stroke-opacity-transition': { duration: 250 }
         }
     });
 
     // treatment plants
     var plantsCircle = map.addLayer({
-        'id': 'plants-layer',
+        'id': layerName(DATA_NAME.PLANTS),
         'type': 'circle',
-        'source': DATA_NAME.PLANTS,
+        'source': dataName(DATA_NAME.PLANTS),
         'paint': {
-            'circle-color': 'orange'
+            'circle-color': 'grey'
         }
     });
 }
-
-function generateHexGrid(bbox, data, hexSize)
-{
-    const hexGrid = turf.hexGrid(bbox, hexSize, 'kilometers');
-    const collected = turf.collect(hexGrid, data, "FederalSiteIdentifier", "values");
-
-    return collected;
-}
-
-function getBoundingBoxfromData(data)
-{
-    const features = turf.featureCollection(data.features);
-    const bbox = turf.envelope(features);
-    const poly = turf.polygon(bbox.geometry.coordinates);
-    const bboxTrans = turf.transformScale(poly.geometry, 1.2);
-    const newBbox = turf.envelope(bboxTrans);
-
-    return newBbox.bbox;
-}
-
-
 
 function getScreenAsFeature()
 {
@@ -180,44 +146,9 @@ map.on("load", () => {
         }
         count += 1;
     }, 250);
+
+
+    initMap();
+
 });
 
-map.on('click', () => {
-    const screenBbox = getScreenAsFeature();
-    const dist = turf.distance(screenBbox.features[0], screenBbox.features[1], {'units': 'kilometers'});
-    const bbox = getBoundingBoxfromData(screenBbox);
-    const hexGridSites = generateHexGrid(bbox, DATA[DATA_NAME.SITES], dist/100);
-
-    // contaminated sites
-    map.addSource(`${DATA_NAME.SITES}-hex-1`, {
-        'type': 'geojson',
-        'data': hexGridSites
-    });
-
-    map.addLayer({
-        id: `${DATA_NAME.SITES}-hex-layer-1`,
-        type: 'fill',
-        source: `${DATA_NAME.SITES}-hex-1`,
-        layout: {},
-        paint: {
-            'fill-color': 'blue',
-            'fill-opacity': 0.6
-        }
-    });
-});
-
-$(document).ready(function() {
-    const menu1 = new Menu('menu-btn-1');
-    menu1.enableAnim();
-    const menu2 = new Menu('menu-btn-2');
-    menu2.enableAnim();
-
-    const btn1 = new Button('btn-1');
-    btn1.enableAnim();
-
-    const btn2 = new Button('btn-2');
-    btn2.enableAnim();
-
-    const btn3 = new Button('btn-3');
-    btn3.enableAnim();
-})

@@ -58,7 +58,7 @@
     animation-fill-mode: forwards;
 }
 .menu-anim-out {
-    animation: menu-key-anim-out.2s;
+    animation: menu-key-anim-out 0.2s;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
 }
@@ -82,6 +82,42 @@
     100% {
         opacity: 0;
         margin-left: -50px;
+    }
+}
+
+/* MENU ANIMATION */
+.mapinfo-anim-start {
+    opacity: 0;
+    pointer-events: none;
+}
+.mapinfo-anim-in {
+    animation: mapinfo-key-anim-in 0.2s forwards;
+    animation-timing-function: ease-in;
+}
+.mapinfo-anim-out {
+    animation: mapinfo-key-anim-out 0.2s forwards;
+    animation-timing-function: ease-in;
+}
+
+@keyframes mapinfo-key-anim-in {
+    0% {
+        opacity: 0;
+        pointer-events: all;
+    }
+    100% {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+@keyframes mapinfo-key-anim-out {
+    0% {
+        opacity: 1;
+        pointer-events: all;
+    }
+    100% {
+        opacity: 0;
+        pointer-events: none;
     }
 }
 
