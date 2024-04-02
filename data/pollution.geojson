@@ -1,44 +1,581 @@
 {
-"type": "FeatureCollection",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "City": "Windsor Downtown", "Location of Air Monitoring Station": "467 University Ave. W.", "Average PM2.5 Concentration in 2022": "7.83" }, "geometry": { "type": "Point", "coordinates": [ -83.043667, 42.315778 ] } },
-{ "type": "Feature", "properties": { "City": "Windsor West", "Location of Air Monitoring Station": "College Ave./South St.", "Average PM2.5 Concentration in 2022": "8.949999999999999" }, "geometry": { "type": "Point", "coordinates": [ -83.073139, 42.292889 ] } },
-{ "type": "Feature", "properties": { "City": "Chatham", "Location of Air Monitoring Station": "435 Grand Ave. W.", "Average PM2.5 Concentration in 2022": "6.74" }, "geometry": { "type": "Point", "coordinates": [ -82.208306, 42.403694 ] } },
-{ "type": "Feature", "properties": { "City": "Sarnia", "Location of Air Monitoring Station": "700 Christina St. N.", "Average PM2.5 Concentration in 2022": "7.09" }, "geometry": { "type": "Point", "coordinates": [ -82.395341, 42.990263 ] } },
-{ "type": "Feature", "properties": { "City": "Grand Bend", "Location of Air Monitoring Station": "Point Blake Conservation Area", "Average PM2.5 Concentration in 2022": "5.63" }, "geometry": { "type": "Point", "coordinates": [ -81.74289, 43.333084 ] } },
-{ "type": "Feature", "properties": { "City": "London", "Location of Air Monitoring Station": "42 St. Julien St.", "Average PM2.5 Concentration in 2022": "7.07" }, "geometry": { "type": "Point", "coordinates": [ -81.200813, 42.974485 ] } },
-{ "type": "Feature", "properties": { "City": "Port Stanley", "Location of Air Monitoring Station": "43665 Dexter Line, Elgin Water T. Plt", "Average PM2.5 Concentration in 2022": "6.83" }, "geometry": { "type": "Point", "coordinates": [ -81.162948, 42.672127 ] } },
-{ "type": "Feature", "properties": { "City": "Tiverton", "Location of Air Monitoring Station": "4th Concession/Bruce Rd. 23", "Average PM2.5 Concentration in 2022": "4.6" }, "geometry": { "type": "Point", "coordinates": [ -81.549722, 44.314472 ] } },
-{ "type": "Feature", "properties": { "City": "Brantford", "Location of Air Monitoring Station": "324 Grand River Ave.", "Average PM2.5 Concentration in 2022": "7.08" }, "geometry": { "type": "Point", "coordinates": [ -80.292639, 43.138611 ] } },
-{ "type": "Feature", "properties": { "City": "Kitchener", "Location of Air Monitoring Station": "West Ave./Homewood Ave.", "Average PM2.5 Concentration in 2022": "7.62" }, "geometry": { "type": "Point", "coordinates": [ -80.503806, 43.443833 ] } },
-{ "type": "Feature", "properties": { "City": "St. Catharines", "Location of Air Monitoring Station": "Argyle Cres., Pump Stn.", "Average PM2.5 Concentration in 2022": "5.41" }, "geometry": { "type": "Point", "coordinates": [ -79.23475, 43.160056 ] } },
-{ "type": "Feature", "properties": { "City": "Guelph", "Location of Air Monitoring Station": "Exhibition St./Clark St. W.", "Average PM2.5 Concentration in 2022": "6.88" }, "geometry": { "type": "Point", "coordinates": [ -80.264167, 43.551611 ] } },
-{ "type": "Feature", "properties": { "City": "Hamilton Downtown", "Location of Air Monitoring Station": "Elgin St./Kelly St.", "Average PM2.5 Concentration in 2022": "8.640000000000001" }, "geometry": { "type": "Point", "coordinates": [ -79.861664, 43.25778 ] } },
-{ "type": "Feature", "properties": { "City": "Hamilton West", "Location of Air Monitoring Station": "Main St. W./Hwy 403", "Average PM2.5 Concentration in 2022": "7.37" }, "geometry": { "type": "Point", "coordinates": [ -79.90775, 43.257444 ] } },
-{ "type": "Feature", "properties": { "City": "Hamilton Mountain", "Location of Air Monitoring Station": "250 Fennell Ave. W.", "Average PM2.5 Concentration in 2022": "7.79" }, "geometry": { "type": "Point", "coordinates": [ -79.889328, 43.241324 ] } },
-{ "type": "Feature", "properties": { "City": "Toronto Downtown", "Location of Air Monitoring Station": "55 John St.", "Average PM2.5 Concentration in 2022": "7.92" }, "geometry": { "type": "Point", "coordinates": [ -79.3891, 43.645451 ] } },
-{ "type": "Feature", "properties": { "City": "Toronto East", "Location of Air Monitoring Station": "Kennedy Rd./Lawrence Ave. E.", "Average PM2.5 Concentration in 2022": "6.75" }, "geometry": { "type": "Point", "coordinates": [ -79.274056, 43.747917 ] } },
-{ "type": "Feature", "properties": { "City": "Toronto North", "Location of Air Monitoring Station": "4905 Dufferin St., Eccc", "Average PM2.5 Concentration in 2022": "6.79" }, "geometry": { "type": "Point", "coordinates": [ -79.467372, 43.78047 ] } },
-{ "type": "Feature", "properties": { "City": "Toronto West", "Location of Air Monitoring Station": "125 Resources Rd.", "Average PM2.5 Concentration in 2022": "6.9" }, "geometry": { "type": "Point", "coordinates": [ -79.5435, 43.709444 ] } },
-{ "type": "Feature", "properties": { "City": "Burlington", "Location of Air Monitoring Station": "North Shore Blvd. E./Lakeshore Rd.", "Average PM2.5 Concentration in 2022": "6.7" }, "geometry": { "type": "Point", "coordinates": [ -79.80277, 43.314603 ] } },
-{ "type": "Feature", "properties": { "City": "Oakville", "Location of Air Monitoring Station": "Eighth Line/Glenashton Dr., Halton Res.", "Average PM2.5 Concentration in 2022": "6.81" }, "geometry": { "type": "Point", "coordinates": [ -79.702278, 43.486917 ] } },
-{ "type": "Feature", "properties": { "City": "Milton", "Location of Air Monitoring Station": "1120 Main St. E.", "Average PM2.5 Concentration in 2022": "6.99" }, "geometry": { "type": "Point", "coordinates": [ -79.862449, 43.52965 ] } },
-{ "type": "Feature", "properties": { "City": "Oshawa", "Location of Air Monitoring Station": "Brittania Ave. W., Ep Taylor Stables", "Average PM2.5 Concentration in 2022": "5.71" }, "geometry": { "type": "Point", "coordinates": [ -78.91252, 43.952248 ] } },
-{ "type": "Feature", "properties": { "City": "Brampton", "Location of Air Monitoring Station": "109 Mclaughlin Rd. S.", "Average PM2.5 Concentration in 2022": "7.26" }, "geometry": { "type": "Point", "coordinates": [ -79.766589, 43.669911 ] } },
-{ "type": "Feature", "properties": { "City": "Mississauga", "Location of Air Monitoring Station": "3359 Mississauga Rd. N., U Of T Campus", "Average PM2.5 Concentration in 2022": "7.28" }, "geometry": { "type": "Point", "coordinates": [ -79.658797, 43.546174 ] } },
-{ "type": "Feature", "properties": { "City": "Barrie", "Location of Air Monitoring Station": "83 Perry St.", "Average PM2.5 Concentration in 2022": "6.43" }, "geometry": { "type": "Point", "coordinates": [ -79.702446, 44.382338 ] } },
-{ "type": "Feature", "properties": { "City": "Newmarket", "Location of Air Monitoring Station": "Eagle St. W./Mccaffrey Rd.", "Average PM2.5 Concentration in 2022": "6.25" }, "geometry": { "type": "Point", "coordinates": [ -79.48325, 44.044306 ] } },
-{ "type": "Feature", "properties": { "City": "Parry Sound", "Location of Air Monitoring Station": "7 Bay St.", "Average PM2.5 Concentration in 2022": "4.67" }, "geometry": { "type": "Point", "coordinates": [ -80.039269, 45.338261 ] } },
-{ "type": "Feature", "properties": { "City": "Dorset", "Location of Air Monitoring Station": "1026 Bellwood Acres Rd.", "Average PM2.5 Concentration in 2022": "4.47" }, "geometry": { "type": "Point", "coordinates": [ -78.932944, 45.224278 ] } },
-{ "type": "Feature", "properties": { "City": "Ottawa Downtown", "Location of Air Monitoring Station": "Rideau St./Wurtemburg St.", "Average PM2.5 Concentration in 2022": "5.91" }, "geometry": { "type": "Point", "coordinates": [ -75.676, 45.434333 ] } },
-{ "type": "Feature", "properties": { "City": "Kingston", "Location of Air Monitoring Station": "23 Beechgrove Lane", "Average PM2.5 Concentration in 2022": "5.36" }, "geometry": { "type": "Point", "coordinates": [ -76.521143, 44.219953 ] } },
-{ "type": "Feature", "properties": { "City": "Belleville", "Location of Air Monitoring Station": "2 Sidney St., Water Treatment Plant", "Average PM2.5 Concentration in 2022": "5.49" }, "geometry": { "type": "Point", "coordinates": [ -77.3955, 44.150528 ] } },
-{ "type": "Feature", "properties": { "City": "Cornwall", "Location of Air Monitoring Station": "Bedford St./3rd St. W.", "Average PM2.5 Concentration in 2022": "6.4" }, "geometry": { "type": "Point", "coordinates": [ -74.735339, 45.017976 ] } },
-{ "type": "Feature", "properties": { "City": "Peterborough", "Location of Air Monitoring Station": "10 Hospital Dr.", "Average PM2.5 Concentration in 2022": "6.64" }, "geometry": { "type": "Point", "coordinates": [ -78.34622, 44.301918 ] } },
-{ "type": "Feature", "properties": { "City": "Thunder Bay", "Location of Air Monitoring Station": "421 James St. S.", "Average PM2.5 Concentration in 2022": "5.03" }, "geometry": { "type": "Point", "coordinates": [ -89.290167, 48.379389 ] } },
-{ "type": "Feature", "properties": { "City": "Sault Ste. Marie", "Location of Air Monitoring Station": "Sault College", "Average PM2.5 Concentration in 2022": "4.45" }, "geometry": { "type": "Point", "coordinates": [ -84.309917, 46.533194 ] } },
-{ "type": "Feature", "properties": { "City": "North Bay", "Location of Air Monitoring Station": "Chippewa St. W., Dept. National Defence", "Average PM2.5 Concentration in 2022": "5.06" }, "geometry": { "type": "Point", "coordinates": [ -79.44945, 46.3225 ] } },
-{ "type": "Feature", "properties": { "City": "Sudbury", "Location of Air Monitoring Station": "155 Elm St.", "Average PM2.5 Concentration in 2022": "5.23" }, "geometry": { "type": "Point", "coordinates": [ -81.003099, 46.492002 ] } }
-]
+    "type": "FeatureCollection",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Windsor Downtown",
+                "Location of Air Monitoring Station": "467 University Ave. W.",
+                "Average PM2.5 Concentration in 2022": "7.83"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -83.043667,
+                    42.315778
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Windsor West",
+                "Location of Air Monitoring Station": "College Ave./South St.",
+                "Average PM2.5 Concentration in 2022": "8.949999999999999"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -83.073139,
+                    42.292889
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Chatham",
+                "Location of Air Monitoring Station": "435 Grand Ave. W.",
+                "Average PM2.5 Concentration in 2022": "6.74"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -82.208306,
+                    42.403694
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Sarnia",
+                "Location of Air Monitoring Station": "700 Christina St. N.",
+                "Average PM2.5 Concentration in 2022": "7.09"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -82.395341,
+                    42.990263
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Grand Bend",
+                "Location of Air Monitoring Station": "Point Blake Conservation Area",
+                "Average PM2.5 Concentration in 2022": "5.63"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -81.74289,
+                    43.333084
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "London",
+                "Location of Air Monitoring Station": "42 St. Julien St.",
+                "Average PM2.5 Concentration in 2022": "7.07"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -81.200813,
+                    42.974485
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Port Stanley",
+                "Location of Air Monitoring Station": "43665 Dexter Line, Elgin Water T. Plt",
+                "Average PM2.5 Concentration in 2022": "6.83"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -81.162948,
+                    42.672127
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Tiverton",
+                "Location of Air Monitoring Station": "4th Concession/Bruce Rd. 23",
+                "Average PM2.5 Concentration in 2022": "4.6"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -81.549722,
+                    44.314472
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Brantford",
+                "Location of Air Monitoring Station": "324 Grand River Ave.",
+                "Average PM2.5 Concentration in 2022": "7.08"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -80.292639,
+                    43.138611
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Kitchener",
+                "Location of Air Monitoring Station": "West Ave./Homewood Ave.",
+                "Average PM2.5 Concentration in 2022": "7.62"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -80.503806,
+                    43.443833
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "St. Catharines",
+                "Location of Air Monitoring Station": "Argyle Cres., Pump Stn.",
+                "Average PM2.5 Concentration in 2022": "5.41"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.23475,
+                    43.160056
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Guelph",
+                "Location of Air Monitoring Station": "Exhibition St./Clark St. W.",
+                "Average PM2.5 Concentration in 2022": "6.88"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -80.264167,
+                    43.551611
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Hamilton Downtown",
+                "Location of Air Monitoring Station": "Elgin St./Kelly St.",
+                "Average PM2.5 Concentration in 2022": "8.640000000000001"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.861664,
+                    43.25778
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Hamilton West",
+                "Location of Air Monitoring Station": "Main St. W./Hwy 403",
+                "Average PM2.5 Concentration in 2022": "7.37"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.90775,
+                    43.257444
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Hamilton Mountain",
+                "Location of Air Monitoring Station": "250 Fennell Ave. W.",
+                "Average PM2.5 Concentration in 2022": "7.79"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.889328,
+                    43.241324
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Toronto Downtown",
+                "Location of Air Monitoring Station": "55 John St.",
+                "Average PM2.5 Concentration in 2022": "7.92"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.3891,
+                    43.645451
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Toronto East",
+                "Location of Air Monitoring Station": "Kennedy Rd./Lawrence Ave. E.",
+                "Average PM2.5 Concentration in 2022": "6.75"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.274056,
+                    43.747917
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Toronto North",
+                "Location of Air Monitoring Station": "4905 Dufferin St., Eccc",
+                "Average PM2.5 Concentration in 2022": "6.79"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.467372,
+                    43.78047
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Toronto West",
+                "Location of Air Monitoring Station": "125 Resources Rd.",
+                "Average PM2.5 Concentration in 2022": "6.9"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.5435,
+                    43.709444
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Burlington",
+                "Location of Air Monitoring Station": "North Shore Blvd. E./Lakeshore Rd.",
+                "Average PM2.5 Concentration in 2022": "6.7"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.80277,
+                    43.314603
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Oakville",
+                "Location of Air Monitoring Station": "Eighth Line/Glenashton Dr., Halton Res.",
+                "Average PM2.5 Concentration in 2022": "6.81"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.702278,
+                    43.486917
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Milton",
+                "Location of Air Monitoring Station": "1120 Main St. E.",
+                "Average PM2.5 Concentration in 2022": "6.99"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.862449,
+                    43.52965
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Oshawa",
+                "Location of Air Monitoring Station": "Brittania Ave. W., Ep Taylor Stables",
+                "Average PM2.5 Concentration in 2022": "5.71"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -78.91252,
+                    43.952248
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Brampton",
+                "Location of Air Monitoring Station": "109 Mclaughlin Rd. S.",
+                "Average PM2.5 Concentration in 2022": "7.26"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.766589,
+                    43.669911
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Mississauga",
+                "Location of Air Monitoring Station": "3359 Mississauga Rd. N., U Of T Campus",
+                "Average PM2.5 Concentration in 2022": "7.28"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.658797,
+                    43.546174
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Barrie",
+                "Location of Air Monitoring Station": "83 Perry St.",
+                "Average PM2.5 Concentration in 2022": "6.43"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.702446,
+                    44.382338
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Newmarket",
+                "Location of Air Monitoring Station": "Eagle St. W./Mccaffrey Rd.",
+                "Average PM2.5 Concentration in 2022": "6.25"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.48325,
+                    44.044306
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Parry Sound",
+                "Location of Air Monitoring Station": "7 Bay St.",
+                "Average PM2.5 Concentration in 2022": "4.67"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -80.039269,
+                    45.338261
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Dorset",
+                "Location of Air Monitoring Station": "1026 Bellwood Acres Rd.",
+                "Average PM2.5 Concentration in 2022": "4.47"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -78.932944,
+                    45.224278
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Ottawa Downtown",
+                "Location of Air Monitoring Station": "Rideau St./Wurtemburg St.",
+                "Average PM2.5 Concentration in 2022": "5.91"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.676,
+                    45.434333
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Kingston",
+                "Location of Air Monitoring Station": "23 Beechgrove Lane",
+                "Average PM2.5 Concentration in 2022": "5.36"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -76.521143,
+                    44.219953
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Belleville",
+                "Location of Air Monitoring Station": "2 Sidney St., Water Treatment Plant",
+                "Average PM2.5 Concentration in 2022": "5.49"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -77.3955,
+                    44.150528
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Cornwall",
+                "Location of Air Monitoring Station": "Bedford St./3rd St. W.",
+                "Average PM2.5 Concentration in 2022": "6.4"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.735339,
+                    45.017976
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Peterborough",
+                "Location of Air Monitoring Station": "10 Hospital Dr.",
+                "Average PM2.5 Concentration in 2022": "6.64"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -78.34622,
+                    44.301918
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Thunder Bay",
+                "Location of Air Monitoring Station": "421 James St. S.",
+                "Average PM2.5 Concentration in 2022": "5.03"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -89.290167,
+                    48.379389
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Sault Ste. Marie",
+                "Location of Air Monitoring Station": "Sault College",
+                "Average PM2.5 Concentration in 2022": "4.45"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -84.309917,
+                    46.533194
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "North Bay",
+                "Location of Air Monitoring Station": "Chippewa St. W., Dept. National Defence",
+                "Average PM2.5 Concentration in 2022": "5.06"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.44945,
+                    46.3225
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "City": "Sudbury",
+                "Location of Air Monitoring Station": "155 Elm St.",
+                "Average PM2.5 Concentration in 2022": "5.23"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -81.003099,
+                    46.492002
+                ]
+            }
+        }
+    ]
 }
