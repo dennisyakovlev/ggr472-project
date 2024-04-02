@@ -1,27 +1,49 @@
-.button {
+.btn-wrapper {
     position: relative;
-    width: 210px;
+    width: 235px;
     height: 50px;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 
-    font-size: 18px;
     background: rgba(235, 227, 227, 0.5);
     backdrop-filter: blur(3px);
     cursor: pointer;
     border-radius: 5px;
     user-select: none;
 }
-    .button > p {
-        position: absolute;
+    .menu-info {
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
+    .button {
+        position: relative;
+        width: 200px;
+        height: 50px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 18px;
+        user-select: none;
+    }
+        .button > p {
+            position: absolute;
+        }
 
 #menu-main {
-    width: 250px;
-    height: 315px;
+    width: 280px;
+    height: 335px;
     left: 20px;
     top: 20px;
     position: absolute;
@@ -96,13 +118,37 @@
         align-items: center;
     }
 
-.flex-layout {
-    width: 100%;
-    height: 100%;
+/* https://css.gg/info */
+.gg-info {
+    box-sizing: border-box;
     position: relative;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 20px;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 40px
+   }
+   
+   .gg-info::after,
+   .gg-info::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        border-radius: 3px;
+        width: 2px;
+        background: currentColor;
+        left: 7px
+        
+   }
+   
+    .gg-info::after {
+        bottom: 2px;
+        height: 8px
+   }
+   
+   .gg-info::before {
+        height: 2px;
+        top: 2px
+   } 
