@@ -3,7 +3,7 @@
 <h1>GGR472: Developing Web Maps</h1>
 
 Our final group project.
-
+<u>Context</u>
 An interactive web map displaying environmental risk across Ontario, Canada. 
 
 Data included in this analysis are:
@@ -13,3 +13,7 @@ Data included in this analysis are:
 
 These environmental indicators were used to create a measure of environmental 
 Merged data is shown at the census subdivision level across Ontario's 577 CSDs.
+
+<u>Instructions</u>
+
+
