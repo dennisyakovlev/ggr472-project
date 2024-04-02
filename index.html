@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Website</title>
+    <link rel="stylesheet" href="./styles/layers/style-index.css">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/anims.css">
     <link rel="stylesheet" href="./styles/menu.css">
@@ -29,21 +30,41 @@
         </div>
         <div class="hamburger-menu-content menu-anim-start no-pointer">
           <div class="hamburger-menu-content-layout hamburger-menu-content-layout-top">
-            <div class="button" id="btn-1">
-              <p class="text-anim-mid">Contaminated Sites Off</p>
-              <p class="text-anim-start">Contaminated Sites On</p>
+            <div class="btn-wrapper">
+              <div class="menu-info">
+                <div class="gg-info"></div>
+              </div>
+              <div class="button" id="btn-1">
+                <p class="text-anim-mid">Contaminated Sites Off</p>
+                <p class="text-anim-start">Contaminated Sites On</p>
+              </div>
             </div>
-            <div class="button" id="btn-2">
-              <p class="text-anim-mid">Treament Stations Off</p>
-              <p class="text-anim-start">Treament Stations On</p>
+            <div class="btn-wrapper">
+              <div class="menu-info">
+                <div class="gg-info"></div>
+              </div>
+              <div class="button" id="btn-2">
+                <p class="text-anim-mid">Treament Stations Off</p>
+                <p class="text-anim-start">Treament Stations On</p>
+              </div>
             </div>
-            <div class="button" id="btn-3">
-              <p class="text-anim-mid">Chloropleth Index On</p>
-              <p class="text-anim-start">Chloropleth Index Off</p>
+            <div class="btn-wrapper">
+              <div class="menu-info">
+                <div class="gg-info"></div>
+              </div>
+              <div class="button" id="btn-3a">
+                <p class="text-anim-mid">Air Stations Off</p>
+                <p class="text-anim-start">Air Stations On</p>
+              </div>
             </div>
-            <div class="button" id="btn-3a">
-              <p class="text-anim-mid">Air Stations Off</p>
-              <p class="text-anim-start">Air Stations On</p>
+            <div class="btn-wrapper">
+              <div class="menu-info">
+                <div class="gg-info"></div>
+              </div>
+              <div class="button" id="btn-3">
+                <p class="text-anim-mid">Chloropleth Index On</p>
+                <p class="text-anim-start">Chloropleth Index Off</p>
+              </div>
             </div>
           </div>
         </div>
@@ -72,6 +93,52 @@
         </div>
       </div>
 
+      <!-- related to treatment stations -->
+
+      <!-- related  to air stations-->
+
+      <!-- related to chloropleth -->
+      <div class="index-legend map-front mapinfo-index">
+        <p class="legend-title">
+          Risk Score
+        </p>
+        <div class="legend-item">
+          <div class="legend-pic" id="legend-pic-1">
+          </div>
+          <div class="legend-desc">
+            <p>≤ 8</p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic" id="legend-pic-2">
+          </div>
+          <div class="legend-desc">
+            <p>≤ 11</p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic" id="legend-pic-3">
+          </div>
+          <div class="legend-desc">
+            <p>≤ 13</p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic" id="legend-pic-4">
+          </div>
+          <div class="legend-desc">
+            <p>≤ 15</p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic" id="legend-pic-5">
+          </div>
+          <div class="legend-desc">
+            <p>≤ 20</p>
+          </div>
+        </div>
+      </div>
+
       <div id="my-map" class="map-container"></div>
     </div>
     </div>
@@ -83,7 +150,10 @@
   <script src="./src/utils.js"></script>
   <script src="./src/animations.js"></script>
 
-  <script src="./src/layer-sites.js"></script>
+  <script src="./src/layers/layer-sites.js"></script>
+  <script src="./src/layers/layer-treatment.js"></script>
+  <script src="./src/layers/layer-air.js"></script>
+  <script src="./src/layers/layer-treatment.js"></script>
 
   <script src="./src/setup.js"></script>
 
