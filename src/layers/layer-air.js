@@ -1,5 +1,6 @@
-var AIR = {
-    isOn: false
+const AIR = {
+    isOn: false,
+    isPopupEnabled: true,
 };
 
 function genAirPoints()
@@ -9,7 +10,6 @@ function genAirPoints()
     map.setPaintProperty(layerName(DATA_NAME.AIR), 'circle-opacity', 1);
     map.setPaintProperty(layerName(DATA_NAME.AIR), 'circle-stroke-opacity', 1);
 }
-
 function clearSitesPoints()
 {
     AIR.isOn = false;
@@ -30,6 +30,15 @@ function createPopupHTMLAir(feature)
             `;
 }
 
+function enablePopupAir()
+{
+    AIR.isPopupEnabled = true;
+}
+function disablePopupAir()
+{
+    AIR.isPopupEnabled = false;
+}
+
 map.on('load', () => {
     const popup = new mapboxgl.Popup({
         closeButton: false, // disable close button
@@ -37,7 +46,7 @@ map.on('load', () => {
     });
 
     map.on('mousemove', layerName(DATA_NAME.AIR), (e) => {
-        if (AIR.isOn)
+        if (AIR.isOn && AIR.isPopupEnabled)
         {
             const features = e.features;
             if (features && features.length > 0)

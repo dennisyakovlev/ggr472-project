@@ -95,23 +95,7 @@ function addLayers()
         }
     });
 
-    // contaimated sites
-    map.addLayer({
-        'id': layerName(DATA_NAME.SITES),
-        'type': 'circle',
-        'source': dataName(DATA_NAME.SITES),
-        'paint': {
-            'circle-color': 'orange',
-            'circle-opacity': 0,
-            'circle-radius': 5,
-            'circle-stroke-width': 1,
-            'circle-stroke-color': 'black',
-            'circle-stroke-opacity': 0,
-            'circle-opacity-transition': { duration: 250 },
-            'circle-stroke-opacity-transition': { duration: 250 }
-        }
-    });
-
+    // below others
     map.addLayer({ // fill to display on water treatment plant hover
         'id': waterDisplayLayerName(DATA_NAME.WATER),
         'type': 'fill',
@@ -134,7 +118,24 @@ function addLayers()
             'line-opacity-transition': { duration: 250 }
         }
     });
-    // treatment water plants to be ontop of others
+
+    // contaimated sites
+    map.addLayer({
+        'id': layerName(DATA_NAME.SITES),
+        'type': 'circle',
+        'source': dataName(DATA_NAME.SITES),
+        'paint': {
+            'circle-color': 'orange',
+            'circle-opacity': 0,
+            'circle-radius': 5,
+            'circle-stroke-width': 1,
+            'circle-stroke-color': 'black',
+            'circle-stroke-opacity': 0,
+            'circle-opacity-transition': { duration: 250 },
+            'circle-stroke-opacity-transition': { duration: 250 }
+        }
+    });
+
     map.addLayer({
         'id': layerName(DATA_NAME.WATER),
         'type': 'circle',
@@ -167,6 +168,7 @@ function addLayers()
             'circle-stroke-opacity-transition': { duration: 250 }
         }
     });
+
 }
 
 function getScreenAsFeature()

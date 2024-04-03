@@ -57,6 +57,31 @@ function initMap()
 
 function initMenu()
 {
+    // water related
+    const secondaryMenuWater = new SecondaryMenu('secondary-menu-water', SETUP.btnWater, 0);
+    secondaryMenuWater.enableAnim();
+    SETUP.btnWater.addOnFunc('click', (e,state) => secondaryMenuWater.forceTransition());
+
+    const secondaryBtnWaterHover = new Button('btn-secondary-water-hover');
+    secondaryBtnWaterHover.enableAnim();
+    secondaryBtnWaterHover.addOnFunc('click', (e,state) => disablePopupWater());
+    secondaryBtnWaterHover.addOffFunc('click', (e,state) => enablePopupWater());
+
+
+
+    // air related
+    const secondaryMenuAir = new SecondaryMenu('secondary-menu-air', SETUP.btnAir, 0);
+    secondaryMenuAir.enableAnim();
+    SETUP.btnAir.addOnFunc('click', (e,state) => secondaryMenuAir.forceTransition());
+
+    const secondaryBtnAirHover = new Button('btn-secondary-air-hover');
+    secondaryBtnAirHover.enableAnim();
+    secondaryBtnAirHover.addOnFunc('click', (e,state) => disablePopupAir());
+    secondaryBtnAirHover.addOffFunc('click', (e,state) => enablePopupAir());
+
+
+
+    // index related
     const secondaryMenuIndex = new SecondaryMenu('secondary-menu-index', SETUP.btnIndex, 1);
     secondaryMenuIndex.enableAnim();
     SETUP.btnIndex.addOffFunc('click', (e,state) => secondaryMenuIndex.forceTransition());
@@ -70,14 +95,4 @@ function initMenu()
     secondaryBtnIndexLegend.enableAnim();
     secondaryBtnIndexLegend.addOnFunc('click', (e,state) => disableClickableLegendIndex());
     secondaryBtnIndexLegend.addOffFunc('click', (e,state) => enableClickableLegendIndex());
-
-
-
-    const secondaryMenuAir = new SecondaryMenu('secondary-menu-air', SETUP.btnAir, 0);
-    secondaryMenuAir.enableAnim();
-    SETUP.btnAir.addOnFunc('click', (e,state) => secondaryMenuAir.forceTransition());
-
-    const secondaryMenuWater = new SecondaryMenu('secondary-menu-water', SETUP.btnWater, 0);
-    secondaryMenuWater.enableAnim();
-    SETUP.btnWater.addOnFunc('click', (e,state) => secondaryMenuWater.forceTransition());
 }

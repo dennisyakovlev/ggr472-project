@@ -81,7 +81,6 @@ function disablePopupIndex()
 function enableClickableLegendIndex()
 {
     INDEX.isLegendEnabled = true;
-    console.log($('.legend-index-pic'))
     $('.legend-index-pic').addClass('pointer');
 }
 function disableClickableLegendIndex()

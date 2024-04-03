@@ -1,5 +1,6 @@
-var WATER = {
-    isOn: false
+const WATER = {
+    isOn: false,
+    isAreaEffectEnable: true
 };
 
 function waterDisplayLayerName()
@@ -14,7 +15,6 @@ function genWaterPoint()
     map.setPaintProperty(layerName(DATA_NAME.WATER), 'circle-opacity', 1);
     map.setPaintProperty(layerName(DATA_NAME.WATER), 'circle-stroke-opacity', 1);
 }
-
 function clearWaterPoint()
 {
     WATER.isOn = false;
@@ -23,9 +23,18 @@ function clearWaterPoint()
     map.setPaintProperty(layerName(DATA_NAME.WATER), 'circle-stroke-opacity', 0);
 }
 
+function enablePopupWater()
+{
+    WATER.isAreaEffectEnable = true;
+}
+function disablePopupWater()
+{
+    WATER.isAreaEffectEnable = false;
+}
+
 map.on('load', () => {
     map.on('mousemove', layerName(DATA_NAME.WATER), (e) => {
-        if (WATER.isOn)
+        if (WATER.isOn && WATER.isAreaEffectEnable)
         {
             const features = e.features;
             if (features && features.length > 0)
