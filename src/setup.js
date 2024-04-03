@@ -1,4 +1,7 @@
 const SETUP = {
+    btnSites: null,
+    btnWater: null,
+    btnAir: null,
     btnIndex: null
 };
 
@@ -8,33 +11,33 @@ function initMap()
     const mainMenu = new Menu('menu-btn-main');
     mainMenu.enableAnim();
 
-    const btnSites = new Button('btn-1');
-    btnSites.enableAnim();
-    btnSites.addOnFunc('click', (e,state) => {
+    SETUP.btnSites = new Button('btn-1');
+    SETUP.btnSites.enableAnim();
+    SETUP.btnSites.addOnFunc('click', (e,state) => {
         toggleMapInfo(state, "sites", 0);
     });
-    btnSites.addOffFunc('click', (e,state) => {
+    SETUP.btnSites.addOffFunc('click', (e,state) => {
         toggleMapInfo(state, "sites", 0);
 
         forceSafeClearSitesHex();
         forceSafeClearSitesPoints();
     });
 
-    const btnWater = new Button('btn-2');
-    btnWater.enableAnim();
-    btnWater.addOnFunc('click', (e,state) => {
+    SETUP.btnWater = new Button('btn-2');
+    SETUP.btnWater.enableAnim();
+    SETUP.btnWater.addOnFunc('click', (e,state) => {
         genWaterPoint();
     });
-    btnWater.addOffFunc('click', (e,state) => {
+    SETUP.btnWater.addOffFunc('click', (e,state) => {
         clearWaterPoint();
     });
 
-    const btnAir = new Button('btn-3a');
-    btnAir.enableAnim();
-    btnAir.addOnFunc('click', (e,state) => {
+    SETUP.btnAir = new Button('btn-3a');
+    SETUP.btnAir.enableAnim();
+    SETUP.btnAir.addOnFunc('click', (e,state) => {
         genAirPoints();
     });
-    btnAir.addOffFunc('click', (e,state) => {
+    SETUP.btnAir.addOffFunc('click', (e,state) => {
         clearSitesPoints();
     });
 
@@ -54,6 +57,10 @@ function initMap()
 
 function initMenu()
 {
-    const secondaryMenuIndex = new SecondaryMenu('secondary-menu-index', SETUP.btnIndex, 0);
+    const secondaryMenuIndex = new SecondaryMenu('secondary-menu-index', SETUP.btnIndex, 1);
     secondaryMenuIndex.enableAnim();
+    SETUP.btnIndex.addOffFunc('click', (e,state) => secondaryMenuIndex.forceTransition());
+
+    const secondaryMenuAir = new SecondaryMenu('secondary-menu-air', SETUP.btnAir, 0);
+    secondaryMenuAir.enableAnim();
 }

@@ -8,13 +8,17 @@ class Animatable
         this.states[type] += 1;
         for (const [id,obj] of Object.entries(funcs))
         {
-            console.log(this)
-            console.log(obj)
-            if (obj.proto)
-                obj.f.call(this, e, this.states[type]);
+            if (obj.proto != null)
+                obj.f.call(obj.proto, e, this.states[type]);
             else
                 obj.f(e, this.states[type]);
         }
+    }
+
+    _checkType(type)
+    {
+        if (['click', 'enter', 'leave'].find(e => e == type) === undefined)
+            throw new Error('invalid type');
     }
 
     constructor(id)
@@ -46,7 +50,7 @@ class Animatable
             if (id in _animatables) _animatables[id]._doAction(e, 'click');
             else throw new Error(`didn't find ${id} in _animatables`)
         });
-        $(`#${this.id}`).on('mousenter', function(e) {
+        $(`#${this.id}`).on('mouseenter', function(e) {
             const id = $(this).attr('id');
             if (id in _animatables) _animatables[id]._doAction(e, 'enter');
             else throw new Error(`didn't find ${id} in _animatables`)
@@ -58,10 +62,9 @@ class Animatable
         });
     }
 
-    addOnFunc(type, func, _asProto=false)
+    addOnFunc(type, func, _asProto=null)
     {
-        if (['click', 'enter', 'leave'].find(e => e == type) === undefined)
-            throw new Error('invalid type');
+        this._checkType(type);
 
         this.onEventsNew[type][this.onIds] = {
             f: func,
@@ -72,10 +75,9 @@ class Animatable
         return oldId;
     }
 
-    addOffFunc(type, func, _asProto=false)
+    addOffFunc(type, func, _asProto=null)
     {
-        if (['click', 'enter', 'leave'].find(e => e == type) === undefined)
-            throw new Error('invalid type');
+        this._checkType(type);
 
         this.offEventsNew[type][this.offIds] = {
             f: func,
@@ -96,9 +98,11 @@ class Animatable
         throw new Error();
     }
 
-    getState()
+    getState(type)
     {
-        return this.state;
+        this._checkType(type);
+
+        return this.states[type];
     }
 };
 
@@ -186,8 +190,9 @@ class SecondaryMenu extends Animatable
 {
     constructor(id, associatedBtn, stateOffset)
     {
-        super(associatedBtn.id);
+        super(id);
 
+        this.myId = id;
         this.btn = associatedBtn;
         this.stateOffset = stateOffset;
         this.myState = 0;
@@ -195,25 +200,53 @@ class SecondaryMenu extends Animatable
 
     _transitionFunction(e, state)
     {
-        console.log('HEEEEEEEEEEEEEEEE', this)
-        console.log(this.myState, this.btn)
+        if (e === 'special')
+        {
+            this.btn.states.enter -= 1;
+        }
+
         // parent state 1 => parent on => maybe turn on
         // current state 0 => currently off => turn on
-        if ((this.btn.getState()+this.stateOffset)%2 && this.myState%2==0)
+        if ((this.btn.getState('click')+this.stateOffset)%2 && this.myState%2==0)
         {
             this.myState += 1;
 
-
-            $(content)
+            const me = $(`#${this.myId}`);
+            me
                 .removeClass('menu-anim-mid menu-anim-out no-pointer')
                 .addClass(`menu-anim-in menu-anim-start`);
-            // fire timer to throw away
+            
+                // fire timer to hide
+            const timer = setInterval((e2) => {
+                if ((this.getState('enter') == this.getState('leave')) &&
+                    (this.btn.getState('enter') == this.btn.getState('leave')))
+                {
+                    this.myState += 1;
+
+                    me
+                        .removeClass('menu-anim-start menu-anim-in')
+                        .addClass('menu-anim-mid menu-anim-out no-pointer');
+
+                    clearInterval(timer);
+                }
+            }, 400);
         }
+    }
+
+    forceTransition()
+    {
+        this.btn._doAction('special', 'enter');
     }
 
     enableAnim()
     {
-        this.addOnFunc('enter', this._transitionFunction, 1);
-        this.addOffFunc('leave', this._transitionFunction, 1);
+        // need to increment state to use in if checks in our transition
+        // func, so use empty functions
+        this.addOnFunc('enter', (e, state) => {});
+        this.addOnFunc('leave', (e, state) => {});
+
+        // want same behaviour both times
+        this.btn.addOnFunc('enter', this._transitionFunction, this);
+        this.btn.addOffFunc('enter', this._transitionFunction, this);
     }
 };
