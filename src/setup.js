@@ -67,6 +67,11 @@ function initMenu()
     secondaryBtnWaterHover.addOnFunc('click', (e,state) => disablePopupWater());
     secondaryBtnWaterHover.addOffFunc('click', (e,state) => enablePopupWater());
 
+    const secondaryBtnWaterArea = new Button('btn-secondary-water-area');
+    secondaryBtnWaterArea.enableAnim();
+    secondaryBtnWaterArea.addOnFunc('click', (e,state) => disableAreaEffectWater());
+    secondaryBtnWaterArea.addOffFunc('click', (e,state) => enableAreaEffectWater());
+
 
 
     // air related
