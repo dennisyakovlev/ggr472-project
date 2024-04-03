@@ -10,7 +10,8 @@ const map = new mapboxgl.Map({
 const DATA_NAME = {
     MAIN: 'main',
     SITES: 'sites',
-    PLANTS: 'plants'
+    WATER: 'water',
+    AIR: 'air'
 };
 function dataName(str)
 {

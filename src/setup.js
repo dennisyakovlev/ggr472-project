@@ -16,22 +16,22 @@ function initMap()
         forceSafeClearSitesPoints();
     });
 
-    const btnTreatment = new Button('btn-2');
-    btnTreatment.enableAnim();
-    btnTreatment.addOnFunc((e,state) => {
-
+    const btnWater = new Button('btn-2');
+    btnWater.enableAnim();
+    btnWater.addOnFunc((e,state) => {
+        genWaterPoint();
     });
-    btnTreatment.addOffFunc((e,state) => {
-
+    btnWater.addOffFunc((e,state) => {
+        clearWaterPoint();
     });
 
     const btnAir = new Button('btn-3a');
     btnAir.enableAnim();
     btnAir.addOnFunc((e,state) => {
-
+        genAirPoints();
     });
     btnAir.addOffFunc((e,state) => {
-
+        clearSitesPoints();
     });
 
     const btnIndex = new Button('btn-3');
@@ -39,7 +39,7 @@ function initMap()
     btnIndex.addOnFunc((e,state) => {
         toggleMapInfo(state, 'index', 1);
 
-        forceSafeClearIndexPoly();
+        clearIndexPoly();
     });
     btnIndex.addOffFunc((e,state) => {
         toggleMapInfo(state, 'index', 1);
