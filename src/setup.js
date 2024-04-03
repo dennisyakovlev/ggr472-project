@@ -1,3 +1,7 @@
+const SETUP = {
+    btnIndex: null
+};
+
 function initMap()
 {
     /* set up main menu for switching between different map layers */
@@ -6,10 +10,10 @@ function initMap()
 
     const btnSites = new Button('btn-1');
     btnSites.enableAnim();
-    btnSites.addOnFunc((e,state) => {
+    btnSites.addOnFunc('click', (e,state) => {
         toggleMapInfo(state, "sites", 0);
     });
-    btnSites.addOffFunc((e,state) => {
+    btnSites.addOffFunc('click', (e,state) => {
         toggleMapInfo(state, "sites", 0);
 
         forceSafeClearSitesHex();
@@ -18,33 +22,38 @@ function initMap()
 
     const btnWater = new Button('btn-2');
     btnWater.enableAnim();
-    btnWater.addOnFunc((e,state) => {
+    btnWater.addOnFunc('click', (e,state) => {
         genWaterPoint();
     });
-    btnWater.addOffFunc((e,state) => {
+    btnWater.addOffFunc('click', (e,state) => {
         clearWaterPoint();
     });
 
     const btnAir = new Button('btn-3a');
     btnAir.enableAnim();
-    btnAir.addOnFunc((e,state) => {
+    btnAir.addOnFunc('click', (e,state) => {
         genAirPoints();
     });
-    btnAir.addOffFunc((e,state) => {
+    btnAir.addOffFunc('click', (e,state) => {
         clearSitesPoints();
     });
 
-    const btnIndex = new Button('btn-3');
-    btnIndex.enableAnim();
-    btnIndex.addOnFunc((e,state) => {
+    SETUP.btnIndex = new Button('btn-3');
+    SETUP.btnIndex.enableAnim();
+    SETUP.btnIndex.addOnFunc('click', (e,state) => {
         toggleMapInfo(state, 'index', 1);
 
         clearIndexPoly();
     });
-    btnIndex.addOffFunc((e,state) => {
+    SETUP.btnIndex.addOffFunc('click', (e,state) => {
         toggleMapInfo(state, 'index', 1);
 
         genIndexPoly();
     });
+}
 
+function initMenu()
+{
+    const secondaryMenuIndex = new SecondaryMenu('secondary-menu-index', SETUP.btnIndex, 0);
+    secondaryMenuIndex.enableAnim();
 }

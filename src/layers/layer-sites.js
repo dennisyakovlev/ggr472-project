@@ -202,16 +202,16 @@ function forceSafeClearSitesPoints()
 }
 
 map.on('load', () => {
-    const menu = new Menu('menu-btn-sites');
-    menu.enableAnim();
+    // const menu = new Menu('menu-btn-sites');
+    // menu.enableAnim();
 
-    sitesBtn = new Button('btn-4');
-    sitesBtn.enableAnim();
-    sitesBtn.addOnFunc((e,state) => genSitesPoints());
-    sitesBtn.addOffFunc((e,state) => clearSitesPoints());
+    // sitesBtn = new Button('btn-4');
+    // sitesBtn.enableAnim();
+    // sitesBtn.addOnFunc((e,state) => genSitesPoints());
+    // sitesBtn.addOffFunc((e,state) => clearSitesPoints());
 
-    hexBtn = new Button('btn-5');
-    hexBtn.enableAnim();
-    hexBtn.addOnFunc((e,state) => genSitesHexGrid());
-    hexBtn.addOffFunc((e,state) => clearSitesHexGrid());
+    // hexBtn = new Button('btn-5');
+    // hexBtn.enableAnim();
+    // hexBtn.addOnFunc((e,state) => genSitesHexGrid());
+    // hexBtn.addOffFunc((e,state) => clearSitesHexGrid());
 });

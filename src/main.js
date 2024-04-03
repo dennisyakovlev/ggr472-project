@@ -125,11 +125,7 @@ function addLayers()
         'type': 'fill',
         'source': dataName(DATA_NAME.MAIN),
         'paint': {
-            'fill-color': [
-                'case',
-                ['==', ['get', 'Water facility name'], "BARE POINT WATER TREATMENT PLANT"], '#81d4fa',
-                'transparent'
-            ],
+            'fill-color': 'transparent',
             'fill-opacity': 1,
             'fill-opacity-transition': { duration: 250 }
         }
@@ -140,11 +136,7 @@ function addLayers()
         'source': dataName(DATA_NAME.MAIN),
         'layout': {},
         'paint': {
-            'line-color': [
-                'case',
-                ['==', ['get', 'Water facility name'], "BARE POINT WATER TREATMENT PLANT"], 'black',
-                'transparent'
-            ],
+            'line-color': 'transparent',
             'line-width': 0.25,
             'line-opacity': 1,
             'line-opacity-transition': { duration: 250 }
@@ -233,6 +225,6 @@ map.on("load", () => {
 
 
     initMap();
-
+    initMenu();
 });
 

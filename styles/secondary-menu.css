@@ -1,0 +1,16 @@
+#secondary-menu-index {
+    height: 200px;
+
+    left: 320px;
+    top: 290px;
+}
+.secondary-menu {
+    position: absolute;
+    width: 150px;
+
+    background: rgba(235, 227, 227, 0.5);
+    backdrop-filter: blur(3px);
+    cursor: pointer;
+    border-radius: 5px;
+    user-select: none;
+}
