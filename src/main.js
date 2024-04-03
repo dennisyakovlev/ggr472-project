@@ -68,17 +68,21 @@ function addLayers()
                 ['<=', ['get', 'Combined_Risk_Score'], 15], '#DE2D26',
                 ['<=', ['get', 'Combined_Risk_Score'], 20], '#A50F15',
                 'blue'
-            ]
+            ],
+            'fill-opacity': 1,
+            'fill-opacity-transition': { duration: 250 }
         }
     });
     var dataBorders = map.addLayer({
-        'id': 'data-border',
+        'id': borderName(DATA_NAME.MAIN),
         'type': 'line',
         'source': dataName(DATA_NAME.MAIN),
         'layout': {},
         'paint': {
             'line-color': 'black',
-            'line-width': 0.25
+            'line-width': 0.25,
+            'line-opacity': 1,
+            'line-opacity-transition': { duration: 250 }
         }
     });
 
