@@ -101,15 +101,6 @@ function colsFromFlatTopGrid(hexGrid, rows)
         cols += 1;
     }
     return cols;
-
-    var seen = 0;
-    var cols = 0;
-    while (seen < hexGrid.features.length)
-    {
-        seen += rows + ((cols+1)%2);
-        cols += 1;
-    }
-    return cols;
 }
 function factorFunc(val, fac, mx)
 {
@@ -224,9 +215,9 @@ function genSitesHexGrid()
             'type': 'circle',
             'source': hexNameDots(DATA_NAME.SITES),
             'paint': {
-                'circle-color': 'orange',
+                'circle-color': '#AF9B46',
                 'circle-opacity': 0,
-                'circle-radius': 5,
+                'circle-radius': 3,
                 'circle-stroke-width': 2,
                 'circle-stroke-color': 'white',
                 'circle-stroke-opacity': 0,

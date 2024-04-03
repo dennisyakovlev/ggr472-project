@@ -125,9 +125,9 @@ function addLayers()
         'type': 'circle',
         'source': dataName(DATA_NAME.SITES),
         'paint': {
-            'circle-color': 'orange',
+            'circle-color': '#AF9B46',
             'circle-opacity': 0,
-            'circle-radius': 5,
+            'circle-radius': 3,
             'circle-stroke-width': 1,
             'circle-stroke-color': 'black',
             'circle-stroke-opacity': 0,
@@ -212,7 +212,7 @@ map.on("load", () => {
 
             clearInterval(timer);
         }
-        if (count == 28 && dontQuit == false)
+        if (count == 40 && dontQuit == false)
         {
             loadFail();
             clearInterval(timer);
