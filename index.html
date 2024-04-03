@@ -32,8 +32,9 @@
         <div class="hamburger-menu-content menu-anim-start no-pointer">
           <div class="hamburger-menu-content-layout hamburger-menu-content-layout-top">
             <div class="btn-wrapper">
-              <div class="menu-info">
-                <div class="gg-info"></div>
+              <div class="menu-info" id="btn-10">
+                <div class="gg-info text-anim-mid"></div>
+                <div class="close text-anim-start"></div>
               </div>
               <div class="button" id="btn-1">
                 <p class="text-anim-mid">Contaminated Sites Off</p>
@@ -41,8 +42,9 @@
               </div>
             </div>
             <div class="btn-wrapper">
-              <div class="menu-info">
-                <div class="gg-info"></div>
+              <div class="menu-info" id="btn-11">
+                <div class="gg-info text-anim-mid"></div>
+                <div class="close text-anim-start"></div>
               </div>
               <div class="button" id="btn-2">
                 <p class="text-anim-mid">Water Facilities Off</p>
@@ -50,8 +52,9 @@
               </div>
             </div>
             <div class="btn-wrapper">
-              <div class="menu-info">
-                <div class="gg-info"></div>
+              <div class="menu-info" id="btn-12">
+                <div class="gg-info text-anim-mid"></div>
+                <div class="close text-anim-start"></div>
               </div>
               <div class="button" id="btn-3a">
                 <p class="text-anim-mid">Air Monitoring Sites Off</p>
@@ -59,8 +62,9 @@
               </div>
             </div>
             <div class="btn-wrapper">
-              <div class="menu-info">
-                <div class="gg-info"></div>
+              <div class="menu-info" id="btn-14">
+                <div class="gg-info text-anim-mid"></div>
+                <div class="close text-anim-start"></div>
               </div>
               <div class="button" id="btn-3">
                 <p class="text-anim-mid">Chloropleth Index On</p>
@@ -230,7 +234,8 @@
           </div>
         </div>
       </div>
-      <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-index">
+      <div class=
+      "secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-index">
         <div class="btn-wrapper">
           <div class="button" id="btn-secondary-index-hover">
             <p class="text-anim-mid">Hover Popup Enabled</p>
@@ -244,7 +249,43 @@
           </div>
         </div>
       </div>
-
+      <!-- all infos -->
+      <div class="info-content map-front mapinfo-anim-start no-pointer" id="info-popup-sites">
+        <div class="info-content-words">
+          <p>
+            This layer contains contaimed sites.
+          </p>
+        </div>
+      </div>
+      <div class="info-content map-front mapinfo-anim-start no-pointer" id="info-popup-water">
+        <div class="info-content-words">
+          <p>
+            This layer contains water treatment facilities.
+          </p>
+        </div>
+      </div>
+      <div class="info-content map-front mapinfo-anim-start no-pointer" id="info-popup-air">
+        <div class="info-content-words">
+          <p>
+            This layer shows the air quality montiroing stationg located in
+            Ontario. The main particle of interest if PM2.5. Fine particulate matter,
+            or PM2.5, is an air pollutant that is
+            either emitted from external sources (primary particles) or
+            formed in the atmosphere through chemical processes (secondary
+            particles). Short-term exposure to PM2.5 has been associated with
+            premature mortality, increased hospital admissions, acute and
+            chronic bronchitis, and asthma attacks. 
+          </p>
+        </div>
+      </div>
+      <div class="info-content map-front mapinfo-anim-start no-pointer" id="info-popup-index">
+        <div class="info-content-words">
+          <p>
+            This layer contains info about the chloropleth index. 
+          </p>
+        </div>
+      </div>
+      <!-- main map -->
       <div id="my-map" class="map-container"></div>
     </div>
     </div>

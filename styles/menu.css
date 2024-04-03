@@ -153,4 +153,30 @@
    .gg-info::before {
         height: 2px;
         top: 2px
-   } 
+   }
+
+/* https://stackoverflow.com/questions/18920542/draw-an-x-in-css */
+.close {
+    background: transparent;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
+.close:after {
+    content: '';
+    height: 20px;
+    border-left: 2px solid #ff0000;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 9px;
+}
+
+.close:before {
+    content: '';
+    height: 20px;
+    border-left: 2px solid #ff0000;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 9px;
+}

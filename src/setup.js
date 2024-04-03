@@ -15,7 +15,7 @@ function initMap()
     SETUP.btnSites.enableAnim();
     SETUP.btnSites.addOnFunc('click', (e,state) => {
         toggleMapInfo(state, 'sites', 0);
-        
+
         genSitesPoints();
     });
     SETUP.btnSites.addOffFunc('click', (e,state) => {
@@ -69,6 +69,15 @@ function initMenu()
     secondaryBtnSitesHex.addOnFunc('click', (e,state) => genSitesHexGrid());
     secondaryBtnSitesHex.addOffFunc('click', (e,state) => clearSitesHexGrid());
 
+    const primaryInfoBtnSites = new Button('btn-10');
+    primaryInfoBtnSites.enableAnim();
+    primaryInfoBtnSites.addOnFunc('click', (e,state) => $(`#info-popup-sites`)
+        .removeClass('mapinfo-anim-out')
+        .addClass('mapinfo-anim-in'));
+    primaryInfoBtnSites.addOffFunc('click', (e,state) => $(`#info-popup-sites`)
+        .removeClass('mapinfo-anim-in')
+        .addClass('mapinfo-anim-out'));
+
 
 
     // water related
@@ -86,6 +95,15 @@ function initMenu()
     secondaryBtnWaterArea.addOnFunc('click', (e,state) => disableAreaEffectWater());
     secondaryBtnWaterArea.addOffFunc('click', (e,state) => enableAreaEffectWater());
 
+    const primaryInfoBtnWater = new Button('btn-11');
+    primaryInfoBtnWater.enableAnim();
+    primaryInfoBtnWater.addOnFunc('click', (e,state) => $(`#info-popup-water`)
+        .removeClass('mapinfo-anim-out')
+        .addClass('mapinfo-anim-in'));
+    primaryInfoBtnWater.addOffFunc('click', (e,state) => $(`#info-popup-water`)
+        .removeClass('mapinfo-anim-in')
+        .addClass('mapinfo-anim-out'));
+
 
 
     // air related
@@ -97,6 +115,15 @@ function initMenu()
     secondaryBtnAirHover.enableAnim();
     secondaryBtnAirHover.addOnFunc('click', (e,state) => disablePopupAir());
     secondaryBtnAirHover.addOffFunc('click', (e,state) => enablePopupAir());
+
+    const primaryInfoBtnAir = new Button('btn-12');
+    primaryInfoBtnAir.enableAnim();
+    primaryInfoBtnAir.addOnFunc('click', (e,state) => $(`#info-popup-air`)
+        .removeClass('mapinfo-anim-out')
+        .addClass('mapinfo-anim-in'));
+    primaryInfoBtnAir.addOffFunc('click', (e,state) => $(`#info-popup-air`)
+        .removeClass('mapinfo-anim-in')
+        .addClass('mapinfo-anim-out'));
 
 
 
@@ -114,4 +141,14 @@ function initMenu()
     secondaryBtnIndexLegend.enableAnim();
     secondaryBtnIndexLegend.addOnFunc('click', (e,state) => disableClickableLegendIndex());
     secondaryBtnIndexLegend.addOffFunc('click', (e,state) => enableClickableLegendIndex());
+
+    
+    const primaryInfoBtnIndex = new Button('btn-14');
+    primaryInfoBtnIndex.enableAnim();
+    primaryInfoBtnIndex.addOnFunc('click', (e,state) => $(`#info-popup-index`)
+        .removeClass('mapinfo-anim-out')
+        .addClass('mapinfo-anim-in'));
+    primaryInfoBtnIndex.addOffFunc('click', (e,state) => $(`#info-popup-index`)
+        .removeClass('mapinfo-anim-in')
+        .addClass('mapinfo-anim-out'));
 }

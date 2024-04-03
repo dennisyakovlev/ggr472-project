@@ -62,6 +62,38 @@ body {
         }
     }
 
+.info-content {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    right: 50px;
+    top: 50px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+    .info-content-words {
+        width: fit-content;
+        height: fit-content;
+        block-size: fit-content;
+
+        background-color: white;
+        border: 1px solid lightgray;
+        border-style: outset;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .info-content-words > p {
+        line-height: 1.5;
+        margin: 20px 20px 20px 20px;
+    }
+
 .mapinfo {
     pointer-events: none;
     opacity: 0;
