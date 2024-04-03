@@ -1,0 +1,178 @@
+#legend-sites {
+    position: absolute;
+    width: 110px;
+    height: 415px;
+    right: 20px;
+    bottom: 20px;
+}
+#legend-index {
+    position: absolute;
+    width: 110px;
+    height: 250px;
+    bottom: 20px;
+    left: 20px;
+}
+    #legend-index-pic-0 {
+        background-color: #FEE5D9;
+    }
+    #legend-index-pic-1 {
+        background-color: #FCAE91;
+    }
+    #legend-index-pic-2 {
+        background-color: #FB6A4A;
+    }
+    #legend-index-pic-3 {
+        background-color: #DE2D26;
+    }
+    #legend-index-pic-4 {
+        background-color: #A50F15;
+    }
+    .pointer {
+        cursor: pointer;
+    }
+.legend {
+    background-color: white;
+    border: 1px solid lightgray;
+    border-style: outset;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+    .legend-title {
+        font-size: 18px;
+        margin: 0;
+        user-select: none;
+    }
+    .legend-item {
+        width: 85px;
+        height: 30px;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+    }
+        .legend-pic {
+            position: relative;
+            height: 100%;
+            width: 30px;
+            background-color: white;
+            box-shadow: 0px 1px 2px grey;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .legend-desc {
+            position: relative;
+            width: calc(100% - 30px);
+            height: 100%;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+        }
+            .legend-desc > p {
+                margin: 0 0 0 0;
+                font-size: 18px;
+            }
+
+
+
+/* https://jtauber.github.io/articles/css-hexagon.html */
+.hexagon-left {
+    float: left;
+    border-right: 5px solid #6C6;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;    
+}
+.hexagon-middle {
+    float: left;
+    width: 11px;
+    height: 18px;
+    background-color: #6C6;    
+}
+.hexagon-right {
+    float: left;
+    border-left: 5px solid #6C6;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;    
+}
+    .hexa-0-left {
+        border-right-color: #00043A;
+    }
+    .hexa-0-mid {
+        background-color: #00043A;
+    }
+    .hexa-0-right {
+        border-left-color: #00043A;
+    }
+    .hexa-1-left {
+        border-right-color: #002962;
+    }
+    .hexa-1-mid {
+        background-color: #002962;
+    }
+    .hexa-1-right {
+        border-left-color: #002962;
+    }
+    .hexa-2-left {
+        border-right-color: #004E89;
+    }
+    .hexa-2-mid {
+        background-color: #004E89;
+    }
+    .hexa-2-right {
+        border-left-color: #004E89;
+    }
+    .hexa-3-left {
+        border-right-color: #407BA7;
+    }
+    .hexa-3-mid {
+        background-color: #407BA7;
+    }
+    .hexa-3-right {
+        border-left-color: #407BA7;
+    }
+    .hexa-4-left {
+        border-right-color: #FF002B;
+    }
+    .hexa-4-mid {
+        background-color: #FF002B;
+    }
+    .hexa-4-right {
+        border-left-color: #FF002B;
+    }
+    .hexa-5-left {
+        border-right-color: #C00021;
+    }
+    .hexa-5-mid {
+        background-color: #C00021;
+    }
+    .hexa-5-right {
+        border-left-color: #C00021;
+    }
+    .hexa-6-left {
+        border-right-color: #A0001C;
+    }
+    .hexa-6-mid {
+        background-color: #A0001C;
+    }
+    .hexa-6-right {
+        border-left-color: #A0001C;
+    }
+    .hexa-7-left {
+        border-right-color: #800016;
+    }
+    .hexa-7-mid {
+        background-color: #800016;
+    }
+    .hexa-7-right {
+        border-left-color: #800016;
+    }

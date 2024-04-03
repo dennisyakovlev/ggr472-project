@@ -1,17 +1,18 @@
-var disable = false;
-var  sitesBtn;
-var hexBtn;
-
 const SITES = {
     isOn: false,
     isPopupEnabled: true,
     IDWfield: 'idw-field',
+    state: 0,
     wantedRows: 20 // number of wanted hexagons per a column
 };
 
 function hexName(str)
 {
     return `${str}-hex`
+}
+function hexNameDots(str)
+{
+    return `${str}-hex-dots`;
 }
 
 function genSitesPoints()
@@ -29,6 +30,10 @@ function clearSitesPoints()
     map.setPaintProperty(layerName(DATA_NAME.SITES), 'circle-stroke-opacity', 0);
 }
 
+function genFunc(x, maxVal)
+{
+    return 1 + (Math.ceil(maxVal/7) * x); // linear slope is int
+}
 function generateHexGrid(bbox, data, hexSize, field)
 {
     const hexGrid = turf.hexGrid(bbox, hexSize, 'kilometers');
@@ -106,39 +111,46 @@ function colsFromFlatTopGrid(hexGrid, rows)
     }
     return cols;
 }
+function factorFunc(val, fac, mx)
+{
+    return Math.floor(val <= mx * 0.2 ? val * Math.min(fac, 0.15) : val * fac);
+}
 function doIDW(rows, cols, hexGrid)
 {
     const orig = new Array(rows+1).fill(0).map(() => new Array(cols).fill(0));
-    var maxVal = 0;
-    i=0;
+    var i=0;
+    var estimatedMax = 0;
     for (var c=0; c!=cols; ++c)
     {
         for (var r=rows+((c+1)%2)-2; r!=-1; --r,++i)
         {
             orig[r][c]=hexGrid.features[i].properties.values.length;
-            maxVal = Math.max(maxVal, orig[r][c]);
+            estimatedMax = Math.max(estimatedMax, orig[r][c]);
         }
     }
 
+    const factor = 0.7;
     const dp = structuredClone(orig);
     for (var c=1; c!=cols; ++c) // top-left to bottom-right
         for (var r=1; r!=rows+((c+1)%2); ++r,++i)
-            dp[r][c]=Math.max(dp[r][c], orig[r][c] + Math.floor(Math.max(dp[r-1][c],dp[r][c-1],dp[r-1][c-1]) / 2));
+            dp[r][c]=factorFunc(Math.max(dp[r][c], orig[r][c] + Math.floor(Math.max(dp[r-1][c],dp[r][c-1],dp[r-1][c-1]))), factor, estimatedMax);
     for (var c=cols-2; c!=-1; --c) // top-right to bottom-left
         for (var r=1; r!=rows+((c+1)%2); ++r,++i)
-            dp[r][c]=Math.max(dp[r][c], orig[r][c] + Math.floor(Math.max(dp[r-1][c],dp[r][c+1],dp[r-1][c+1]) / 2));
+            dp[r][c]=factorFunc(Math.max(dp[r][c], orig[r][c] + Math.floor(Math.max(dp[r-1][c],dp[r][c+1],dp[r-1][c+1]))), factor, estimatedMax);
     for (var c=cols-2; c!=-1; --c) // bottom-right to top-left
         for (var r=rows+((c+1)%2)-2; r!=-1; --r,++i)
-            dp[r][c]=Math.max(dp[r][c], orig[r][c] + Math.floor(Math.max(dp[r+1][c],dp[r][c+1],dp[r+1][c+1]) / 2));
+            dp[r][c]=factorFunc(Math.max(dp[r][c], orig[r][c] + Math.floor(Math.max(dp[r+1][c],dp[r][c+1],dp[r+1][c+1]))), factor, estimatedMax);
     for (var c=1; c!=cols; ++c) // bottom-left to top-right
         for (var r=rows+((c+1)%2)-2; r!=-1; --r,++i)
-            dp[r][c]=Math.max(dp[r][c], orig[r][c] + Math.floor(Math.max(dp[r+1][c],dp[r][c-1],dp[r+1][c-1]) / 2));
+            dp[r][c]=factorFunc(Math.max(dp[r][c], orig[r][c] + Math.floor(Math.max(dp[r+1][c],dp[r][c-1],dp[r+1][c-1]))), factor, estimatedMax);
 
+        var maxVal = 0;
     i=0;
     for (var c=0; c!=cols; ++c)
     {
         for (var r=rows+((c+1)%2)-2; r!=-1; --r,++i)
         {
+            maxVal = Math.max(maxVal, dp[r][c]);
             hexGrid.features[i].properties[SITES.IDWfield] = dp[r][c];
         }
     }
@@ -149,9 +161,9 @@ function genSitesHexGrid()
 {
     // math for hexagons https://www.redblobgames.com/grids/hexagons/
 
-    if (disable == false)
+    if (SITES.isOn && SITES.state%4==0)
     {
-        disable = true;
+        SITES.state += 1;
 
         const onScreenPoints = getOnScreenPoints();
 
@@ -168,9 +180,7 @@ function genSitesHexGrid()
         
         const rows = rowsFromFlatTopGrid(hexGridSites);
         const cols = colsFromFlatTopGrid(hexGridSites, rows);
-        console.log(rows, cols);
-
-        doIDW(rows, cols, hexGridSites);
+        const maxWithin = doIDW(rows, cols, hexGridSites);
 
         map.addSource(hexName(DATA_NAME.SITES), {
             'type': 'geojson',
@@ -186,60 +196,73 @@ function genSitesHexGrid()
                 'fill-color': [
                     'case',
                     ['<=', ['get', SITES.IDWfield], 0], 'transparent',
-                    ['<=', ['get', SITES.IDWfield], 2], '#6A00F4',
-                    ['<=', ['get', SITES.IDWfield], 4], '#8900F2',
-                    ['<=', ['get', SITES.IDWfield], 6], '#A100F2',
-                    ['<=', ['get', SITES.IDWfield], 8], '#B100E8',
-                    ['<=', ['get', SITES.IDWfield], 10], '#BC00DD',
-                    ['<=', ['get', SITES.IDWfield], 12], '#D100D1',
-                    ['<=', ['get', SITES.IDWfield], 16], '#DB00B6',
-                    ['<=', ['get', SITES.IDWfield], 20], '#E500A4',
-                    ['<=', ['get', SITES.IDWfield], 100], '#F20089',
-                    'red'
+                    ['<=', ['get', SITES.IDWfield], genFunc(0, maxWithin)], '#00043A',
+                    ['<=', ['get', SITES.IDWfield], genFunc(1, maxWithin)], '#002962',
+                    ['<=', ['get', SITES.IDWfield], genFunc(2, maxWithin)], '#004E89',
+                    ['<=', ['get', SITES.IDWfield], genFunc(3, maxWithin)], '#407BA7',
+                    ['<=', ['get', SITES.IDWfield], genFunc(4, maxWithin)], '#FF002B',
+                    ['<=', ['get', SITES.IDWfield], genFunc(5, maxWithin)], '#C00021',
+                    ['<=', ['get', SITES.IDWfield], genFunc(6, maxWithin)], '#A0001C',
+                    ['<=', ['get', SITES.IDWfield], genFunc(7, maxWithin)], '#800016',
+                    'black'
                 ],
                 'fill-opacity': 0.0,
                 'fill-opacity-transition': { duration: 250 }
             }
         });
 
+        for (var i=0; i!= 8; ++i)
+            $(`#legend-sites-desc-${i}`).text(`≤ ${genFunc(i, maxWithin)}`);
+
+        map.addSource(hexNameDots(DATA_NAME.SITES), {
+            'type': 'geojson',
+            'data': onScreenPoints
+        });
+
+        map.addLayer({
+            'id': layerName(hexNameDots(DATA_NAME.SITES)),
+            'type': 'circle',
+            'source': hexNameDots(DATA_NAME.SITES),
+            'paint': {
+                'circle-color': 'orange',
+                'circle-opacity': 0,
+                'circle-radius': 5,
+                'circle-stroke-width': 2,
+                'circle-stroke-color': 'white',
+                'circle-stroke-opacity': 0,
+                'circle-opacity-transition': { duration: 250 },
+                'circle-stroke-opacity-transition': { duration: 250 }
+            }
+        });
+
+        // wait until actually added until animating in. smoother
         setTimeout(e => {
             map.setPaintProperty(layerName(hexName(DATA_NAME.SITES)), 'fill-opacity', 0.6);
-            disable = false;
+            map.setPaintProperty(layerName(hexNameDots(DATA_NAME.SITES)), 'circle-opacity', 1);
+            map.setPaintProperty(layerName(hexNameDots(DATA_NAME.SITES)), 'circle-stroke-opacity', 1);
+            
+            SITES.state += 1;
         }, 100);
     }
-    else
-    {
-        // display error
-    }
 }
-function clearSitesHexGrid(forceBtn)
+function clearSitesHexGrid()
 {
-    if (disable == false)
+    if (SITES.isOn &&  SITES.state%4==2)
     {
-        disable = true;
+        SITES.state += 1;
 
         map.setPaintProperty(layerName(hexName(DATA_NAME.SITES)), 'fill-opacity', 0);
-
+        map.setPaintProperty(layerName(hexNameDots(DATA_NAME.SITES)), 'circle-opacity', 0);
+        map.setPaintProperty(layerName(hexNameDots(DATA_NAME.SITES)), 'circle-stroke-opacity', 0);
+        
         setTimeout(e => {    
             map.removeLayer(layerName(hexName(DATA_NAME.SITES)));
             map.removeSource(hexName(DATA_NAME.SITES));
+            map.removeLayer(layerName(hexNameDots(DATA_NAME.SITES)));
+            map.removeSource(hexNameDots(DATA_NAME.SITES));
             
-            disable = false;
+            SITES.state += 1;
         }, 250);
-    
-        disable = false;
-    }
-    else
-    {
-        // display error
-    }
-}
-
-function forceSafeClearSitesHex()
-{
-    if (hexBtn.getState() % 2 == 1)
-    {
-        hexBtn.forceTransition();
     }
 }
 

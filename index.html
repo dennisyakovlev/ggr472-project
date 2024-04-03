@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Website</title>
-    <link rel="stylesheet" href="./styles/layers/style-index.css">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/anims.css">
     <link rel="stylesheet" href="./styles/menu.css">
     <link rel="stylesheet" href="./styles/loader.css">
     <link rel="stylesheet" href="./styles/secondary-menu.css">
+    <link rel="stylesheet" href="./styles/legend.css">
     <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
     <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet'/>
@@ -72,6 +72,91 @@
       </div>
 
       <!-- related to contaimed sites -->
+      <div class="legend map-front mapinfo-sites mapinfo-anim-out" id="legend-sites">
+        <p class="legend-title">
+          Risk Score
+        </p>
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-sites-pic-0">
+            <div class="hexagon-left hexa-0-left"></div>
+            <div class="hexagon-middle hexa-0-mid"></div>
+            <div class="hexagon-right hexa-0-right"></div>
+          </div>
+          <div class="legend-desc">
+            <p id="legend-sites-desc-0"></p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-sites-pic-1">
+            <div class="hexagon-left hexa-1-left"></div>
+            <div class="hexagon-middle hexa-1-mid"></div>
+            <div class="hexagon-right hexa-1-right"></div>
+          </div>
+          <div class="legend-desc">
+            <p id="legend-sites-desc-1"></p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-sites-pic-2">
+            <div class="hexagon-left hexa-2-left"></div>
+            <div class="hexagon-middle hexa-2-mid"></div>
+            <div class="hexagon-right hexa-2-right"></div>
+          </div>
+          <div class="legend-desc">
+            <p id="legend-sites-desc-2"></p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-sites-pic-3">
+            <div class="hexagon-left hexa-3-left"></div>
+            <div class="hexagon-middle hexa-3-mid"></div>
+            <div class="hexagon-right hexa-3-right"></div>
+          </div>
+          <div class="legend-desc">
+            <p id="legend-sites-desc-3"></p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-sites-pic-4">
+            <div class="hexagon-left hexa-4-left"></div>
+            <div class="hexagon-middle hexa-4-mid"></div>
+            <div class="hexagon-right hexa-4-right"></div>
+          </div>
+          <div class="legend-desc">
+            <p id="legend-sites-desc-4"></p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-sites-pic-5">
+            <div class="hexagon-left hexa-5-left"></div>
+            <div class="hexagon-middle hexa-5-mid"></div>
+            <div class="hexagon-right hexa-5-right"></div>
+          </div>
+          <div class="legend-desc">
+            <p id="legend-sites-desc-5"></p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-sites-pic-6">
+            <div class="hexagon-left hexa-6-left"></div>
+            <div class="hexagon-middle hexa-6-mid"></div>
+            <div class="hexagon-right hexa-6-right"></div>
+          </div>
+          <div class="legend-desc">
+            <p id="legend-sites-desc-6"></p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-sites-pic-7">
+            <div class="hexagon-left hexa-7-left"></div>
+            <div class="hexagon-middle hexa-7-mid"></div>
+            <div class="hexagon-right hexa-7-right"></div>
+          </div>
+          <div class="legend-desc">
+            <p id="legend-sites-desc-7"></p>
+          </div>
+        </div>
+      </div>
       <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-sites">
         <div class="btn-wrapper">
           <div class="button" id="btn-secondary-sites-hex">
@@ -105,42 +190,42 @@
         </div>
       </div>
       <!-- related to chloropleth -->
-      <div class="index-legend map-front mapinfo-index" id="legend-index">
-        <p class="legend-index-title">
+      <div class="legend map-front mapinfo-index" id="legend-index">
+        <p class="legend-title">
           Risk Score
         </p>
-        <div class="legend-index-item">
-          <div class="legend-index-pic pointer" id="legend-index-pic-0">
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-index-pic-0">
           </div>
-          <div class="legend-index-desc">
+          <div class="legend-desc">
             <p>≤ 8</p>
           </div>
         </div>
-        <div class="legend-index-item">
-          <div class="legend-index-pic pointer" id="legend-index-pic-1">
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-index-pic-1">
           </div>
-          <div class="legend-index-desc">
+          <div class="legend-desc">
             <p>≤ 11</p>
           </div>
         </div>
-        <div class="legend-index-item">
-          <div class="legend-index-pic pointer" id="legend-index-pic-2">
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-index-pic-2">
           </div>
-          <div class="legend-index-desc">
+          <div class="legend-desc">
             <p>≤ 13</p>
           </div>
         </div>
-        <div class="legend-index-item">
-          <div class="legend-index-pic pointer" id="legend-index-pic-3">
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-index-pic-3">
           </div>
-          <div class="legend-index-desc">
+          <div class="legend-desc">
             <p>≤ 15</p>
           </div>
         </div>
-        <div class="legend-index-item">
-          <div class="legend-index-pic pointer" id="legend-index-pic-4">
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-index-pic-4">
           </div>
-          <div class="legend-index-desc">
+          <div class="legend-desc">
             <p>≤ 20</p>
           </div>
         </div>

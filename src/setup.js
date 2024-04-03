@@ -14,19 +14,15 @@ function initMap()
     SETUP.btnSites = new Button('btn-1');
     SETUP.btnSites.enableAnim();
     SETUP.btnSites.addOnFunc('click', (e,state) => {
+        toggleMapInfo(state, 'sites', 0);
+        
         genSitesPoints();
-
-
-        // toggleMapInfo(state, "sites", 0);
     });
     SETUP.btnSites.addOffFunc('click', (e,state) => {
+        toggleMapInfo(state, 'sites', 0);
+
+        clearSitesHexGrid(); // must be before fore isOn to be true
         clearSitesPoints();
-
-
-        // toggleMapInfo(state, "sites", 0);
-
-        // forceSafeClearSitesHex();
-        // forceSafeClearSitesPoints();
     });
 
     SETUP.btnWater = new Button('btn-2');

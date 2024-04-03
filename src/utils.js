@@ -37,20 +37,14 @@ function toggleMapInfo(state, targetClass, stateOffset)
     const elems = $(`.mapinfo-${targetClass}`);
     if ((state+stateOffset)%2==1) // 1 => turn on
     {
-        for (var i=0; i!=elems.length; ++i)
-        {
-            $(elems[i])
-                .removeClass('mapinfo-anim-out')
-                .addClass('mapinfo-anim-in');
-        }
+        $(elems)
+            .removeClass('mapinfo-anim-out')
+            .addClass('mapinfo-anim-in');
     }
     else // 0 => turn off
     {
-        for (var i=0; i!=elems.length; ++i)
-        {
-            $(elems[i])
-                .removeClass('mapinfo-anim-in')
-                .addClass('mapinfo-anim-out');
-        }
+        $(elems)
+            .removeClass('mapinfo-anim-in')
+            .addClass('mapinfo-anim-out');
     }
 }
