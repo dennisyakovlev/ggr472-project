@@ -136,6 +136,7 @@ function addLayers()
         }
     });
 
+    // water treatment facilities
     map.addLayer({
         'id': layerName(DATA_NAME.WATER),
         'type': 'circle',

@@ -28,24 +28,6 @@ function borderName(str)
 
 var DATA = {};
 
-function generateHexGrid(bbox, data, hexSize, field)
-{
-    const hexGrid = turf.hexGrid(bbox, hexSize, 'kilometers');
-    const collected = turf.collect(hexGrid, data, field, "values");
-
-    return collected;
-}
-function getBoundingBoxfromData(data, scale)
-{
-    const features = turf.featureCollection(data.features);
-    const bbox = turf.envelope(features);
-    const poly = turf.polygon(bbox.geometry.coordinates);
-    const bboxTrans = turf.transformScale(poly.geometry, scale);
-    const newBbox = turf.envelope(bboxTrans);
-
-    return newBbox.bbox;
-}
-
 /*  state - state from animatable
     targetClass - class of dom elements to target
     stateOffset - 0 for normal, 1 for reversed

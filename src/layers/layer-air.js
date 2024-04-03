@@ -10,7 +10,7 @@ function genAirPoints()
     map.setPaintProperty(layerName(DATA_NAME.AIR), 'circle-opacity', 1);
     map.setPaintProperty(layerName(DATA_NAME.AIR), 'circle-stroke-opacity', 1);
 }
-function clearSitesPoints()
+function clearAirPoints()
 {
     AIR.isOn = false;
 

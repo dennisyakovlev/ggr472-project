@@ -14,13 +14,19 @@ function initMap()
     SETUP.btnSites = new Button('btn-1');
     SETUP.btnSites.enableAnim();
     SETUP.btnSites.addOnFunc('click', (e,state) => {
-        toggleMapInfo(state, "sites", 0);
+        genSitesPoints();
+
+
+        // toggleMapInfo(state, "sites", 0);
     });
     SETUP.btnSites.addOffFunc('click', (e,state) => {
-        toggleMapInfo(state, "sites", 0);
+        clearSitesPoints();
 
-        forceSafeClearSitesHex();
-        forceSafeClearSitesPoints();
+
+        // toggleMapInfo(state, "sites", 0);
+
+        // forceSafeClearSitesHex();
+        // forceSafeClearSitesPoints();
     });
 
     SETUP.btnWater = new Button('btn-2');
@@ -38,7 +44,7 @@ function initMap()
         genAirPoints();
     });
     SETUP.btnAir.addOffFunc('click', (e,state) => {
-        clearSitesPoints();
+        clearAirPoints();
     });
 
     SETUP.btnIndex = new Button('btn-3');
@@ -57,6 +63,18 @@ function initMap()
 
 function initMenu()
 {
+    // sites related
+    const secondaryMenuSites = new SecondaryMenu('secondary-menu-sites', SETUP.btnSites, 0);
+    secondaryMenuSites.enableAnim();
+    SETUP.btnSites.addOnFunc('click', (e,state) => secondaryMenuSites.forceTransition());
+
+    const secondaryBtnSitesHex = new Button('btn-secondary-sites-hex');
+    secondaryBtnSitesHex.enableAnim();
+    secondaryBtnSitesHex.addOnFunc('click', (e,state) => genSitesHexGrid());
+    secondaryBtnSitesHex.addOffFunc('click', (e,state) => clearSitesHexGrid());
+
+
+
     // water related
     const secondaryMenuWater = new SecondaryMenu('secondary-menu-water', SETUP.btnWater, 0);
     secondaryMenuWater.enableAnim();
