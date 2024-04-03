@@ -17,3 +17,15 @@ Merged data is shown at the census subdivision level across Ontario's 577 CSDs.
 <u>Instructions</u>
 
 
+
+<u> Features<u>
+
+4 data layers:
+1. Air pollution: A collection of points displaying locations of 22 air monitioring stations in Ontario. When you click a point, 
+
+2. Water quality:
+
+3. Contaminated sites:
+
+
+
