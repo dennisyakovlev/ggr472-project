@@ -19,7 +19,7 @@
     <div class="screen flex-layout" id="screen-1">
       <div class="loader" id="loader-1"></div>
     </div>
-    <div class="screen" id="screen-2">
+    <div class="screen no-pointer" id="screen-2">
       <!-- main menu -->
       <div class="hamburger-menu map-front" id="menu-main">
         <div class="hamburger-menu-button" id="menu-btn-main">
@@ -93,56 +93,61 @@
           </div>
         </div>
       </div>
-
       <!-- related to treatment stations -->
-
+      <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-water">
+        <div class="btn-wrapper">
+          <div class="button" id="btn-secondary-water-hover">
+            <p class="text-anim-mid">Hover Area Effect Enabled</p>
+            <p class="text-anim-start">Hover Area Effect Disabled</p>
+          </div>
+        </div>
+      </div>
       <!-- related  to air stations-->
       <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-air">
         <div class="btn-wrapper">
-          <div class="button" id="btn-secondary-index-hover">
+          <div class="button" id="btn-secondary-air-hover">
             <p class="text-anim-mid">Hover Popup Enabled</p>
             <p class="text-anim-start">Hover Popup Disabled</p>
           </div>
         </div>
       </div>
-
       <!-- related to chloropleth -->
-      <div class="index-legend map-front mapinfo-index">
-        <p class="legend-title">
+      <div class="index-legend map-front mapinfo-index" id="legend-index">
+        <p class="legend-index-title">
           Risk Score
         </p>
-        <div class="legend-item">
-          <div class="legend-pic" id="legend-pic-1">
+        <div class="legend-index-item">
+          <div class="legend-index-pic pointer" id="legend-index-pic-0">
           </div>
-          <div class="legend-desc">
+          <div class="legend-index-desc">
             <p>≤ 8</p>
           </div>
         </div>
-        <div class="legend-item">
-          <div class="legend-pic" id="legend-pic-2">
+        <div class="legend-index-item">
+          <div class="legend-index-pic pointer" id="legend-index-pic-1">
           </div>
-          <div class="legend-desc">
+          <div class="legend-index-desc">
             <p>≤ 11</p>
           </div>
         </div>
-        <div class="legend-item">
-          <div class="legend-pic" id="legend-pic-3">
+        <div class="legend-index-item">
+          <div class="legend-index-pic pointer" id="legend-index-pic-2">
           </div>
-          <div class="legend-desc">
+          <div class="legend-index-desc">
             <p>≤ 13</p>
           </div>
         </div>
-        <div class="legend-item">
-          <div class="legend-pic" id="legend-pic-4">
+        <div class="legend-index-item">
+          <div class="legend-index-pic pointer" id="legend-index-pic-3">
           </div>
-          <div class="legend-desc">
+          <div class="legend-index-desc">
             <p>≤ 15</p>
           </div>
         </div>
-        <div class="legend-item">
-          <div class="legend-pic" id="legend-pic-5">
+        <div class="legend-index-item">
+          <div class="legend-index-pic pointer" id="legend-index-pic-4">
           </div>
-          <div class="legend-desc">
+          <div class="legend-index-desc">
             <p>≤ 20</p>
           </div>
         </div>
@@ -152,6 +157,12 @@
           <div class="button" id="btn-secondary-index-hover">
             <p class="text-anim-mid">Hover Popup Enabled</p>
             <p class="text-anim-start">Hover Popup Disabled</p>
+          </div>
+        </div>
+        <div class="btn-wrapper">
+          <div class="button" id="btn-secondary-index-legend">
+            <p class="text-anim-mid">Clickable Legend On</p>
+            <p class="text-anim-start">Clickable Legend Off</p>
           </div>
         </div>
       </div>

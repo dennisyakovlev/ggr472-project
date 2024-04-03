@@ -45,9 +45,11 @@ body {
     }
     #screen-2 {
         opacity: 0;
-        pointer-events: none;
         z-index: 2;
     }
+        .no-pointer {
+            pointer-events: none;
+        }
         .screen-anim-in {
             animation: map-anim-in 1s forwards;
         }
@@ -57,7 +59,6 @@ body {
         }
         100% {
             opacity: 1;
-            pointer-events: all;
         }
     }
 

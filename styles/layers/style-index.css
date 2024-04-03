@@ -15,11 +15,12 @@
     justify-content: space-evenly;
     align-items: center;
 }
-    .legend-title {
+    .legend-index-title {
         font-size: 18px;
         margin: 0;
+        user-select: none;
     }
-    .legend-item {
+    .legend-index-item {
         width: 85px;
         height: 30px;
 
@@ -28,29 +29,32 @@
         justify-content: start;
         align-items: center;
     }
-        .legend-pic {
+        .legend-index-pic {
             position: relative;
             height: 100%;
             width: 30px;
             background-color: white;
             box-shadow: 0px 1px 2px grey;
         }
-            #legend-pic-1 {
+            .pointer {
+                cursor: pointer;
+            }
+            #legend-index-pic-0 {
                 background-color: #FEE5D9;
             }
-            #legend-pic-2 {
+            #legend-index-pic-1 {
                 background-color: #FCAE91;
             }
-            #legend-pic-3 {
+            #legend-index-pic-2 {
                 background-color: #FB6A4A;
             }
-            #legend-pic-4 {
+            #legend-index-pic-3 {
                 background-color: #DE2D26;
             }
-            #legend-pic-5 {
+            #legend-index-pic-4 {
                 background-color: #A50F15;
             }
-        .legend-desc {
+        .legend-index-desc {
             position: relative;
             width: calc(100% - 30px);
             height: 100%;
@@ -59,8 +63,9 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
+            user-select: none;
         }
-            .legend-desc > p {
+            .legend-index-desc > p {
                 margin: 0 0 0 0;
                 font-size: 18px;
             }

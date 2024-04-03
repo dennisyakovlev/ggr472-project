@@ -77,15 +77,7 @@ function addLayers()
         'source': dataName(DATA_NAME.MAIN),
         'layout': {},
         'paint': {
-            'fill-color': [
-                'case',
-                ['<=', ['get', 'Combined_Risk_Score'], 8], '#FEE5D9',
-                ['<=', ['get', 'Combined_Risk_Score'], 11], '#FCAE91',
-                ['<=', ['get', 'Combined_Risk_Score'], 13], '#FB6A4A',
-                ['<=', ['get', 'Combined_Risk_Score'], 15], '#DE2D26',
-                ['<=', ['get', 'Combined_Risk_Score'], 20], '#A50F15',
-                'blue'
-            ],
+            'fill-color': buildIndexColorValue(),
             'fill-opacity': 1,
             'fill-opacity-transition': { duration: 250 }
         }
@@ -194,7 +186,9 @@ function getScreenAsFeature()
 function loadingRemove()
 {
     $('.loader').css('animation', 'l15 1s infinite linear, loader-key-anim-out 1s forwards ease-in');
-    $('#screen-2').addClass('screen-anim-in');
+    $('#screen-2')
+        .removeClass('no-pointer')
+        .addClass('screen-anim-in');
 }
 
 map.on("load", () => {

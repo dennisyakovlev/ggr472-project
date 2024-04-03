@@ -61,6 +61,23 @@ function initMenu()
     secondaryMenuIndex.enableAnim();
     SETUP.btnIndex.addOffFunc('click', (e,state) => secondaryMenuIndex.forceTransition());
 
+    const secondaryBtnIndexHover = new Button('btn-secondary-index-hover');
+    secondaryBtnIndexHover.enableAnim();
+    secondaryBtnIndexHover.addOnFunc('click', (e,state) => disablePopupIndex());
+    secondaryBtnIndexHover.addOffFunc('click', (e,state) => enablePopupIndex());
+
+    const secondaryBtnIndexLegend = new Button('btn-secondary-index-legend');
+    secondaryBtnIndexLegend.enableAnim();
+    secondaryBtnIndexLegend.addOnFunc('click', (e,state) => disableClickableLegendIndex());
+    secondaryBtnIndexLegend.addOffFunc('click', (e,state) => enableClickableLegendIndex());
+
+
+
     const secondaryMenuAir = new SecondaryMenu('secondary-menu-air', SETUP.btnAir, 0);
     secondaryMenuAir.enableAnim();
+    SETUP.btnAir.addOnFunc('click', (e,state) => secondaryMenuAir.forceTransition());
+
+    const secondaryMenuWater = new SecondaryMenu('secondary-menu-water', SETUP.btnWater, 0);
+    secondaryMenuWater.enableAnim();
+    SETUP.btnWater.addOnFunc('click', (e,state) => secondaryMenuWater.forceTransition());
 }
