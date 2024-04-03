@@ -6,7 +6,7 @@ const SITES = {
     isOn: false,
     isPopupEnabled: true,
     IDWfield: 'idw-field',
-    wantedRows: 10 // number of wanted hexagons per a column
+    wantedRows: 20 // number of wanted hexagons per a column
 };
 
 function hexName(str)
@@ -45,6 +45,18 @@ function getBoundingBoxfromData(data, scale)
     const newBbox = turf.envelope(bboxTrans);
 
     return newBbox.bbox;
+}
+function getOnScreenPoints()
+{
+    const data = getScreenAsFeature();
+    const features = turf.featureCollection(data.features);
+    const bbox = turf.envelope(features);
+    const poly = turf.polygon(bbox.geometry.coordinates);
+    const pointsArr = DATA[dataName(DATA_NAME.SITES)].features.map((e) =>  e.geometry.coordinates);
+    const points = turf.points(pointsArr);
+    const res = turf.pointsWithinPolygon(points, poly);
+
+    return res;
 }
 function rowsFromFlatTopGrid(hexGrid)
 {
@@ -141,8 +153,9 @@ function genSitesHexGrid()
     {
         disable = true;
 
-        const bbox = getBoundingBoxfromData(getScreenAsFeature(), 1);
-        
+        const onScreenPoints = getOnScreenPoints();
+
+        const bbox = getBoundingBoxfromData(getScreenAsFeature(), 2);
         const poly = turf.bboxPolygon(bbox);
         const se = turf.point(poly.geometry.coordinates[0][1]);
         const ne = turf.point(poly.geometry.coordinates[0][2]);
@@ -151,7 +164,7 @@ function genSitesHexGrid()
         const height = turf.distance(ne, se, {'units': 'kilometers'});
         
         const hexSize = height / (SITES.wantedRows * 2); // hexagons for hieght, since flat-top grid
-        const hexGridSites = generateHexGrid(bbox, DATA[dataName(DATA_NAME.SITES)], hexSize, "ID");
+        const hexGridSites = generateHexGrid(bbox, onScreenPoints, hexSize, "ID");
         
         const rows = rowsFromFlatTopGrid(hexGridSites);
         const cols = colsFromFlatTopGrid(hexGridSites, rows);
