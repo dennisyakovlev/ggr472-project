@@ -1,3 +1,5 @@
+/*  simulated namespace for sites file
+*/
 const SITES = {
     isOn: false,
     isPopupEnabled: true,
@@ -6,6 +8,8 @@ const SITES = {
     wantedRows: 20 // number of wanted hexagons per a column
 };
 
+/*  helper functions for naming
+*/
 function hexName(str)
 {
     return `${str}-hex`
@@ -15,6 +19,8 @@ function hexNameDots(str)
     return `${str}-hex-dots`;
 }
 
+/*  make points for sites visibile on map
+*/
 function genSitesPoints()
 {
     SITES.isOn = true;
@@ -22,6 +28,8 @@ function genSitesPoints()
     map.setPaintProperty(layerName(DATA_NAME.SITES), 'circle-opacity', 1);
     map.setPaintProperty(layerName(DATA_NAME.SITES), 'circle-stroke-opacity', 1);
 }
+/*  make points for sites invisible on map
+*/
 function clearSitesPoints()
 {
     SITES.isOn = false;
@@ -30,10 +38,15 @@ function clearSitesPoints()
     map.setPaintProperty(layerName(DATA_NAME.SITES), 'circle-stroke-opacity', 0);
 }
 
+/*  generate y-value for legend from the x-value as
+    a linear function against the max obtained value
+*/
 function genFunc(x, maxVal)
 {
     return 1 + (Math.ceil(maxVal/7) * x); // linear slope is int
 }
+/*  generate the hex grid
+*/
 function generateHexGrid(bbox, data, hexSize, field)
 {
     const hexGrid = turf.hexGrid(bbox, hexSize, 'kilometers');
@@ -51,6 +64,8 @@ function getBoundingBoxfromData(data, scale)
 
     return newBbox.bbox;
 }
+/*  get current sites visible on screen from the index layer
+*/
 function getOnScreenPoints()
 {
     const data = getScreenAsFeature();
@@ -63,6 +78,8 @@ function getOnScreenPoints()
 
     return res;
 }
+/*  get numer of rows from genrated hexgrid
+*/
 function rowsFromFlatTopGrid(hexGrid)
 {
     /*  we cannot generate a grid with n rows reliably.
@@ -88,6 +105,8 @@ function rowsFromFlatTopGrid(hexGrid)
 
     return i;
 }
+/*  get number of cols from genrated hexgrid
+*/
 function colsFromFlatTopGrid(hexGrid, rows)
 {
     var seen = 0;
@@ -102,10 +121,15 @@ function colsFromFlatTopGrid(hexGrid, rows)
     }
     return cols;
 }
+/*  fuction for determing the weight of the reduction
+    when running IDW 
+*/
 function factorFunc(val, fac, mx)
 {
     return Math.floor(val <= mx * 0.2 ? val * Math.min(fac, 0.15) : val * fac);
 }
+/*  actually do IDW
+*/
 function doIDW(rows, cols, hexGrid)
 {
     const orig = new Array(rows+1).fill(0).map(() => new Array(cols).fill(0));
@@ -148,10 +172,14 @@ function doIDW(rows, cols, hexGrid)
 
     return maxVal;
 }
+/*  create hex grid and interpolate on the current
+    contamiated sites
+*/
 function genSitesHexGrid()
 {
     // math for hexagons https://www.redblobgames.com/grids/hexagons/
 
+    // 
     if (SITES.isOn && SITES.state%4==0)
     {
         SITES.state += 1;
@@ -236,6 +264,8 @@ function genSitesHexGrid()
         }, 100);
     }
 }
+/*  make the generated hex layer not visible
+*/
 function clearSitesHexGrid()
 {
     if (SITES.isOn &&  SITES.state%4==2)
@@ -256,4 +286,3 @@ function clearSitesHexGrid()
         }, 250);
     }
 }
-

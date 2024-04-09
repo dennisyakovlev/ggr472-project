@@ -1,18 +1,22 @@
 mapboxgl.accessToken = "pk.eyJ1IjoiZGVubmlzeWFrb3ZsZXY0MCIsImEiOiJjbHMyNnViazIwMHB5MmpvNHlvc3B2bDQ2In0.nTDRJJnhgM_EW8tSwyOchg";
 const map = new mapboxgl.Map({
-	container: 'my-map', // container ID
+	container: 'my-map',                       // container ID
 	style: 'mapbox://styles/mapbox/light-v11', // my edited monochrone
-	center: [-85.9, 50.7], // starting position [lng, lat], aim at NYC
-	zoom: 4, // starting tile zoom
-    pitch: 0
+	center: [-85.9, 50.7],                     // starting position [lng, lat], aim at NYC
+	zoom: 4,                                   // starting tile zoom
+    pitch: 0                                   // no pitch
 });
 
+/*  global names for each layer
+*/
 const DATA_NAME = {
     MAIN: 'main',
     SITES: 'sites',
     WATER: 'water',
     AIR: 'air'
 };
+/*  helper function for getting names of certain items
+*/
 function dataName(str)
 {
     return `${str}-data`;
@@ -26,9 +30,11 @@ function borderName(str)
     return `${str}-border`;
 }
 
-var DATA = {};
+var DATA = {}; // global data variable of fetched files
 
-/*  state - state from animatable
+/*  toggle extras related to some layer on and off
+
+    state       - state from animatable
     targetClass - class of dom elements to target
     stateOffset - 0 for normal, 1 for reversed
 */
@@ -47,4 +53,20 @@ function toggleMapInfo(state, targetClass, stateOffset)
             .removeClass('mapinfo-anim-in')
             .addClass('mapinfo-anim-out');
     }
+}
+
+/*  get the currenet map view as a feature
+*/
+function getScreenAsFeature()
+{
+    const obj = map.getBounds();
+    const sw = turf.feature({
+        'type': 'Point',
+        'coordinates': [obj._sw.lng, obj._sw.lat]
+    });
+    const ne = turf.feature({
+        'type': 'Point',
+        'coordinates': [obj._ne.lng, obj._ne.lat]
+    });
+    return {'features': [sw, ne]};
 }

@@ -1,10 +1,14 @@
-const indexColors = ['FEE5D9', 'FCAE91', 'FB6A4A', 'DE2D26', 'A50F15']
+/* colors of chloropleth
+*/
+const indexColors = ['FEE5D9', 'FCAE91', 'FB6A4A', 'DE2D26', 'A50F15'];
+/* simulated namespace for index file
+*/
 const INDEX = {
-    isOn: true,
-    isPopupEnabled: true,
-    isLegendEnabled: true,
+    isOn: true,             // is the index layer on
+    isPopupEnabled: true,   // is hover popup enabled
+    isLegendEnabled: true,  // is the legend for the layer on
     fill: {
-        _value: [
+        _value: [           // base fill value for layer
             'case',
             ['<=', ['get', 'Combined_Risk_Score'], 8], '#',
             ['<=', ['get', 'Combined_Risk_Score'], 11], '#',
@@ -17,6 +21,9 @@ const INDEX = {
     }
 };
 
+/*  take the base fill and actually fill in the colors
+    using the current colors
+*/
 function buildIndexColorValue()
 {
     const val = structuredClone(INDEX.fill._value);
@@ -26,12 +33,16 @@ function buildIndexColorValue()
     }
     return val;
 }
+/*  update color used to display the chrlopleth
+*/
 function updateIndexColor(ind, col)
 {
     if (!(0 <= ind && ind <= 4)) throw new Error('bad color');
 
     INDEX.fill._colors[ind] = col;
 }
+/* get color used to display the chrloropleth
+*/
 function getIndexColor(ind)
 {
     if (!(0 <= ind && ind <= 4)) throw new Error('bad color');
@@ -39,6 +50,8 @@ function getIndexColor(ind)
     return INDEX.fill._colors[ind];
 }
 
+/*  make the chrolopleth visible on the map
+*/
 function genIndexPoly()
 {
     INDEX.isOn = true;
@@ -46,6 +59,8 @@ function genIndexPoly()
     map.setPaintProperty(layerName(DATA_NAME.MAIN), 'fill-opacity', 1);
     map.setPaintProperty(borderName(DATA_NAME.MAIN), 'line-opacity', 1);
 }
+/*  make the chrlopleth invisble on the map
+*/
 function clearIndexPoly()
 {
     INDEX.isOn = false;
@@ -54,6 +69,9 @@ function clearIndexPoly()
     map.setPaintProperty(borderName(DATA_NAME.MAIN), 'line-opacity', 0);
 }
 
+/*  create the html string used to fill in the
+    on hover popup
+*/
 function createPopupHTMLIndex(feature)
 {
     const prop = feature.properties;
@@ -64,25 +82,33 @@ function createPopupHTMLIndex(feature)
             <p>Average PM2.5 Concentration: ${Math.round(parseFloat(prop['Average PM2.5 concentration']) * 100) / 100}</p>
             <p>Number of Active Contaminated Sites: ${prop['Number of active contaminated sites']}</p>
             <p>Water Quality Score: ${prop['Risk score_MEAN NITROGEN (nitrogen + nitrite)'] + prop['Risk score_MEAN TOTAL PHOSPHORUS']}</p>
-            <p>Contaminated Sites Risk Score: ${prop['Risk score_Number of active contaminated sites']}</p>
+            <p>Mean Phosphorus: ${prop['Risk score_MEAN TOTAL PHOSPHORUS']}</p>
             <p>Risk Score: ${prop['Combined_Risk_Score']}</p>
             `;
 }
 
+/*  make the on hover popup fucntionality work
+*/
 function enablePopupIndex()
 {
     INDEX.isPopupEnabled = true;
 }
+/*  disable on hover popup funcationality
+*/
 function disablePopupIndex()
 {
     INDEX.isPopupEnabled = false;
 }
 
+/*  make the corresponding legend for the index interactive
+*/
 function enableClickableLegendIndex()
 {
     INDEX.isLegendEnabled = true;
     $('.legend-index-pic').addClass('pointer');
 }
+/*  make the corresponding lengend for the index static
+*/
 function disableClickableLegendIndex()
 {
     INDEX.isLegendEnabled = false;
@@ -100,6 +126,7 @@ map.on('load', () => {
         if (INDEX.isOn && INDEX.isPopupEnabled)
         {
             const features = e.features;
+            // is on a feature of the layer ?
             if (features && features.length > 0)
             {
                 map.getCanvas().style.cursor = 'pointer';
@@ -119,11 +146,12 @@ map.on('load', () => {
     });
 
     map.on('mouseleave', layerName(DATA_NAME.MAIN), (e) => {
+        // always remove popup on layer exit
         map.getCanvas().style.cursor = '';
         popup.remove();
     });
 
-    // filtering
+    // interacitve legend
     $('#legend-index').on('click', (e) => {
         const id = $(e.target).attr('id');
         if (id && INDEX.isLegendEnabled)
@@ -132,8 +160,8 @@ map.on('load', () => {
             {
                 const ind = parseInt(id.slice(-1));
                 const col = getIndexColor(ind) == 'a9a9a9'
-                    ? indexColors[ind]
-                    : 'a9a9a9';
+                    ? indexColors[ind]  // bring in
+                    : 'a9a9a9';         // grey out
 
                 updateIndexColor(ind, col);
                 map.setPaintProperty(layerName(DATA_NAME.MAIN), 'fill-color', buildIndexColorValue());

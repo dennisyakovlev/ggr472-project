@@ -1,8 +1,12 @@
+/*  simulated index for air file
+*/
 const AIR = {
     isOn: false,
     isPopupEnabled: true,
 };
 
+/*  make the air points layer visible on the map
+*/
 function genAirPoints()
 {
     AIR.isOn = true;
@@ -10,6 +14,8 @@ function genAirPoints()
     map.setPaintProperty(layerName(DATA_NAME.AIR), 'circle-opacity', 1);
     map.setPaintProperty(layerName(DATA_NAME.AIR), 'circle-stroke-opacity', 1);
 }
+/*  make the air points layer invisble layer on the map
+*/
 function clearAirPoints()
 {
     AIR.isOn = false;
@@ -18,6 +24,9 @@ function clearAirPoints()
     map.setPaintProperty(layerName(DATA_NAME.AIR), 'circle-stroke-opacity', 0);
 }
 
+/*  create the html string used to fill in the
+    on hover popup
+*/
 function createPopupHTMLAir(feature)
 {
     const prop = feature.properties;
@@ -30,10 +39,14 @@ function createPopupHTMLAir(feature)
             `;
 }
 
+/*  make the on hover popup funcaitonality work
+*/
 function enablePopupAir()
 {
     AIR.isPopupEnabled = true;
 }
+/*  disable the on hover popup funcationality work
+*/
 function disablePopupAir()
 {
     AIR.isPopupEnabled = false;
@@ -49,6 +62,7 @@ map.on('load', () => {
         if (AIR.isOn && AIR.isPopupEnabled)
         {
             const features = e.features;
+            // is on a feature of the layer ?
             if (features && features.length > 0)
             {
                 map.getCanvas().style.cursor = 'pointer';
@@ -68,6 +82,7 @@ map.on('load', () => {
     });
 
     map.on('mouseleave', layerName(DATA_NAME.AIR), (e) => {
+        // always remove popup on layer exit
         map.getCanvas().style.cursor = '';
         popup.remove();
     });

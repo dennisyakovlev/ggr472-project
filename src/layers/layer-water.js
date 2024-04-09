@@ -1,14 +1,20 @@
+/*
+*/
 const WATER = {
     isOn: false,
     isPopupEnabled: true,
     isAreaEffectEnable: true
 };
 
+/*
+*/
 function waterDisplayLayerName()
 {
     return `${layerName(DATA_NAME.WATER)}-extra`;
 }
 
+/*  make water layer visible on map
+*/
 function genWaterPoint()
 {
     WATER.isOn = true;
@@ -16,6 +22,8 @@ function genWaterPoint()
     map.setPaintProperty(layerName(DATA_NAME.WATER), 'circle-opacity', 1);
     map.setPaintProperty(layerName(DATA_NAME.WATER), 'circle-stroke-opacity', 1);
 }
+/*  map water layer invisible on map
+*/
 function clearWaterPoint()
 {
     WATER.isOn = false;
@@ -24,6 +32,9 @@ function clearWaterPoint()
     map.setPaintProperty(layerName(DATA_NAME.WATER), 'circle-stroke-opacity', 0);
 }
 
+/*  create the html string used to fill in the
+    on hover popup
+*/
 function createPopupHTMLWater(feature)
 {
     const prop = feature.properties;
@@ -36,6 +47,9 @@ function createPopupHTMLWater(feature)
             `;
 }
 
+/*  helper fucntions for enablding/disabling water layer
+    interactivity
+*/
 function enablePopupWater()
 {
     WATER.isPopupEnabled = true;
@@ -64,10 +78,13 @@ map.on('load', () => {
         if (WATER.isOn && WATER.isAreaEffectEnable)
         {
             const features = e.features;
+            // is on a feature of the layer ?
             if (features && features.length > 0)
             {
+                // 
                 const prop = features[0].properties;
 
+                // highlight the hovered over water facility coverage area
                 map.getCanvas().style.cursor = 'pointer';
                 map.setPaintProperty(
                     waterDisplayLayerName(DATA.WATER),
@@ -88,6 +105,7 @@ map.on('load', () => {
             }
             else
             {
+                // stopped hovering over treatment plant point, hide highlighted
                 map.setPaintProperty(waterDisplayLayerName(DATA_NAME.WATER), 'fill-color', 'transparent');
                 map.setPaintProperty(borderName(waterDisplayLayerName(DATA_NAME.WATER)), 'line-color', 'transparent');
                 map.getCanvas().style.cursor = '';
@@ -97,6 +115,7 @@ map.on('load', () => {
         if (WATER.isOn && WATER.isPopupEnabled)
         {
             const features = e.features;
+            // is on a feature of the layer ?
             if (features && features.length > 0)
             {
                 map.getCanvas().style.cursor = 'pointer';
@@ -116,6 +135,7 @@ map.on('load', () => {
     });
 
     map.on('mouseleave', layerName(DATA_NAME.WATER), (e) => {
+        // left layer, always remove highlighted coverage area and popup
         map.getCanvas().style.cursor = '';
         map.setPaintProperty(waterDisplayLayerName(DATA_NAME.WATER), 'fill-color', 'transparent');
         map.setPaintProperty(borderName(waterDisplayLayerName(DATA_NAME.WATER)), 'line-color', 'transparent');

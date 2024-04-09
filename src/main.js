@@ -1,5 +1,7 @@
-var fetched = 0;
+var fetched = 0; // number of files currently done fetching
 
+/*  asynchronoudly fetch files
+*/
 fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/data.geojson')
     .then(response => response.json())
     .then(response => {
@@ -41,6 +43,8 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
         throw new Error('Problem loading');
     });
 
+/*  add fetched data to map
+*/
 function addData()
 {
     // main data
@@ -68,6 +72,8 @@ function addData()
     });
 }
 
+/*  add the data as layers to the map
+*/
 function addLayers()
 {
     // main chloropleth index data
@@ -172,20 +178,8 @@ function addLayers()
 
 }
 
-function getScreenAsFeature()
-{
-    const obj = map.getBounds();
-    const sw = turf.feature({
-        'type': 'Point',
-        'coordinates': [obj._sw.lng, obj._sw.lat]
-    });
-    const ne = turf.feature({
-        'type': 'Point',
-        'coordinates': [obj._ne.lng, obj._ne.lat]
-    });
-    return {'features': [sw, ne]};
-}
-
+/*  remove the loading screen and show map
+*/
 function loadingRemove()
 {
     $('.loader').css('animation', 'l15 1s infinite linear, loader-key-anim-out 1s forwards ease-in');
@@ -200,6 +194,7 @@ map.on("load", () => {
     var count = 0;
     var dontQuit = false;
     const timer = setInterval(function() {
+        // done fetching all four data files and not terminated ?
         if (fetched == 4 && dontQuit == false)
         {
             dontQuit = true;
@@ -207,11 +202,13 @@ map.on("load", () => {
             addData();
             addLayers();
 
-            console.log('READY')
+            // after everything has been added give mapbox
+            // a seoncd to render the map, then show it
             setTimeout(e => loadingRemove(), 1000);
 
             clearInterval(timer);
         }
+        // failed to fetch data
         if (count == 40 && dontQuit == false)
         {
             loadFail();
@@ -220,12 +217,12 @@ map.on("load", () => {
         count += 1;
     }, 250);
 
-
+    // can do this without the map
     initMap();
     initMenu();
 });
 
-
+// debug
 document.addEventListener('keydown', function (e) {
     if (e.keyCode == 119) { // F8
         debugger;
@@ -233,5 +230,3 @@ document.addEventListener('keydown', function (e) {
 }, {
     capture: true
 });
-
-

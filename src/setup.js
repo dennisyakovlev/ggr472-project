@@ -1,10 +1,14 @@
+/*  simulated namespace for setup file
+*/
 const SETUP = {
-    btnSites: null,
-    btnWater: null,
-    btnAir: null,
-    btnIndex: null
+    btnSites: null, // button for contaimated sites layer
+    btnWater: null, // button for water treatment plants
+    btnAir: null,   // button for air monitoring stations
+    btnIndex: null  // button for chrolopeth index
 };
 
+/*  create all necesseceary addons like buttons and menus
+*/
 function initMap()
 {
     /* set up main menu for switching between different map layers */
@@ -57,6 +61,8 @@ function initMap()
     });
 }
 
+/*  initialze the main menu
+*/
 function initMenu()
 {
     // sites related
