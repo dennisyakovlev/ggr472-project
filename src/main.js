@@ -186,6 +186,9 @@ function loadingRemove()
     $('#screen-2')
         .removeClass('no-pointer')
         .addClass('screen-anim-in');
+    $('.bigger-menu-info')
+        .removeClass('no-pointer')
+        .addClass('screen-anim-in');
 }
 
 map.on("load", () => {
@@ -220,6 +223,7 @@ map.on("load", () => {
     // can do this without the map
     initMap();
     initMenu();
+    initInfoPage();
 });
 
 // debug

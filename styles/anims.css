@@ -124,3 +124,43 @@
 .no-pointer {
     pointer-events: none;
 }
+
+/* SCREEN ANIMATION */
+.screen-anim-in {
+    animation: map-anim-in 1s forwards ease-out;
+}
+.screen-anim-in-fast {
+    animation: map-anim-in 0.5s forwards ease-out;
+}
+.screen-anim-out {
+    animation: map-anim-out 1s forwards ease-out;
+}
+
+@keyframes map-anim-in {
+    0% {
+        opacity: 0;
+        z-index: 0;
+    }
+    1% {
+        opacity: 0;
+        z-index: 3;
+    }
+    100% {
+        opacity: 1;
+        z-index: 3;
+    }
+}
+@keyframes map-anim-out {
+    0% {
+        opacity: 1;
+        z-index: 3;
+    }
+    99% {
+        opacity: 0;
+        z-index: 3;
+    }
+    100% {
+        opacity: 0;
+        z-index: 0;
+    }
+}

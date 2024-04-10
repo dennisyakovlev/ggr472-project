@@ -31,6 +31,9 @@ body {
 .map-front {
     z-index: 5;
 }
+.map-back {
+    z-index: 0;
+}
 
 .screen {
     position: absolute;
@@ -47,20 +50,13 @@ body {
         opacity: 0;
         z-index: 2;
     }
+    #screen-3 {
+        opacity: 0;
+        /* z-index: 100; */
+    }
         .no-pointer {
             pointer-events: none;
         }
-        .screen-anim-in {
-            animation: map-anim-in 1s forwards;
-        }
-    @keyframes map-anim-in {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
 
 .info-content {
     position: absolute;

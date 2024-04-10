@@ -142,7 +142,8 @@ class Button extends Animatable
 
     forceTransition()
     {
-        this._onClick({'currentTarget': $(`#${this.id}`)});
+        // this._onClick({'currentTarget': $(`#${this.id}`)});
+        this._doAction({'currentTarget': $(`#${this.id}`)}, 'click');
     }
 };
 
