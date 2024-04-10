@@ -77,7 +77,7 @@ function createPopupHTMLIndex(feature)
     const prop = feature.properties;
 
     return  `
-            <h2>Index Census Subdivision</h2>
+            <h2>Environmental Risk</h2>
             <p>Census Subdivision Name: ${prop['Census subdivision name']}</p>
             <p>Average PM2.5 Concentration: ${Math.round(parseFloat(prop['Average PM2.5 concentration']) * 100) / 100}</p>
             <p>Number of Active Contaminated Sites: ${prop['Number of active contaminated sites']}</p>
