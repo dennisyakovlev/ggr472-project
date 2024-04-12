@@ -1,16 +1,16 @@
 /* colors of chloropleth
 */
-const socioColors = ['FEE5D9', 'FCAE91', 'FB6A4A', 'DE2D26', 'A50F15'];
+const socioColors = ['FEE5D9', 'FCAE91', 'FB6A4A', 'DE2D26', 'A50F15']; // CHANE ??
 /* simulated namespace for sociodemographic file
 */
 const SOCIO = {
     isOn: false,             // is the socio layer on
-    isPopupEnabled: false,   // is hover popup enabled
+    isPopupEnabled: true,   // is hover popup enabled
     isLegendEnabled: true,  // is the legend for the layer on
     fill: {
         _value: [           // base fill value for layer
             'case',
-            ['<=', ['get', 'total_immi_prop'], 20], '#',
+            ['<=', ['get', 'total_immi_prop'], 20], '#', // CHANGE ??? 
             ['<=', ['get', 'total_immi_prop'], 40], '#',
             ['<=', ['get', 'total_immi_prop'], 60], '#',
             ['<=', ['get', 'total_immi_prop'], 80], '#',
@@ -79,8 +79,8 @@ function createPopupHTMLSocio(feature)
     return  `
             <h2>Socio Demographic Data</h2>
             <p>Census Subdivision Name: ${prop['CSDNAME']}</p>
-            <p>Visible Minority Proportion: ${prop['visible_minority_prop']}</p>
-            <p>CHANGE: ${prop['total_immi_prop']}</p>
+            <p>Visible Minority Proportion: ${roundDec(prop['visible_minority_prop'],2)}</p>
+            <p>CHANGE: ${roundDec(prop['total_immi_prop'],2)}</p>
             `;
 }
 

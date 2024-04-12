@@ -1,6 +1,6 @@
 #legend-sites {
     position: absolute;
-    width: 110px;
+    width: 150px;
     height: 415px;
     right: 20px;
     bottom: 20px;
@@ -34,6 +34,7 @@
     #legend-index-pic-4 {
         background-color: #A50F15;
     }
+    /* CHANGE ??? */
     #legend-socio-pic-0 {
         background-color: #FEE5D9;
     }

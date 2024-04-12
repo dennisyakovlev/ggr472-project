@@ -71,3 +71,10 @@ function getScreenAsFeature()
     });
     return {'features': [sw, ne]};
 }
+
+/*  round number to n decimals
+*/
+function roundDec(num, to)
+{
+    return Math.round(num * Math.pow(10, to)) / Math.pow(10, to);
+}

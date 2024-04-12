@@ -164,7 +164,7 @@ function initMenu()
     // sociodemographic related
     const secondaryMenuSocio = new SecondaryMenu('secondary-menu-socio', SETUP.btnSocio, 0);
     secondaryMenuSocio.enableAnim();
-    SETUP.btnSocio.addOffFunc('click', (e,state) => secondaryMenuSocio.forceTransition());
+    SETUP.btnSocio.addOnFunc('click', (e,state) => secondaryMenuSocio.forceTransition());
 
     const secondaryBtnSocioHover = new Button('btn-secondary-socio-hover');
     secondaryBtnSocioHover.enableAnim();
