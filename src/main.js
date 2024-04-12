@@ -43,6 +43,16 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
         throw new Error('Problem loading');
     });
 
+fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/demographics.geojson')
+    .then(response => response.json())
+    .then(response => {
+        DATA[dataName(DATA_NAME.SOCIO)] = response;
+        fetched += 1;
+    })
+    .catch(err => {
+        throw new Error('Problem loading');
+    });
+
 /*  add fetched data to map
 */
 function addData()
@@ -69,6 +79,12 @@ function addData()
     map.addSource(dataName(DATA_NAME.AIR), {
         'type': 'geojson',
         'data': DATA[dataName(DATA_NAME.AIR)]
+    });
+
+    // sociodemographic
+    map.addSource(dataName(DATA_NAME.SOCIO), {
+        'type': 'geojson',
+        'data': DATA[dataName(DATA_NAME.SOCIO)]
     });
 }
 
@@ -176,6 +192,30 @@ function addLayers()
         }
     });
 
+    // sociodemographic
+    map.addLayer({
+        'id': layerName(DATA_NAME.SOCIO),
+        'type': 'fill',
+        'source': dataName(DATA_NAME.SOCIO),
+        'layout': {},
+        'paint': {
+            'fill-color': buildSocioColorValue(),
+            'fill-opacity': 0,
+            'fill-opacity-transition': { duration: 250 }
+        }
+    });
+    map.addLayer({
+        'id': borderName(DATA_NAME.SOCIO),
+        'type': 'line',
+        'source': dataName(DATA_NAME.SOCIO),
+        'layout': {},
+        'paint': {
+            'line-color': 'black',
+            'line-width': 0.25,
+            'line-opacity': 0,
+            'line-opacity-transition': { duration: 250 }
+        }
+    });
 }
 
 /*  remove the loading screen and show map
@@ -197,8 +237,8 @@ map.on("load", () => {
     var count = 0;
     var dontQuit = false;
     const timer = setInterval(function() {
-        // done fetching all four data files and not terminated ?
-        if (fetched == 4 && dontQuit == false)
+        // done fetching all five data files and not terminated ?
+        if (fetched == 5 && dontQuit == false)
         {
             dontQuit = true;
 

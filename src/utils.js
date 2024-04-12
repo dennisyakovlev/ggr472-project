@@ -13,7 +13,8 @@ const DATA_NAME = {
     MAIN: 'main',
     SITES: 'sites',
     WATER: 'water',
-    AIR: 'air'
+    AIR: 'air',
+    SOCIO: 'socio'
 };
 /*  helper function for getting names of certain items
 */

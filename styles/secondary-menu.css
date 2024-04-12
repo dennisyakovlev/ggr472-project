@@ -13,10 +13,15 @@
     left: 320px;
     top: 203px;
 }
+#secondary-menu-socio {
+    height: 154px;
+    left: 320px;
+    top: 290px;
+}
 #secondary-menu-index {
     height: 154px;
     left: 320px;
-    top: 270px;
+    top: 338px;
 }
 .secondary-menu {
     position: absolute;

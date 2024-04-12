@@ -63,6 +63,16 @@
               </div>
             </div>
             <div class="btn-wrapper">
+              <div class="menu-info" id="btn-15">
+                <div class="gg-info text-anim-mid"></div>
+                <div class="close text-anim-start"></div>
+              </div>
+              <div class="button" id="btn-16">
+                <p class="text-anim-mid">Sociodemographics Off</p>
+                <p class="text-anim-start">Sociodemographics On</p>
+              </div>
+            </div>
+            <div class="btn-wrapper">
               <div class="menu-info" id="btn-14">
                 <div class="gg-info text-anim-mid"></div>
                 <div class="close text-anim-start"></div>
@@ -194,6 +204,61 @@
           </div>
         </div>
       </div>
+      <!-- related to sociodemographic -->
+      <div class="legend map-front mapinfo-anim-out mapinfo-socio" id="legend-socio">
+        <p class="legend-title">
+          Risk Score
+        </p>
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-socio-pic-0">
+          </div>
+          <div class="legend-desc">
+            <p>≤ 8</p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-socio-pic-1">
+          </div>
+          <div class="legend-desc">
+            <p>≤ 11</p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-socio-pic-2">
+          </div>
+          <div class="legend-desc">
+            <p>≤ 13</p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-socio-pic-3">
+          </div>
+          <div class="legend-desc">
+            <p>≤ 15</p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-pic pointer" id="legend-socio-pic-4">
+          </div>
+          <div class="legend-desc">
+            <p>≤ 20</p>
+          </div>
+        </div>
+      </div>
+      <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-socio">
+        <div class="btn-wrapper">
+          <div class="button" id="btn-secondary-socio-hover">
+            <p class="text-anim-mid">Hover Popup Enabled</p>
+            <p class="text-anim-start">Hover Popup Disabled</p>
+          </div>
+        </div>
+        <div class="btn-wrapper">
+          <div class="button" id="btn-secondary-socio-legend">
+            <p class="text-anim-mid">Clickable Legend On</p>
+            <p class="text-anim-start">Clickable Legend Off</p>
+          </div>
+        </div>
+      </div>
       <!-- related to chloropleth -->
       <div class="legend map-front mapinfo-index" id="legend-index">
         <p class="legend-title">
@@ -203,40 +268,39 @@
           <div class="legend-pic pointer" id="legend-index-pic-0">
           </div>
           <div class="legend-desc">
-            <p>≤ 8</p>
+            <p>Negligible</p>
           </div>
         </div>
         <div class="legend-item">
           <div class="legend-pic pointer" id="legend-index-pic-1">
           </div>
           <div class="legend-desc">
-            <p>≤ 11</p>
+            <p>Low</p>
           </div>
         </div>
         <div class="legend-item">
           <div class="legend-pic pointer" id="legend-index-pic-2">
           </div>
           <div class="legend-desc">
-            <p>≤ 13</p>
+            <p>Moderate</p>
           </div>
         </div>
         <div class="legend-item">
           <div class="legend-pic pointer" id="legend-index-pic-3">
           </div>
           <div class="legend-desc">
-            <p>≤ 15</p>
+            <p>High</p>
           </div>
         </div>
         <div class="legend-item">
           <div class="legend-pic pointer" id="legend-index-pic-4">
           </div>
           <div class="legend-desc">
-            <p>≤ 20</p>
+            <p>Extreme</p>
           </div>
         </div>
       </div>
-      <div class=
-      "secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-index">
+      <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-index">
         <div class="btn-wrapper">
           <div class="button" id="btn-secondary-index-hover">
             <p class="text-anim-mid">Hover Popup Enabled</p>
@@ -250,6 +314,7 @@
           </div>
         </div>
       </div>
+      
       <!-- all infos -->
       <div class="info-content map-front mapinfo-anim-start no-pointer" id="info-popup-sites">
         <div class="info-content-words">
@@ -373,6 +438,7 @@
   <script src="./src/layers/layer-index.js"></script>
   <script src="./src/layers/layer-air.js"></script>
   <script src="./src/layers/layer-water.js"></script>
+  <script src="./src/layers/layer-socio.js"></script>
 
   <script src="./src/setup.js"></script>
 

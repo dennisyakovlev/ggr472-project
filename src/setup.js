@@ -4,6 +4,7 @@ const SETUP = {
     btnSites: null,  // button for contaimated sites layer
     btnWater: null,  // button for water treatment plants
     btnAir: null,    // button for air monitoring stations
+    btnSocio: null,  // button for sociodemographic data
     btnIndex: null,  // button for chrolopeth index
     switchHelp: null // switch to display help screen 
 };
@@ -48,6 +49,19 @@ function initMap()
         clearAirPoints();
     });
 
+    SETUP.btnSocio = new Button('btn-16');
+    SETUP.btnSocio.enableAnim();
+    SETUP.btnSocio.addOnFunc('click', (e,state) => {
+        toggleMapInfo(state, 'socio', 0);
+
+        genSocioPoly();
+    });
+    SETUP.btnSocio.addOffFunc('click', (e,state) => {
+        toggleMapInfo(state, 'socio', 0);
+
+        clearSocioPoly();
+    });
+    
     SETUP.btnIndex = new Button('btn-3');
     SETUP.btnIndex.enableAnim();
     SETUP.btnIndex.addOnFunc('click', (e,state) => {
@@ -147,6 +161,32 @@ function initMenu()
 
 
 
+    // sociodemographic related
+    const secondaryMenuSocio = new SecondaryMenu('secondary-menu-socio', SETUP.btnSocio, 0);
+    secondaryMenuSocio.enableAnim();
+    SETUP.btnSocio.addOffFunc('click', (e,state) => secondaryMenuSocio.forceTransition());
+
+    const secondaryBtnSocioHover = new Button('btn-secondary-socio-hover');
+    secondaryBtnSocioHover.enableAnim();
+    secondaryBtnSocioHover.addOnFunc('click', (e,state) => disablePopupSocio());
+    secondaryBtnSocioHover.addOffFunc('click', (e,state) => enablePopupSocio());
+
+    const secondaryBtnSocioLegend = new Button('btn-secondary-socio-legend');
+    secondaryBtnSocioLegend.enableAnim();
+    secondaryBtnSocioLegend.addOnFunc('click', (e,state) => disableClickableLegendSocio());
+    secondaryBtnSocioLegend.addOffFunc('click', (e,state) => enableClickableLegendSocio());
+
+    const primaryInfoBtnSocio = new Button('btn-14');
+    primaryInfoBtnSocio.enableAnim();
+    primaryInfoBtnSocio.addOnFunc('click', (e,state) => $(`#info-popup-socio`)
+        .removeClass('mapinfo-anim-out')
+        .addClass('mapinfo-anim-in'));
+    primaryInfoBtnSocio.addOffFunc('click', (e,state) => $(`#info-popup-socio`)
+        .removeClass('mapinfo-anim-in')
+        .addClass('mapinfo-anim-out'));
+
+
+
     // index related
     const secondaryMenuIndex = new SecondaryMenu('secondary-menu-index', SETUP.btnIndex, 1);
     secondaryMenuIndex.enableAnim();
@@ -162,7 +202,6 @@ function initMenu()
     secondaryBtnIndexLegend.addOnFunc('click', (e,state) => disableClickableLegendIndex());
     secondaryBtnIndexLegend.addOffFunc('click', (e,state) => enableClickableLegendIndex());
 
-    
     const primaryInfoBtnIndex = new Button('btn-14');
     primaryInfoBtnIndex.enableAnim();
     primaryInfoBtnIndex.addOnFunc('click', (e,state) => $(`#info-popup-index`)
