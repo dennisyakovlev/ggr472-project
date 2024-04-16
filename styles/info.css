@@ -64,15 +64,19 @@
 }
     .mapinfo-info-1 {
         /* background-color: rebeccapurple; */
+        opacity: 0;
     }
     .mapinfo-info-2 {
         /* background-color: black; */
+        opacity: 0;
     }
     .mapinfo-info-3 {
         /* background-color: aqua; */
+        opacity: 0;
     }
     .mapinfo-info-4 {
         /* background-color: red; */
+        opacity: 0;
     }
     .mapinfo-info-5 {
         /* background-color: orange; */
