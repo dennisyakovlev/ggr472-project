@@ -34,7 +34,6 @@ class IsHoverOverFilter extends Filter
 
     check(type, states)
     {
-        console.log(this.enter, this.leave)
         return this.enter != this.leave;
     }
 };
@@ -46,7 +45,6 @@ class ClickOnFilter extends Filter
 
     check(type, states)
     {
-        console.log(states)
         return states.click % 2;
     }
 

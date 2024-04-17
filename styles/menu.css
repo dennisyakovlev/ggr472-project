@@ -18,13 +18,55 @@
     left: 130px;
     top: 130px;
 }
-#horizontal-menu-secondary-sites {
+    #horizontal-menu-secondary-sites {
+        position: absolute;
+        width: 300px;
+        height: 118px;
+        left: 465px;
+        top: 130px;
+    }
+    #horizontal-menu-secondary-water {
+        position: absolute;
+        width: 300px;
+        height: 198px;
+        left: 465px;
+        top: 212px;
+    }
+    #horizontal-menu-secondary-air {
+        position: absolute;
+        width: 300px;
+        height: 116px;
+        left: 465px;
+        top: 294px;
+    }
+#vertical-menu-demo {
     position: absolute;
     width: 300px;
-    height: 118px;
-    left: 465px;
+    height: 280px;
+    left: 410px;
     top: 130px;
 }
+    #horizontal-menu-secondary-immi {
+        position: absolute;
+        width: 300px;
+        height: 118px;
+        left: 745px;
+        top: 130px;
+    }
+    #horizontal-menu-secondary-income {
+        position: absolute;
+        width: 300px;
+        height: 198px;
+        left: 745px;
+        top: 212px;
+    }
+    #horizontal-menu-secondary-minority {
+        position: absolute;
+        width: 300px;
+        height: 116px;
+        left: 745px;
+        top: 294px;
+    }
 
 
 .btn-wrapper {

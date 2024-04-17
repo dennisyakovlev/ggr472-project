@@ -1,4 +1,5 @@
 const _animatables = {};
+const _triggers = {};
 
 /*  type of triggerable animation which will cyclically animate
     given elements congrouent to some state mod N. each state is
@@ -9,13 +10,14 @@ class NthTransitionable
     
     _doAction(e, type)
     {
+        console.log(type, this.events)
         for (const obj of this.events[this.states[type]][type])
         {
-            console.log(`doing ${type} for ${this.triggerId}`)
             const oldStates = structuredClone(this.states);
             setTimeout(e => {
                 if (obj.filter == null || obj.filter.check(type, oldStates))
                 {
+                    console.log(obj)
                     obj.instance.transition(type, oldStates[type]);
                 }
             }, obj.delay);
@@ -49,6 +51,8 @@ class NthTransitionable
     constructor(triggerId, modulo)
     {
         console.assert(modulo >= 1);
+        console.assert(!_animatables.hasOwnProperty(triggerId));
+
         this.modulo = modulo;
 
         this.triggerId = triggerId;
@@ -116,8 +120,9 @@ class NthTransitionable
         const seen = new Set();
         for (const congClass of anim.congClasses)
         {
-            console.assert(0 <= congClass && congClass < this.modulo && seen.has(congClass) === false);
-            seen.add(congClass);  
+            console.assert(0 <= congClass && congClass < this.modulo);
+            console.assert(seen.has(congClass) === false);
+            seen.add(congClass);
 
             this.events[congClass][type].push({
                 instance:   anim,
@@ -169,7 +174,6 @@ class Animatable
     {
         this.targetId    = targetId;
         this.congClasses = congrouenceClasses;
-        this.elem        = $(`#${this.targetId}`);
     }
 
     /*  function to be called when cycle is reached
@@ -194,150 +198,6 @@ class Animatable
     }
 };
 
-/*  menu which turns on and off. animation looks like
-    vertical sliding
-*/
-class VerticalMenu extends Animatable
-{
-    _verifyInit()
-    {
-        const classes = $(this.elem).attr('class').split(/\s+/);
-        for (const reqClass of ['vertical-menu-anim-start', 'no-pointer'])
-            if (classes.find(e => e == reqClass) === undefined)
-                return false;
-        
-        return true;
-    }
-
-    constructor(targetId, congrouenceClasses)
-    {
-        super(targetId, congrouenceClasses);
-
-        console.assert(this._verifyInit());
-    }
-
-    transition(type, congClass)
-    {
-        if (congClass == this.congClasses[0]) // on
-            $(this.elem)
-                .removeClass('vertical-menu-anim-mid vertical-menu-anim-out no-pointer')
-                .addClass(`vertical-menu-anim-in vertical-menu-anim-start`);
-        if (congClass == this.congClasses[1]) // off
-            $(this.elem)
-                .removeClass('vertical-menu-anim-start vertical-menu-anim-in')
-                .addClass('vertical-menu-anim-mid vertical-menu-anim-out no-pointer');
-    }
-};
-
-/*  menu which turns on and off. animation looks like
-    horizontal sliding
-*/
-class horizontalMenu extends Animatable
-{
-    _verifyInit()
-    {
-        const classes = $(this.elem).attr('class').split(/\s+/);
-        for (const reqClass of ['horizontal-menu-anim-start', 'no-pointer'])
-            if (classes.find(e => e == reqClass) === undefined)
-                return false;
-        
-        return true;
-    }
-
-    constructor(targetId, congrouenceClasses)
-    {
-        super(targetId, congrouenceClasses);
-
-        console.assert(this._verifyInit());
-    }
-
-    transition(type, congClass)
-    {
-        console.log('transitioning', type)
-        if (type == 'enter' || (type == 'click' && congClass == 0)) // on
-            $(this.elem)
-                .removeClass('horizontal-menu-anim-mid horizontal-menu-anim-out no-pointer')
-                .addClass(`horizontal-menu-anim-in horizontal-menu-anim-start`);
-        if (type == 'leave' || (type == 'click' && congClass == 1)) // off
-            $(this.elem)
-                .removeClass('horizontal-menu-anim-start horizontal-menu-anim-in')
-                .addClass('horizontal-menu-anim-mid horizontal-menu-anim-out no-pointer');
-    }
-};
-
-/*  an animation which slides text in from the left and
-    slides out to the right. opacity is also transitioned
-*/
-class SwappableText extends Animatable
-{
-
-    _verifyInit()
-    {
-        const classes = $(this.elem).attr('class').split(/\s+/);
-        for (const reqClass of ['text-anim-start'])
-            if (classes.find(e => e == reqClass) === undefined)
-                return false;
-        
-        return true;
-    }
-
-    constructor(targetId, congrouenceClasses)
-    {
-        super(targetId, congrouenceClasses);
-
-        console.assert(this._verifyInit());
-    }
-
-    transition(type, congClass)
-    {
-        if (congClass == this.congClasses[0]) // on
-            $(this.elem)
-                .removeClass('text-anim-mid text-anim-out no-pointer')
-                .addClass(`text-anim-in text-anim-start`);
-        if (congClass == this.congClasses[1]) // off
-            $(this.elem)
-                .removeClass('text-anim-start text-anim-in')
-                .addClass('text-anim-mid text-anim-out no-pointer');
-    }
-
-};
-
-/*  animation which switches the opacity of an element between
-    0 and 1
-*/
-class Higlightable extends Animatable
-{
-
-    _verifyInit()
-    {
-        const classes = $(this.elem).attr('class').split(/\s+/);
-        for (const reqClass of ['background-anim-start'])
-            if (classes.find(e => e == reqClass) === undefined)
-                return false;
-        
-        return true;
-    }
-
-    constructor(targetId, congrouenceClasses)
-    {
-        super(targetId, congrouenceClasses);
-
-        console.assert(this._verifyInit());
-    }
-
-    transition(type, congClass)
-    {
-        if (congClass == this.congClasses[0]) // on
-            $(this.elem)
-                .removeClass('background-anim-mid background-anim-out no-pointer')
-                .addClass(`background-anim-in background-anim-start`);
-        if (congClass == this.congClasses[1]) // off
-            $(this.elem)
-                .removeClass('background-anim-start background-anim-in')
-                .addClass('background-anim-mid background-anim-out no-pointer');
-    }
-};
-
 class Empty extends Animatable
 {
     transition()
@@ -345,3 +205,19 @@ class Empty extends Animatable
 
     }
 };
+
+function createTrigger(triggerId, congrouenceClasses)
+{
+    console.assert(triggerId != null);
+    console.assert(congrouenceClasses != null);
+
+    if (!_triggers.hasOwnProperty(triggerId))
+        _triggers[triggerId] = new NthTransitionable(triggerId, congrouenceClasses);
+    else
+        if (congrouenceClasses != _triggers[triggerId].modulo)
+            throw new Error(`mistach, should be exact same
+                             existing [${_triggers[triggerId].modulo}],
+                             want [${congrouenceClasses}]`)
+
+    return _triggers[triggerId];
+}

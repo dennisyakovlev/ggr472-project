@@ -58,12 +58,11 @@
         <div class="nav-bar"> 
           <div class="nav-item" id="trigger-nav-env">
             <div class="nav-background background-anim-start" id="background-nav-env"></div>
-            <p class="text-anim-mid">Indicators</p>
-            <p class="text-anim-start">Shown</p>
+            <p>Indicators</p>
           </div>
-          <div class="nav-item">
-            <p class="text-anim-mid">Demographics</p>
-            <p class="text-anim-start">Shown</p>
+          <div class="nav-item" id="trigger-nav-demo">
+            <div class="nav-background background-anim-start" id="background-nav-demo"></div>
+            <p>Demographics</p>
           </div>
           <div class="nav-item">
             <p class="text-anim-mid">Envionrmental Risk</p>
@@ -78,33 +77,33 @@
       <!-- related to envionmental indicators -->
       <div class="menu vertical-menu-anim-start map-front no-pointer" id="vertical-menu-env">
         <div class="btn-wrapper" id="trigger-secondary-sites">
-          <div class="menu-info" id="btn-10">
+          <div class="menu-info">
             <div class="gg-info text-anim-mid"></div>
             <div class="close text-anim-start"></div>
           </div>
-          <div class="button" id="btn-1">
-            <p class="text-anim-start" id="text-b-secondary-sites">Contaminated Sites On</p>
+          <div class="button">
             <p class="text-anim-start" id="text-a-secondary-sites">Contaminated Sites Off</p>
+            <p class="text-anim-start" id="text-b-secondary-sites">Contaminated Sites On</p>
           </div>
         </div>
-        <div class="btn-wrapper">
-          <div class="menu-info" id="btn-11">
+        <div class="btn-wrapper" id="trigger-secondary-water">
+          <div class="menu-info">
             <div class="gg-info text-anim-mid"></div>
             <div class="close text-anim-start"></div>
           </div>
-          <div class="button" id="btn-2">
-            <p class="text-anim-mid">Water Facilities Off</p>
-            <p class="text-anim-start">Water Facilities On</p>
+          <div class="button">
+            <p class="text-anim-start" id="text-a-secondary-water">Water Facilities Off</p>
+            <p class="text-anim-start" id="text-b-secondary-water">Water Facilities On</p>
           </div>
         </div>
-        <div class="btn-wrapper">
-          <div class="menu-info" id="btn-12">
+        <div class="btn-wrapper" id="trigger-secondary-air">
+          <div class="menu-info">
             <div class="gg-info text-anim-mid"></div>
             <div class="close text-anim-start"></div>
           </div>
-          <div class="button" id="btn-3a">
-            <p class="text-anim-mid">Air Monitoring Sites Off</p>
-            <p class="text-anim-start">Air Monitoring Sites On</p>
+          <div class="button">
+            <p class="text-anim-start" id="text-a-secondary-air">Air Monitoring Sites Off</p>
+            <p class="text-anim-start" id="text-b-secondary-air">Air Monitoring Sites On</p>
           </div>
         </div>
       </div>
@@ -117,9 +116,95 @@
             </div>
           </div>
         </div>
+        <!-- related to water facilites -->
+        <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-water">
+          <div class="btn-wrapper">
+            <div class="button" id="btn-secondary-water-popup">
+              <p class="text-anim-mid">Popup Enabled</p>
+              <p class="text-anim-start">Popup Disabled</p>
+            </div>
+          </div>
+          <div class="btn-wrapper">
+            <div class="button" id="btn-secondary-water-hover">
+              <p class="text-anim-mid">Hover Area Enabled</p>
+              <p class="text-anim-start">Hover Area Disabled</p>
+            </div>
+          </div>
+        </div>
+        <!-- related to air monitoring sites -->
+        <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-air">
+          <div class="btn-wrapper" id="btn-secondary-air-popup">
+            <div class="button">
+              <p class="text-anim-mid">Popup Enabled</p>
+              <p class="text-anim-start">Popup Disabled</p>
+            </div>
+          </div>
+        </div>
       <!-- demographic characteristics menu -->
+      <div class="menu vertical-menu-anim-start map-front no-pointer" id="vertical-menu-demo">
+        <div class="btn-wrapper" id="trigger-secondary-immi">
+          <div class="menu-info">
+            <div class="gg-info text-anim-mid"></div>
+            <div class="close text-anim-start"></div>
+          </div>
+          <div class="button">
+            <p class="text-anim-start" id="text-a-secondary-immi">Immigration Off</p>
+            <p class="text-anim-start" id="text-b-secondary-immi">Immigration On</p>
+          </div>
+        </div>
+        <div class="btn-wrapper" id="trigger-secondary-income">
+          <div class="menu-info">
+            <div class="gg-info text-anim-mid"></div>
+            <div class="close text-anim-start"></div>
+          </div>
+          <div class="button">
+            <p class="text-anim-start" id="text-a-secondary-income">Income Off</p>
+            <p class="text-anim-start" id="text-b-secondary-income">Income On</p>
+          </div>
+        </div>
+        <div class="btn-wrapper" id="trigger-secondary-minority">
+          <div class="menu-info">
+            <div class="gg-info text-anim-mid"></div>
+            <div class="close text-anim-start"></div>
+          </div>
+          <div class="button">
+            <p class="text-anim-start" id="text-a-secondary-minority">Minority Off</p>
+            <p class="text-anim-start" id="text-b-secondary-minority">Minority On</p>
+          </div>
+        </div>
+      </div>
+        <!-- related to immigration -->
+        <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-immi">
+          <div class="btn-wrapper">
+            <div class="button" id="btn-secondary-immi">
+              <p class="text-anim-mid">Generate Hexgrid</p>
+              <p class="text-anim-start">Clear Hexgrid</p>
+            </div>
+          </div>
+        </div>
+        <!-- related to income -->
+        <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-income">
+          <div class="btn-wrapper">
+            <div class="button" id="btn-secondary-income">
+              <p class="text-anim-mid">Generate Hexgrid</p>
+              <p class="text-anim-start">Clear Hexgrid</p>
+            </div>
+          </div>
+        </div>
+        <!-- related to minority -->
+        <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-minority">
+          <div class="btn-wrapper">
+            <div class="button" id="btn-secondary-minority">
+              <p class="text-anim-mid">Generate Hexgrid</p>
+              <p class="text-anim-start">Clear Hexgrid</p>
+            </div>
+          </div>
+        </div>
       <!-- enviornmental risk menu -->
       <!-- equity assesment menu -->
+
+
+
 
       <!-- related to contaimed sites -->
       <div class="legend map-front mapinfo-sites mapinfo-anim-out" id="legend-sites">
@@ -520,8 +605,11 @@
   <!-- order here matters since JS variables are used between files -->
   <!-- partial order is determined by spaces, utils first -->
   <script src="./src/utils.js"></script>
-  <script src="./src/animations.js"></script>
-  <script src="./src/filters.js"></script>
+
+  <script src="./src/animations/anim-base.js"></script>
+  <script src="./src/animations/anim-dom.js"></script>
+  <script src="./src/animations/anim-map.js"></script>
+  <script src="./src/animations/filters.js"></script>
 
   <script src="./src/layers/layer-sites.js"></script>
   <script src="./src/layers/layer-index.js"></script>
@@ -529,7 +617,8 @@
   <script src="./src/layers/layer-water.js"></script>
   <script src="./src/layers/layer-socio.js"></script>
 
-  <script src="./src/setup.js"></script>
+  <script src="./src/init-nav.js"></script>
+  <script src="./src/init-map.js"></script>
 
   <script src="./src/main.js"></script>
 </html>

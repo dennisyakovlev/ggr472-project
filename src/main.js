@@ -243,7 +243,8 @@ map.on("load", () => {
             dontQuit = true;
 
             addData();
-            addLayers();
+            initMap();
+            // addLayers();
 
             // after everything has been added give mapbox
             // a seoncd to render the map, then show it
@@ -258,12 +259,9 @@ map.on("load", () => {
             clearInterval(timer);
         }
         count += 1;
-    }, 250);
+    }, 500);
 
     // can do this without the map
-    // initMap();
-    // initMenu();
-    // initInfoPage();
     initNavBar();
 });
 
