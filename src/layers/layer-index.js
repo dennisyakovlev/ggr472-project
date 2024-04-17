@@ -27,7 +27,7 @@ const INDEX = {
 function buildIndexColorValue()
 {
     const val = structuredClone(INDEX.fill._value);
-    for (var i=0; i!=INDEX.fill._colors.length; ++i)
+    for (let i=0; i!=INDEX.fill._colors.length; ++i)
     {
         val[2*(i+1)] = `#${INDEX.fill._colors[i]}`;
     }

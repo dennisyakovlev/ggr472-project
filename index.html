@@ -20,7 +20,7 @@
     </div>
     <div class="screen no-pointer" id="screen-2">
       <!-- main menu -->
-      <div class="hamburger-menu map-front" id="menu-main">
+      <!-- <div class="hamburger-menu map-front" id="menu-main">
         <div class="hamburger-menu-button" id="menu-btn-main">
           <div class="hamburger-menu-center">
               <div class="hamburger-menu-bar"></div>
@@ -30,36 +30,6 @@
         </div>
         <div class="hamburger-menu-content menu-anim-start no-pointer">
           <div class="hamburger-menu-content-layout hamburger-menu-content-layout-top">
-            <!-- <div class="btn-wrapper">
-              <div class="menu-info" id="btn-10">
-                <div class="gg-info text-anim-mid"></div>
-                <div class="close text-anim-start"></div>
-              </div>
-              <div class="button" id="btn-1">
-                <p class="text-anim-mid">Contaminated Sites Off</p>
-                <p class="text-anim-start">Contaminated Sites On</p>
-              </div>
-            </div>
-            <div class="btn-wrapper">
-              <div class="menu-info" id="btn-11">
-                <div class="gg-info text-anim-mid"></div>
-                <div class="close text-anim-start"></div>
-              </div>
-              <div class="button" id="btn-2">
-                <p class="text-anim-mid">Water Facilities Off</p>
-                <p class="text-anim-start">Water Facilities On</p>
-              </div>
-            </div>
-            <div class="btn-wrapper">
-              <div class="menu-info" id="btn-12">
-                <div class="gg-info text-anim-mid"></div>
-                <div class="close text-anim-start"></div>
-              </div>
-              <div class="button" id="btn-3a">
-                <p class="text-anim-mid">Air Monitoring Sites Off</p>
-                <p class="text-anim-start">Air Monitoring Sites On</p>
-              </div>
-            </div> -->
             <div class="btn-wrapper">
               <div class="menu-info" id="btn-15">
                 <div class="gg-info text-anim-mid"></div>
@@ -82,7 +52,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- navigation bar -->
       <div class="nav-bar-wrapper nav-top">
         <div class="nav-bar"> 
@@ -106,15 +76,15 @@
         </div>
       </div>
       <!-- related to envionmental indicators -->
-      <div class="dropdown-menu dropdown-anim-start no-pointer outset-border" id="dropdown-menu-env">
-        <div class="btn-wrapper">
+      <div class="menu vertical-menu-anim-start map-front no-pointer" id="vertical-menu-env">
+        <div class="btn-wrapper" id="trigger-secondary-sites">
           <div class="menu-info" id="btn-10">
             <div class="gg-info text-anim-mid"></div>
             <div class="close text-anim-start"></div>
           </div>
           <div class="button" id="btn-1">
-            <p class="text-anim-mid">Contaminated Sites Off</p>
-            <p class="text-anim-start">Contaminated Sites On</p>
+            <p class="text-anim-start" id="text-b-secondary-sites">Contaminated Sites On</p>
+            <p class="text-anim-start" id="text-a-secondary-sites">Contaminated Sites Off</p>
           </div>
         </div>
         <div class="btn-wrapper">
@@ -138,6 +108,15 @@
           </div>
         </div>
       </div>
+        <!-- realted to contaminated sites -->
+        <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-sites">
+          <div class="btn-wrapper">
+            <div class="button" id="btn-secondary-sites-hex">
+              <p class="text-anim-mid">Generate Hexgrid</p>
+              <p class="text-anim-start">Clear Hexgrid</p>
+            </div>
+          </div>
+        </div>
       <!-- demographic characteristics menu -->
       <!-- enviornmental risk menu -->
       <!-- equity assesment menu -->
@@ -228,16 +207,8 @@
           </div>
         </div>
       </div>
-      <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-sites">
-        <div class="btn-wrapper">
-          <div class="button" id="btn-secondary-sites-hex">
-            <p class="text-anim-mid">Generate Hexgrid</p>
-            <p class="text-anim-start">Clear Hexgrid</p>
-          </div>
-        </div>
-      </div>
       <!-- related to treatment stations -->
-      <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-water">
+      <!-- <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-water">
         <div class="btn-wrapper">
           <div class="button" id="btn-secondary-water-hover">
             <p class="text-anim-mid">Hover Popup Enabled</p>
@@ -250,16 +221,16 @@
             <p class="text-anim-start">Hover Effect Disabled</p>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- related  to air stations-->
-      <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-air">
+      <!-- <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-air">
         <div class="btn-wrapper">
           <div class="button" id="btn-secondary-air-hover">
             <p class="text-anim-mid">Hover Popup Enabled</p>
             <p class="text-anim-start">Hover Popup Disabled</p>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- related to sociodemographic -->
       <div class="legend map-front mapinfo-anim-out mapinfo-socio" id="legend-socio">
         <p class="legend-title">
@@ -301,7 +272,7 @@
           </div>
         </div>
       </div>
-      <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-socio">
+      <!-- <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-socio">
         <div class="btn-wrapper">
           <div class="button" id="btn-secondary-socio-hover">
             <p class="text-anim-mid">Hover Popup Enabled</p>
@@ -314,7 +285,7 @@
             <p class="text-anim-start">Clickable Legend Off</p>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- related to chloropleth -->
       <div class="legend map-front mapinfo-index" id="legend-index">
         <p class="legend-title">
@@ -356,7 +327,7 @@
           </div>
         </div>
       </div>
-      <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-index">
+      <!-- <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-index">
         <div class="btn-wrapper">
           <div class="button" id="btn-secondary-index-hover">
             <p class="text-anim-mid">Hover Popup Enabled</p>
@@ -369,7 +340,7 @@
             <p class="text-anim-start">Clickable Legend Off</p>
           </div>
         </div>
-      </div>
+      </div> -->
       
       <!-- all infos -->
       <div class="info-content map-front mapinfo-anim-start no-pointer" id="info-popup-sites">
@@ -550,6 +521,7 @@
   <!-- partial order is determined by spaces, utils first -->
   <script src="./src/utils.js"></script>
   <script src="./src/animations.js"></script>
+  <script src="./src/filters.js"></script>
 
   <script src="./src/layers/layer-sites.js"></script>
   <script src="./src/layers/layer-index.js"></script>

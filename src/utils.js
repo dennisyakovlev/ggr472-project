@@ -31,7 +31,7 @@ function borderName(str)
     return `${str}-border`;
 }
 
-var DATA = {}; // global data variable of fetched files
+let DATA = {}; // global data variable of fetched files
 
 /*  toggle extras related to some layer on and off
 

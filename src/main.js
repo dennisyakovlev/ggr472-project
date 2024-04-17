@@ -1,4 +1,4 @@
-var fetched = 0; // number of files currently done fetching
+let fetched = 0; // number of files currently done fetching
 
 /*  asynchronoudly fetch files
 */
@@ -234,8 +234,8 @@ function loadingRemove()
 map.on("load", () => {
     map.addControl(new mapboxgl.NavigationControl()); // add nav controls
 
-    var count = 0;
-    var dontQuit = false;
+    let count = 0;
+    let dontQuit = false;
     const timer = setInterval(function() {
         // done fetching all five data files and not terminated ?
         if (fetched == 5 && dontQuit == false)

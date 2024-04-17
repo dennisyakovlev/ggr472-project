@@ -212,22 +212,91 @@ function initMenu()
         .addClass('mapinfo-anim-out'));
 }
 
+/*  do cycle if did not enter the secondary menu
+*/
+class HorizontalFilter extends Filter
+{
+    constructor()
+    {
+        super();
+
+        this.enterd = false;
+    }
+
+    check(type, states)
+    {
+        console.assert(type == 'leave' || type == 'enter');
+     
+        console.log('horiz filter', type)
+
+        if (type == 'enter')
+        {
+            this.enterd = true;
+            return;
+        }
+
+        const old = this.enterd;
+        this.enterd = false;
+        return !old;
+    }
+};
+
+function initSecondMenuEnv()
+{
+    const clickOnFilter = new ClickOnFilter();
+    const emptyAnim     = new Empty(null, [0]);
+
+    // ----------- contaimated sites -----------
+    const filterSites     = new HorizontalFilter();
+    const startText       = new SwappableText('text-a-secondary-sites', [0,1]);
+    const afterText       = new SwappableText('text-b-secondary-sites', [0,1]);
+    const menuSecondSites = new horizontalMenu('horizontal-menu-secondary-sites', [0,1]);
+    const menuSecondSites2 = new horizontalMenu('horizontal-menu-secondary-sites', [0]); 
+    
+    const btnSites = new NthTransitionable('trigger-secondary-sites', 2);
+    btnSites.addAnimElem({type: 'click', anim: afterText});
+    btnSites.addAnimElem({type: 'click', anim: menuSecondSites});
+    btnSites.addAnimElem({type: 'enter', anim: menuSecondSites, filter: clickOnFilter});
+    btnSites.addAnimElem({type: 'leave', anim: menuSecondSites, filter: new AndFilter([filterSites, clickOnFilter]), delay: 500});
+
+    // account for both cases of closing secondary menu
+    //  1. leave button and dont enter secondary menu
+    //  2. leave secondary menu
+    const menuSites = new NthTransitionable('horizontal-menu-secondary-sites', 1);
+    menuSites.addAnimElem({type: 'enter', anim: emptyAnim, filter: filterSites})
+    menuSites.addAnimElem({type: 'leave', anim: menuSecondSites2});
+
+    // offset initial text
+    const afterId = btnSites.addAnimElem({type: 'click', anim: startText});
+    btnSites.forceCycle('click', afterId, 1);
+    startText.rotateRightClasses(1);
+    
+
+
+    // ----------- water facilities -----------
+
+
+    // air monitoring sites button
+}
+
 function initNavBar()
 {
-    // envionrmental indicators
-    const navEnvDropdownMenu   = new DropDownMenu('dropdown-menu-env', [0,1]);
-    const navEnvHighlightBtn   = new HiglightableButton('background-nav-env', [0,1]);
+    // envionrmental indicators 
+    const navEnvMenuvertical   = new VerticalMenu('vertical-menu-env', [0,1]);
+    const navEnvBtnHighlight   = new Higlightable('background-nav-env', [0,1]);
 
     const navEnvTransitionable = new NthTransitionable('trigger-nav-env', 2);
-    navEnvTransitionable.addAnimElem('click', navEnvDropdownMenu);
-    navEnvTransitionable.addAnimElem('click', navEnvHighlightBtn);
+    navEnvTransitionable.addAnimElem({type: 'click', anim: navEnvMenuvertical});
+    navEnvTransitionable.addAnimElem({type: 'click', anim: navEnvBtnHighlight});
+
+    initSecondMenuEnv();
 }
 
 function initInfoPage()
 {
-    var buttons = [null,null,null,null,null,null];
-    var prevShown = 5;
-    var topZindex = 1; // max is quite alot, is okay to increment indefinitely
+    let buttons = [null,null,null,null,null,null];
+    let prevShown = 5;
+    let topZindex = 1; // max is quite alot, is okay to increment indefinitely
 
     const btn1 = new Button('btn-31');
     btn1.enableAnim();

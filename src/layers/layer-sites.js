@@ -89,8 +89,8 @@ function rowsFromFlatTopGrid(hexGrid)
         format row1, row2, ..., where rows are north to south 
     */
     const firstCentroid = turf.centroid(hexGrid.features[0]);
-    var dist = 0;
-    var i = 1;
+    let dist = 0;
+    let i = 1;
     while (true)
     {
         if (i == hexGrid.features.length) throw new Error('oh no, shouldnt happen');
@@ -109,8 +109,8 @@ function rowsFromFlatTopGrid(hexGrid)
 */
 function colsFromFlatTopGrid(hexGrid, rows)
 {
-    var seen = 0;
-    var cols = 0;
+    let seen = 0;
+    let cols = 0;
     while (true)
     {
         if (seen > hexGrid.features.length) throw new Error('oh no, shouldnt happen');
@@ -133,11 +133,11 @@ function factorFunc(val, fac, mx)
 function doIDW(rows, cols, hexGrid)
 {
     const orig = new Array(rows+1).fill(0).map(() => new Array(cols).fill(0));
-    var i=0;
-    var estimatedMax = 0;
-    for (var c=0; c!=cols; ++c)
+    let i=0;
+    let estimatedMax = 0;
+    for (let c=0; c!=cols; ++c)
     {
-        for (var r=rows+((c+1)%2)-2; r!=-1; --r,++i)
+        for (let r=rows+((c+1)%2)-2; r!=-1; --r,++i)
         {
             orig[r][c]=hexGrid.features[i].properties.values.length;
             estimatedMax = Math.max(estimatedMax, orig[r][c]);
@@ -146,24 +146,24 @@ function doIDW(rows, cols, hexGrid)
 
     const factor = 0.7;
     const dp = structuredClone(orig);
-    for (var c=1; c!=cols; ++c) // top-left to bottom-right
-        for (var r=1; r!=rows+((c+1)%2); ++r,++i)
+    for (let c=1; c!=cols; ++c) // top-left to bottom-right
+        for (let r=1; r!=rows+((c+1)%2); ++r,++i)
             dp[r][c]=factorFunc(Math.max(dp[r][c], orig[r][c] + Math.floor(Math.max(dp[r-1][c],dp[r][c-1],dp[r-1][c-1]))), factor, estimatedMax);
-    for (var c=cols-2; c!=-1; --c) // top-right to bottom-left
-        for (var r=1; r!=rows+((c+1)%2); ++r,++i)
+    for (let c=cols-2; c!=-1; --c) // top-right to bottom-left
+        for (let r=1; r!=rows+((c+1)%2); ++r,++i)
             dp[r][c]=factorFunc(Math.max(dp[r][c], orig[r][c] + Math.floor(Math.max(dp[r-1][c],dp[r][c+1],dp[r-1][c+1]))), factor, estimatedMax);
-    for (var c=cols-2; c!=-1; --c) // bottom-right to top-left
-        for (var r=rows+((c+1)%2)-2; r!=-1; --r,++i)
+    for (let c=cols-2; c!=-1; --c) // bottom-right to top-left
+        for (let r=rows+((c+1)%2)-2; r!=-1; --r,++i)
             dp[r][c]=factorFunc(Math.max(dp[r][c], orig[r][c] + Math.floor(Math.max(dp[r+1][c],dp[r][c+1],dp[r+1][c+1]))), factor, estimatedMax);
-    for (var c=1; c!=cols; ++c) // bottom-left to top-right
-        for (var r=rows+((c+1)%2)-2; r!=-1; --r,++i)
+    for (let c=1; c!=cols; ++c) // bottom-left to top-right
+        for (let r=rows+((c+1)%2)-2; r!=-1; --r,++i)
             dp[r][c]=factorFunc(Math.max(dp[r][c], orig[r][c] + Math.floor(Math.max(dp[r+1][c],dp[r][c-1],dp[r+1][c-1]))), factor, estimatedMax);
 
-        var maxVal = 0;
+        let maxVal = 0;
     i=0;
-    for (var c=0; c!=cols; ++c)
+    for (let c=0; c!=cols; ++c)
     {
-        for (var r=rows+((c+1)%2)-2; r!=-1; --r,++i)
+        for (let r=rows+((c+1)%2)-2; r!=-1; --r,++i)
         {
             maxVal = Math.max(maxVal, dp[r][c]);
             hexGrid.features[i].properties[SITES.IDWfield] = dp[r][c];
@@ -230,7 +230,7 @@ function genSitesHexGrid()
             }
         });
 
-        for (var i=0; i!= 8; ++i)
+        for (let i=0; i!= 8; ++i)
             $(`#legend-sites-desc-${i}`).text(`≤ ${genFunc(i, maxWithin)}`);
 
         map.addSource(hexNameDots(DATA_NAME.SITES), {

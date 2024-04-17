@@ -1,23 +1,31 @@
-.dropdown-menu {
-    position: absolute;
-    width: 300px;
-    height: 280px;
-
+.menu {
     background: rgba(235, 227, 227, 0.5);
     backdrop-filter: blur(3px);
-    border-radius: 3px;;
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    border-style: outset;
 
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-
-    z-index: 900000000;
 }
-    #dropdown-menu-env {
-        left: 130px;
-        top: 130px;
-    }
+
+#vertical-menu-env {
+    position: absolute;
+    width: 300px;
+    height: 280px;
+    left: 130px;
+    top: 130px;
+}
+#horizontal-menu-secondary-sites {
+    position: absolute;
+    width: 300px;
+    height: 118px;
+    left: 465px;
+    top: 130px;
+}
+
 
 .btn-wrapper {
     position: relative;

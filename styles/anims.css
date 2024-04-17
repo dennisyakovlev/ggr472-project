@@ -81,26 +81,26 @@
     }
 }
 
-/* DROPDOWN MENU ITEM ANIMATION */
-.dropdown-anim-start {
+/* VERTICAL MENU ITEM ANIMATION */
+.vertical-menu-anim-start {
     margin-top: -50px;
     opacity: 0;
 }
-.dropdown-anim-mid {
+.vertical-menu-anim-mid {
     margin-top: 0px;
     opacity: 1;
 }
-.dropdown-anim-in {
-    animation: dropdown-key-anim-in 0.2s;
+.vertical-menu-anim-in {
+    animation: vertical-menu-key-anim-in 0.2s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
 }
-.dropdown-anim-out {
-    animation: dropdown-key-anim-out 0.2s;
+.vertical-menu-anim-out {
+    animation: vertical-menu-key-anim-out 0.2s;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
 }
-@keyframes dropdown-key-anim-in {
+@keyframes vertical-menu-key-anim-in {
     0% {
         margin-top: -50px;
         opacity: 0;
@@ -110,7 +110,7 @@
         opacity: 1;
     }
 }
-@keyframes dropdown-key-anim-out {
+@keyframes vertical-menu-key-anim-out {
     0% {
         margin-top: 0px;
         opacity: 1;
@@ -121,29 +121,28 @@
     }
 }
 
-/* MENU ANIMATION */
-.menu-anim-start {
+/* HORIZONTAL MENU ANIMATION */
+.horizontal-menu-anim-start {
     margin: 0 0 0 0;
     margin-left: -50px;
     opacity: 0;
 }
-.menu-anim-mid {
+.horizontal-menu-anim-mid {
     margin: 0 0 0 0;
     opacity: 1;
     pointer-events: all;
 }
-.menu-anim-in {
-    animation: menu-key-anim-in 0.2s;
+.horizontal-menu-anim-in {
+    animation: horizontal-menu-key-anim-in 0.2s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
 }
-.menu-anim-out {
-    animation: menu-key-anim-out 0.2s;
+.horizontal-menu-anim-out {
+    animation: horizontal-menu-key-anim-out 0.2s;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
 }
-
-@keyframes menu-key-anim-in {
+@keyframes horizontal-menu-key-anim-in {
     0% {
         opacity: 0;
         margin-left: -50px;
@@ -153,8 +152,7 @@
         margin-left: 0px;
     }
 }
-
-@keyframes menu-key-anim-out {
+@keyframes horizontal-menu-key-anim-out {
     0% {
         opacity: 1;
         margin-right: 0px;
@@ -162,18 +160,6 @@
     100% {
         opacity: 0;
         margin-left: -50px;
-    }
-}
-
-/* MENU DROPDOWN ITEM */
-@keyframes menu-dropdown-key-anim-in {
-    0% {
-        opacity: 0;
-        margin-top: -25px;
-    }
-    100% {
-        opacity: 1;
-        margin-top: 0px;
     }
 }
 
