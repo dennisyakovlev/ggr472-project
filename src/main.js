@@ -261,9 +261,10 @@ map.on("load", () => {
     }, 250);
 
     // can do this without the map
-    initMap();
-    initMenu();
-    initInfoPage();
+    // initMap();
+    // initMenu();
+    // initInfoPage();
+    initNavBar();
 });
 
 // debug

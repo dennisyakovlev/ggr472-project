@@ -41,6 +41,86 @@
     }
 }
 
+/* BACKGROUND OPACITY ANIMATION */
+.background-anim-start {
+    margin-bottom: 5px;
+    opacity: 0;
+}
+.background-anim-mid {
+    margin-bottom: 0px;
+    opacity: 1;
+}
+.background-anim-in {
+    animation: background-key-anim-in 0.2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.background-anim-out {
+    animation: background-key-anim-out 0.2s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+@keyframes background-key-anim-in {
+    0% {
+        margin-bottom: 5px;
+        opacity: 0;
+    }
+    100% {
+        margin-bottom: 0px;
+        opacity: 1;
+    }
+}
+@keyframes background-key-anim-out {
+    0% {
+        margin-bottom: 0px;
+        opacity: 1;
+    }
+    100% {
+        margin-bottom: 5px;
+        opacity: 0;
+    }
+}
+
+/* DROPDOWN MENU ITEM ANIMATION */
+.dropdown-anim-start {
+    margin-top: -50px;
+    opacity: 0;
+}
+.dropdown-anim-mid {
+    margin-top: 0px;
+    opacity: 1;
+}
+.dropdown-anim-in {
+    animation: dropdown-key-anim-in 0.2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.dropdown-anim-out {
+    animation: dropdown-key-anim-out 0.2s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+@keyframes dropdown-key-anim-in {
+    0% {
+        margin-top: -50px;
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        opacity: 1;
+    }
+}
+@keyframes dropdown-key-anim-out {
+    0% {
+        margin-top: 0px;
+        opacity: 1;
+    }
+    100% {
+        margin-top: -50px;
+        opacity: 0;
+    }
+}
+
 /* MENU ANIMATION */
 .menu-anim-start {
     margin: 0 0 0 0;
@@ -66,7 +146,7 @@
 @keyframes menu-key-anim-in {
     0% {
         opacity: 0;
-        margin-left: -25;
+        margin-left: -50px;
     }
     100% {
         opacity: 1;
@@ -82,6 +162,18 @@
     100% {
         opacity: 0;
         margin-left: -50px;
+    }
+}
+
+/* MENU DROPDOWN ITEM */
+@keyframes menu-dropdown-key-anim-in {
+    0% {
+        opacity: 0;
+        margin-top: -25px;
+    }
+    100% {
+        opacity: 1;
+        margin-top: 0px;
     }
 }
 

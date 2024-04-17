@@ -212,6 +212,17 @@ function initMenu()
         .addClass('mapinfo-anim-out'));
 }
 
+function initNavBar()
+{
+    // envionrmental indicators
+    const navEnvDropdownMenu   = new DropDownMenu('dropdown-menu-env', [0,1]);
+    const navEnvHighlightBtn   = new HiglightableButton('background-nav-env', [0,1]);
+
+    const navEnvTransitionable = new NthTransitionable('trigger-nav-env', 2);
+    navEnvTransitionable.addAnimElem('click', navEnvDropdownMenu);
+    navEnvTransitionable.addAnimElem('click', navEnvHighlightBtn);
+}
+
 function initInfoPage()
 {
     var buttons = [null,null,null,null,null,null];
