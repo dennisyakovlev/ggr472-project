@@ -91,7 +91,7 @@ function initWaterTreatment()
         targetId           : layerName(layerName(DATA_NAME.water)),
         secondaryTargetId  : borderName(layerName(DATA_NAME.water)),
         waterId            : layerName(DATA_NAME.water),
-        source             : dataName(DATA_NAME.MAIN),
+        source             : dataName(DATA_NAME.water_hover),
         mainTrigger        : trigger,
         secondTrigger      : secondaryTrigger,
         fillColor          : '#81d4fa',

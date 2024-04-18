@@ -10,15 +10,13 @@ const map = new mapboxgl.Map({
 /*  global names for each layer
 */
 const DATA_NAME = {
-    MAIN: 'main',
-    SOCIO: 'socio',
-
     immigrant   : 'immigrant',
     income      : 'income',
     minority    : 'minority',
 
     sites       : 'sites',
     water       : 'water',
+    water_hover : 'water_hover',
     air         : 'air',
 
     risk_normal : 'risk_normal',
@@ -49,7 +47,7 @@ function verifyDataName(dataName)
 const DATA = {}; // global data variable of fetched files
 const INTERVALS = { // intervals for the given data, must be same as DATA_NAME vals
     'immigrant'   : [4.39,  13.42, 29.38, 58.36],
-    'income'      : [1.26,  3.83,  9.82,  29.44],
+    'income'      : [5.61,  9.81,  14.21, 78.01],
     'minority'    : [13.96, 41.57, 77.91, 100.01],
     'risk_normal' : [8.01,  10.01, 14.01, 20.01],
     'risk_scaled' : [1.01,  2.01,  3.01,  4.01],
