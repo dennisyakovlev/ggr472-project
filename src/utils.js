@@ -1,7 +1,7 @@
 mapboxgl.accessToken = "pk.eyJ1IjoiZGVubmlzeWFrb3ZsZXY0MCIsImEiOiJjbHMyNnViazIwMHB5MmpvNHlvc3B2bDQ2In0.nTDRJJnhgM_EW8tSwyOchg";
 const map = new mapboxgl.Map({
 	container: 'my-map',                       // container ID
-	style: 'mapbox://styles/mapbox/light-v11', // my edited monochrone
+	style: 'mapbox://styles/mapbox/dark-v11', // dark theme
 	center: [-85.9, 50.7],                     // starting position [lng, lat], aim at NYC
 	zoom: 4,                                   // starting tile zoom
     pitch: 0                                   // no pitch

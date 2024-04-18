@@ -34,7 +34,7 @@
     } */
         .nav-top {
             top: 0;
-            background-color: black;
+            background-color: #343434;
         }
         .nav-bottom {
             bottom: 0;
@@ -57,6 +57,7 @@
                 color: white;
                 font-weight: bold;
                 position: absolute;
+                font-family: 'Helvetica', sans-serif;
             }
             .nav-background {
                 position: relative;
@@ -108,9 +109,11 @@
     height: 280px;
     left: calc(var(--left-1) - 66.23px);
     top: 130px;
+    font-family: 'Helvetica', sans-serif;
 }
     #horizontal-menu-secondary-sites {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 198px;
         left: calc(var(--left-1 + 268.77px));
@@ -118,6 +121,7 @@
     }
     #horizontal-menu-secondary-water {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 198px;
         left: calc(var(--left-1 + 268.77px));
@@ -125,6 +129,7 @@
     }
     #horizontal-menu-secondary-air {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 116px;
         left: calc(var(--left-1 + 268.77px));
@@ -132,6 +137,7 @@
     }
 #vertical-menu-demo {
     position: absolute;
+    font-family: 'Helvetica', sans-serif;
     width: 300px;
     height: 280px;
     left: calc(var(--left-2) - 72px);
@@ -139,6 +145,7 @@
 }
     #horizontal-menu-secondary-immigrant {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 118px;
         left: calc(var(--left-2) + 263px);
@@ -146,6 +153,7 @@
     }
     #horizontal-menu-secondary-income {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 118px;
         left: calc(var(--left-2) + 263px);
@@ -153,6 +161,7 @@
     }
     #horizontal-menu-secondary-minority {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 116px;
         left: calc(var(--left-2) + 263px);
@@ -160,6 +169,7 @@
     }
 #vertical-menu-risk {
     position: absolute;
+    font-family: 'Helvetica', sans-serif;
     width: 300px;
     height: 198px;
     left: calc(var(--left-3) - 79.87px);
@@ -167,6 +177,7 @@
 }
     #horizontal-menu-secondary-risk_normal {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 118px;
         left: calc(var(--left-3) + 255.13px);
@@ -174,6 +185,7 @@
     }
     #horizontal-menu-secondary-risk_scaled {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 116px;
         left: calc(var(--left-3) + 255.13px);
@@ -181,6 +193,7 @@
     }
 #vertical-menu-assess {
     position: absolute;
+    font-family: 'Helvetica', sans-serif;
     width: 300px;
     height: 445px;
     left: calc(var(--left-4) - 68.66px);
