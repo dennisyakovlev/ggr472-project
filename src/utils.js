@@ -22,7 +22,7 @@ const DATA_NAME = {
     risk_normal : 'risk_normal',
     risk_scaled : 'risk_scaled',
 
-    assess      : 'asssess'
+    assess      : 'assess'
 };
 /*  helper function for getting names of certain items
 */
