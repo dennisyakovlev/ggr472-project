@@ -43,8 +43,12 @@ function verifyDataName(dataName)
         throw new Error(`type of data [${dataName}] is not valid`);
 }
 
-let DATA = {}; // global data variable of fetched files
-
+const DATA = {}; // global data variable of fetched files
+const INTERVALS = { // intervals for the given data, must be same as DATA_NAME vals
+    'immigrant' : [4.39,  13.42, 29.38, 58.36],
+    'income'    : [1.26,  3.83,  9.82,  29.44],
+    'minority'  : [13.96, 41.57, 77.91, 100.01]
+};
 /*  toggle extras related to some layer on and off
 
     state       - state from animatable

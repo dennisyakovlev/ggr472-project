@@ -1,5 +1,4 @@
-const _animatables = {};
-const _triggers    = {};
+const _triggers = {};
 
 /*  type of triggerable animation which will cyclically animate
     given elements congrouent to some state mod N. each state is
@@ -49,7 +48,7 @@ class NthTransitionable
     constructor(triggerId, modulo)
     {
         console.assert(modulo >= 1);
-        console.assert(!_animatables.hasOwnProperty(triggerId));
+        console.assert(!_triggers.hasOwnProperty(triggerId));
 
         this.modulo = modulo;
 
@@ -70,30 +69,30 @@ class NthTransitionable
             over:  0
         }
         this.ids = 0;
-        _animatables[this.triggerId] = this;
+        _triggers[this.triggerId] = this;
 
         // we want to pass down e so forced to use function(e) instead of e =>
         //      as using this in later gives class instance
-        // we also want to call [_doAction] on the instance, use _animatables
+        // we also want to call [_doAction] on the instance, use _triggers
         this.element.on('click', function(e) {
             const id = $(this).attr('id');
-            if (id in _animatables) _animatables[id]._doAction(e, 'click');
-            else throw new Error(`didn't find ${id} in _animatables`)
+            if (id in _triggers) _triggers[id]._doAction(e, 'click');
+            else throw new Error(`didn't find ${id} in _triggers`)
         });
         this.element.on('mouseenter', function(e) {
             const id = $(this).attr('id');
-            if (id in _animatables) _animatables[id]._doAction(e, 'enter');
-            else throw new Error(`didn't find ${id} in _animatables`)
+            if (id in _triggers) _triggers[id]._doAction(e, 'enter');
+            else throw new Error(`didn't find ${id} in _triggers`)
         });
         this.element.on('mouseleave', function(e) {
             const id = $(this).attr('id');
-            if (id in _animatables) _animatables[id]._doAction(e, 'leave');
-            else throw new Error(`didn't find ${id} in _animatables`)
+            if (id in _triggers) _triggers[id]._doAction(e, 'leave');
+            else throw new Error(`didn't find ${id} in _triggers`)
         });
         this.element.on('mouseover', function(e) {
             const id = $(this).attr('id');
-            if (id in _animatables) _animatables[id]._doAction(e, 'over');
-            else throw new Error(`didn't find ${id} in _animatables`)
+            if (id in _triggers) _triggers[id]._doAction(e, 'over');
+            else throw new Error(`didn't find ${id} in _triggers`)
         });
     }
 

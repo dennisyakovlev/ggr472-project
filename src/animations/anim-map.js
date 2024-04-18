@@ -112,6 +112,7 @@ class MapChloropleth extends MapAnimatable
     {
         super(targetId, congrouenceClasses);
 
+        this.source            = source;
         this.secondaryTargetId = secondaryTargetId;
         this.fillVariable      = fillVariable;
         this.origFillColors    = structuredClone(fillColors);
@@ -138,7 +139,11 @@ class MapChloropleth extends MapAnimatable
             'source': source,
             'layout': {},
             'paint': {
-                'line-color'             : border_color,
+                'line-color'             : [
+                    'case',
+                    ['==', ['get', 'binary_val'], 0], 'transparent',
+                    border_color
+                ],
                 'line-width'             : border_width,
                 'line-opacity'           : 0,
                 'line-opacity-transition': { duration: duration }

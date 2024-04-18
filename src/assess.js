@@ -6,14 +6,24 @@ const chooseStateMapping = [
     DATA_NAME.minority,
     // DATA_NAME.risk ???
 ];
+const assessLayerValName = [
+    'total_immi_pct',
+    'low_income_pct',
+    'visible_minority_pct'
+];
 
 class Assesser extends Animatable
 {
-    _getDataName(isFirst)
+    _getTriggerState(isFirst)
     {
         const letter = isFirst ? 'a' : 'b';
         const trigger = createTrigger(`trigger-secondary-assess-choose-${letter}`, 4);
-        return chooseStateMapping[trigger.getState('click')];
+        return trigger.getState('click');
+    }
+
+    _getDataName(isFirst)
+    {
+        return dataName(chooseStateMapping[this._getTriggerState(isFirst)]);
     }
 
     constructor(targetId, congrouenceClasses, mapPoly)
@@ -23,21 +33,55 @@ class Assesser extends Animatable
         this.mapPoly = mapPoly; // to rerender ?
     }
 
+    _getQuantileTriggerStates(isFirst)
+    {
+        const letter = isFirst ? 'a' : 'b';
+        const states = [-1,-1,-1,-1];
+        
+        for (let i=0; i!=4; ++i)
+        {
+            const trigger = createTrigger(`trigger-secondary-assess-quartile-${letter}-${i}`, 2);
+            states[i] = trigger.getState('click');
+        }
+        
+        return states;
+    }
+
     transition(type, state)
     {
-        const dataA = this._getDataName(true);
-        const dataB = this._getDataName(false);
+        const stateA    = this._getTriggerState(true);
+        const stateB    = this._getTriggerState(false);
+        const dataA     = DATA[this._getDataName(true)].features;
+        const dataB     = DATA[this._getDataName(false)].features;
+        const dataLayer = DATA[this.mapPoly.source].features;
+        const triggerA  = this._getQuantileTriggerStates(true);
+        const triggerB  = this._getQuantileTriggerStates(false);
+        const op        = createTrigger('trigger-secondary-assess-op', 2).getState('click') % 2 == 0
+            ? (a,b) => a && b
+            : (a,b) => a || b;
 
+        if (dataA.length != dataB.length || dataB.length != dataLayer.length)
+            throw new Error(`all length must be equal [${dataA.length}] [${dataB.length}] [${dataLayer.length}]`);
 
-        /*  need the data for which were going to run through
+        for (let i=0; i!=dataLayer.length; ++i)
+        {
+            if (dataA[i].properties.CSDAME != dataB[i].properties.CSDAME ||
+                dataB[i].properties.CSDAME != dataLayer[i].properties.CSDAME)
+            {
+               throw new Error(`subdivisions should all be ordered, issue at [${i}] with
+                                [${dataA[i].properties.CSDAME}]
+                                [${dataB[i].properties.CSDAME}]
+                                [${dataLayer[i].properties.CSDAME}]`); 
+            }
 
-            go through one census tract at a time, see it meets
-            criterea then set the actual data value to 1
+            const intervalA = INTERVALS[chooseStateMapping[stateA]].findIndex(
+                e => dataA[i].properties[assessLayerValName[stateA]] <= e);
+            const intervalB = INTERVALS[chooseStateMapping[stateB]].findIndex(
+                e => dataB[i].properties[assessLayerValName[stateB]] <= e);
+            
+            dataLayer[i].properties.binary_val = op(triggerA[intervalA], triggerB[intervalB]);
+        }
 
-            can just have mappoly with 2 interval, 0/1 for some
-            datafield
-        */
-        console.log(dataA);
-        console.log(dataB);
+        map.getSource(this.mapPoly.source).setData(DATA[this.mapPoly.source]);
     }
 };

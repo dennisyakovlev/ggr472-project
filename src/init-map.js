@@ -133,7 +133,7 @@ function initImmigrant()
         source             : dataName(DATA_NAME.immigrant),
         fillVariable       : 'total_immi_pct',
         fillColors         : ['#FCAE91', '#FB6A4A', '#DE2D26', '#A50F15'],
-        intervals          : [4.39, 13.42, 29.38, 58.36],
+        intervals          : INTERVALS[DATA_NAME.immigrant],
         border_color       : 'black',
         border_width       : 0.25,
         duration           : 250
@@ -159,7 +159,7 @@ function initIncome()
         source             : dataName(DATA_NAME.income),
         fillVariable       : 'low_income_pct',
         fillColors         : ['#FCAE91', '#FB6A4A', '#DE2D26', '#A50F15'],
-        intervals          : [1.26, 3.83, 9.82, 29.44],
+        intervals          : INTERVALS[DATA_NAME.income],
         border_color       : 'black',
         border_width       : 0.25,
         duration           : 250
@@ -186,7 +186,7 @@ function initMinority()
         source             : dataName(DATA_NAME.minority),
         fillVariable       : 'visible_minority_pct',
         fillColors         : ['#FCAE91', '#FB6A4A', '#DE2D26', '#A50F15'],
-        intervals          : [13.96, 41.57, 77.91, 100.01],
+        intervals          : INTERVALS[DATA_NAME.minority],
         border_color       : 'black',
         border_width       : 0.25,
         duration           : 250
@@ -248,41 +248,31 @@ function initAssessOp()
 }
 function initAssessRun()
 {
-    const text1    = new SwappableText('text-a-secondary-assess-run', [0,1]);
-    const text2    = new SwappableText('text-b-secondary-assess-run', [0,1]);
-    const assesser = new Assesser('', [0]);
-    
-    const trigger = createTrigger('trigger-secondary-assess-run', 2);
-    trigger.addAnimElem({type: 'click', anim: text2});
-    trigger.addAnimElem({type: 'click', anim: assesser});
-    // offset initial text
-    const afterId = trigger.addAnimElem({type: 'click', anim: text1});
-    trigger.forceCycle('click', afterId, 1);
-    text1.rotateRightClasses(1);
-}
-function initAssessLayer()
-{
-    const layer = new MapChloropleth({
+    const layer    = new MapChloropleth({
         targetId           : layerName(DATA_NAME.assess),
         congrouenceClasses : [0,1],
         secondaryTargetId  : borderName(DATA_NAME.assess),
         source             : dataName(DATA_NAME.assess),
-        fillVariable       : 'low_income_pct',
-        fillColors         : ['white', 'black'],
+        fillVariable       : 'binary_val',
+        fillColors         : ['transparent', 'green'],
         intervals          : [0, 1],
         border_color       : 'black',
         border_width       : 0.25,
         duration           : 250
     });
+    const text1    = new SwappableText('text-a-secondary-assess-run', [0,1]);
+    const text2    = new SwappableText('text-b-secondary-assess-run', [0,1]);
+    const assesser = new Assesser('', [0], layer);
+    
     const trigger = createTrigger('trigger-secondary-assess-run', 2);
-    trigger.addAnimElem({type: 'click', anim: layer});
+    trigger.addAnimElem({type: 'click', anim: text2});
+    trigger.addAnimElem({type: 'click', anim: assesser});
+    trigger.addAnimElem({type: 'click', anim: layer, delay: 1500});
 
-    /*  get the associated mappoly depending on what is selected by
-        the buttons. get intervals, find intersection, then update
-        special map poly for this layer
-
-        extend the button aimatable and add impl for class
-    */
+    // offset initial text
+    const afterId = trigger.addAnimElem({type: 'click', anim: text1});
+    trigger.forceCycle('click', afterId, 1);
+    text1.rotateRightClasses(1);
 }
 
 function initMap()
@@ -309,5 +299,4 @@ function initMap()
     initAssessQuartile(false);
     initAssessOp();
     initAssessRun();
-    initAssessLayer();
 }
