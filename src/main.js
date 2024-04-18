@@ -53,6 +53,34 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
         throw new Error('Problem loading');
     });
 
+fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/immigrants.geojson')
+    .then(response => response.json())
+    .then(response => {
+        DATA[dataName(DATA_NAME.immigrant)] = response;
+        fetched += 1;
+    })
+    .catch(err => {
+        throw new Error('Problem loading');
+    });
+fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/low_income.geojson')
+    .then(response => response.json())
+    .then(response => {
+        DATA[dataName(DATA_NAME.income)] = response;
+        fetched += 1;
+    })
+    .catch(err => {
+        throw new Error('Problem loading');
+    });
+fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/visible_minority.geojson')
+    .then(response => response.json())
+    .then(response => {
+        DATA[dataName(DATA_NAME.minority)] = response;
+        fetched += 1;
+    })
+    .catch(err => {
+        throw new Error('Problem loading');
+    });
+
 /*  add fetched data to map
 */
 function addData()
@@ -85,6 +113,19 @@ function addData()
     map.addSource(dataName(DATA_NAME.SOCIO), {
         'type': 'geojson',
         'data': DATA[dataName(DATA_NAME.SOCIO)]
+    });
+
+    map.addSource(dataName(DATA_NAME.immigrant), {
+        'type': 'geojson',
+        'data': DATA[dataName(DATA_NAME.immigrant)]
+    });
+    map.addSource(dataName(DATA_NAME.income), {
+        'type': 'geojson',
+        'data': DATA[dataName(DATA_NAME.income)]
+    });
+    map.addSource(dataName(DATA_NAME.minority), {
+        'type': 'geojson',
+        'data': DATA[dataName(DATA_NAME.minority)]
     });
 }
 
@@ -231,14 +272,18 @@ function loadingRemove()
         .addClass('screen-anim-in');
 }
 
+
+
 map.on("load", () => {
     map.addControl(new mapboxgl.NavigationControl()); // add nav controls
+
+
 
     let count = 0;
     let dontQuit = false;
     const timer = setInterval(function() {
         // done fetching all five data files and not terminated ?
-        if (fetched == 5 && dontQuit == false)
+        if (fetched == 8 && dontQuit == false)
         {
             dontQuit = true;
 

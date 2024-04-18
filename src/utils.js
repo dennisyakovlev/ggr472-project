@@ -11,10 +11,15 @@ const map = new mapboxgl.Map({
 */
 const DATA_NAME = {
     MAIN: 'main',
-    sites: 'sites',
-    water: 'water',
-    air: 'air',
-    SOCIO: 'socio'
+    SOCIO: 'socio',
+
+    immigrant : 'immigrant',
+    income    : 'income',
+    minority  : 'minority',
+
+    sites     : 'sites',
+    water     : 'water',
+    air       : 'air',
 };
 /*  helper function for getting names of certain items
 */
@@ -29,6 +34,11 @@ function layerName(str)
 function borderName(str)
 {
     return `${str}-border`;
+}
+function verifyDataName(dataName)
+{
+    if (!DATA_NAME.hasOwnProperty(dataName))
+        throw new Error(`type of data [${dataName}] is not valid`);
 }
 
 let DATA = {}; // global data variable of fetched files

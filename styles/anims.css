@@ -43,7 +43,7 @@
 
 /* BACKGROUND OPACITY ANIMATION */
 .background-anim-start {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     opacity: 0;
 }
 .background-anim-mid {
@@ -62,7 +62,7 @@
 }
 @keyframes background-key-anim-in {
     0% {
-        margin-bottom: 5px;
+        margin-bottom: 8px;
         opacity: 0;
     }
     100% {
@@ -76,7 +76,7 @@
         opacity: 1;
     }
     100% {
-        margin-bottom: 5px;
+        margin-bottom: 8px;
         opacity: 0;
     }
 }

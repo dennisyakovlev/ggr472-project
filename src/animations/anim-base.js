@@ -1,5 +1,5 @@
 const _animatables = {};
-const _triggers = {};
+const _triggers    = {};
 
 /*  type of triggerable animation which will cyclically animate
     given elements congrouent to some state mod N. each state is
@@ -46,7 +46,7 @@ class NthTransitionable
     /*  increment state for dom element with id [triggerId]
         and run added animations on a [modulo] cycle.
     */
-    constructor(triggerId, modulo, elem = null)
+    constructor(triggerId, modulo)
     {
         console.assert(modulo >= 1);
         console.assert(!_animatables.hasOwnProperty(triggerId));
@@ -213,6 +213,8 @@ class Empty extends Animatable
     }
 };
 
+/*  create a new trigger or use an existing one
+*/
 function createTrigger(triggerId, congrouenceClasses)
 {
     console.assert(triggerId != null);

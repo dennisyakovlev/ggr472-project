@@ -148,14 +148,14 @@
         </div>
       <!-- demographic characteristics menu -->
       <div class="menu vertical-menu-anim-start map-front no-pointer" id="vertical-menu-demo">
-        <div class="btn-wrapper" id="trigger-secondary-immi">
+        <div class="btn-wrapper" id="trigger-secondary-immigrant">
           <div class="menu-info">
             <div class="gg-info text-anim-mid"></div>
             <div class="close text-anim-start"></div>
           </div>
           <div class="button">
-            <p class="text-anim-start" id="text-a-secondary-immi">Immigration Off</p>
-            <p class="text-anim-start" id="text-b-secondary-immi">Immigration On</p>
+            <p class="text-anim-start" id="text-a-secondary-immigrant">Immigration Off</p>
+            <p class="text-anim-start" id="text-b-secondary-immigrant">Immigration On</p>
           </div>
         </div>
         <div class="btn-wrapper" id="trigger-secondary-income">
@@ -180,11 +180,54 @@
         </div>
       </div>
         <!-- related to immigration -->
-        <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-immi">
-          <div class="btn-wrapper">
-            <div class="button" id="btn-secondary-immi">
-              <p class="text-anim-mid">Generate Hexgrid</p>
-              <p class="text-anim-start">Clear Hexgrid</p>
+        <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-immigrant">
+          <div class="btn-wrapper" id="btn-secondary-immigrant-popup">
+            <div class="button">
+              <p class="text-anim-start" id="text-a-secondary-immigrant-popup">Popup Enabled</p>
+              <p class="text-anim-start" id="text-b-secondary-immigrant-popup">Popup Disabled</p>
+            </div>
+          </div>
+        </div>
+        <div class="legend legend-chloro horizontal-menu-anim-start no-pointer map-front" id="legend-immigrant">
+          <div class="legend-title-wrapper">
+            <p class="legend-title">
+              Immigrant <br> Percentage
+            </p>
+          </div>
+          <div class="legend-item pointer" id="legend-immigrant-0">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-0"></div>
+              <div class="legend-pic2 legend-pic-background background-anim-start" id="legend-immigrant-background-0"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Negligible</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-immigrant-1">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-1"></div>
+              <div class="legend-pic2 legend-pic-background background-anim-start" id="legend-immigrant-background-1"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Low</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-immigrant-2">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-2"></div>
+              <div class="legend-pic2 legend-pic-background background-anim-start" id="legend-immigrant-background-2"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Moderate</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-immigrant-3">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-3"></div>
+              <div class="legend-pic2 legend-pic-background background-anim-start" id="legend-immigrant-background-3"></div>
+            </div>
+            <div class="legend-desc">
+              <p>High</p>
             </div>
           </div>
         </div>
@@ -378,7 +421,7 @@
         </div>
       </div> -->
       <!-- related to chloropleth -->
-      <div class="legend map-front mapinfo-index" id="legend-index">
+      <!-- <div class="legend map-front mapinfo-index" id="legend-index">
         <p class="legend-title">
           Env. Score
         </p>
@@ -417,7 +460,7 @@
             <p>Extreme</p>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- <div class="secondary-menu map-front menu-anim-start no-pointer" id="secondary-menu-index">
         <div class="btn-wrapper">
           <div class="button" id="btn-secondary-index-hover">
@@ -613,6 +656,7 @@
   <script src="./src/utils.js"></script>
 
   <script src="./src/animations/anim-base.js"></script>
+  <!-- need dom before map -->
   <script src="./src/animations/anim-dom.js"></script>
   <script src="./src/animations/anim-map.js"></script>
   <script src="./src/animations/filters.js"></script>

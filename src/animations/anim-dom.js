@@ -46,7 +46,7 @@ class VerticalMenu extends DomAnimatable
 /*  menu which turns on and off. animation looks like
     horizontal sliding
 */
-class horizontalMenu extends DomAnimatable
+class HorizontalMenu extends DomAnimatable
 {
     _verifyInit()
     {

@@ -37,8 +37,8 @@ function initSecondaryMenu(name)
     const filterHoriz   = new HorizontalFilter();
     const startText     = new SwappableText(`text-a-secondary-${name}`, [0,1]);
     const afterText     = new SwappableText(`text-b-secondary-${name}`, [0,1]);
-    const menuSecond    = new horizontalMenu(`horizontal-menu-secondary-${name}`, [0,1]);
-    const menuSecondB   = new horizontalMenu(`horizontal-menu-secondary-${name}`, [0]); 
+    const menuSecond    = new HorizontalMenu(`horizontal-menu-secondary-${name}`, [0,1]);
+    const menuSecondB   = new HorizontalMenu(`horizontal-menu-secondary-${name}`, [0]); 
     
     const trigger = createTrigger(`trigger-secondary-${name}`, 2);
     trigger.addAnimElem({type: 'click', anim: afterText});
@@ -80,7 +80,7 @@ function initNavBar()
     initSecondaryMenu('air');
 
     initNavTrigger('demo');
-    initSecondaryMenu('immi');
+    initSecondaryMenu('immigrant');
     initSecondaryMenu('income');
     initSecondaryMenu('minority');
 }
