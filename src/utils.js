@@ -11,10 +11,17 @@ const map = new mapboxgl.Map({
 */
 const DATA_NAME = {
     MAIN: 'main',
-    SITES: 'sites',
-    WATER: 'water',
-    AIR: 'air',
-    SOCIO: 'socio'
+    SOCIO: 'socio',
+
+    immigrant : 'immigrant',
+    income    : 'income',
+    minority  : 'minority',
+
+    sites     : 'sites',
+    water     : 'water',
+    air       : 'air',
+
+    assess    : 'asssess'
 };
 /*  helper function for getting names of certain items
 */
@@ -30,9 +37,18 @@ function borderName(str)
 {
     return `${str}-border`;
 }
+function verifyDataName(dataName)
+{
+    if (!DATA_NAME.hasOwnProperty(dataName))
+        throw new Error(`type of data [${dataName}] is not valid`);
+}
 
-var DATA = {}; // global data variable of fetched files
-
+const DATA = {}; // global data variable of fetched files
+const INTERVALS = { // intervals for the given data, must be same as DATA_NAME vals
+    'immigrant' : [4.39,  13.42, 29.38, 58.36],
+    'income'    : [1.26,  3.83,  9.82,  29.44],
+    'minority'  : [13.96, 41.57, 77.91, 100.01]
+};
 /*  toggle extras related to some layer on and off
 
     state       - state from animatable

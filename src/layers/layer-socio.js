@@ -27,7 +27,7 @@ const SOCIO = {
 function buildSocioColorValue()
 {
     const val = structuredClone(SOCIO.fill._value);
-    for (var i=0; i!=SOCIO.fill._colors.length; ++i)
+    for (let i=0; i!=SOCIO.fill._colors.length; ++i)
     {
         val[2*(i+1)] = `#${SOCIO.fill._colors[i]}`;
     }

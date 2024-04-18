@@ -1,4 +1,4 @@
-var fetched = 0; // number of files currently done fetching
+let fetched = 0; // number of files currently done fetching
 
 /*  asynchronoudly fetch files
 */
@@ -15,7 +15,7 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
 fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/contaminated_sites.geojson')
     .then(response => response.json())
     .then(response => {
-        DATA[dataName(DATA_NAME.SITES)] = response;
+        DATA[dataName(DATA_NAME.sites)] = response;
         fetched += 1;
     })
     .catch(err => {
@@ -25,7 +25,7 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
 fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/water_facilities.geojson')
     .then(response => response.json())
     .then(response => {
-        DATA[dataName(DATA_NAME.WATER)] = response;
+        DATA[dataName(DATA_NAME.water)] = response;
         fetched += 1;
     })
     .catch(err => {
@@ -36,7 +36,7 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
 fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/pollution.geojson')
     .then(response => response.json())
     .then(response => {
-        DATA[dataName(DATA_NAME.AIR)] = response;
+        DATA[dataName(DATA_NAME.air)] = response;
         fetched += 1;
     })
     .catch(err => {
@@ -47,6 +47,43 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
     .then(response => response.json())
     .then(response => {
         DATA[dataName(DATA_NAME.SOCIO)] = response;
+        fetched += 1;
+    })
+    .catch(err => {
+        throw new Error('Problem loading');
+    });
+
+fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/immigrants.geojson')
+    .then(response => response.json())
+    .then(response => {
+        DATA[dataName(DATA_NAME.immigrant)] = response;
+        fetched += 1;
+    })
+    .catch(err => {
+        throw new Error('Problem loading');
+    });
+fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/low_income.geojson')
+    .then(response => response.json())
+    .then(response => {
+        DATA[dataName(DATA_NAME.income)] = response;
+        fetched += 1;
+    })
+    .catch(err => {
+        throw new Error('Problem loading');
+    });
+fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/visible_minority.geojson')
+    .then(response => response.json())
+    .then(response => {
+        DATA[dataName(DATA_NAME.minority)] = response;
+        fetched += 1;
+    })
+    .catch(err => {
+        throw new Error('Problem loading');
+    });
+fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/data_assess.geojson')
+    .then(response => response.json())
+    .then(response => {
+        DATA[dataName(DATA_NAME.assess)] = response;
         fetched += 1;
     })
     .catch(err => {
@@ -64,27 +101,46 @@ function addData()
     });
 
     // contaminated sites
-    map.addSource(dataName(DATA_NAME.SITES), {
+    map.addSource(dataName(DATA_NAME.sites), {
         'type': 'geojson',
-        'data': DATA[dataName(DATA_NAME.SITES)]
+        'data': DATA[dataName(DATA_NAME.sites)]
     });
 
     // treatment WATER
-    map.addSource(dataName(DATA_NAME.WATER), {
+    map.addSource(dataName(DATA_NAME.water), {
         'type': 'geojson',
-        'data': DATA[dataName(DATA_NAME.WATER)]
+        'data': DATA[dataName(DATA_NAME.water)]
     });
 
     // air monitoring
-    map.addSource(dataName(DATA_NAME.AIR), {
+    map.addSource(dataName(DATA_NAME.air), {
         'type': 'geojson',
-        'data': DATA[dataName(DATA_NAME.AIR)]
+        'data': DATA[dataName(DATA_NAME.air)]
     });
 
     // sociodemographic
     map.addSource(dataName(DATA_NAME.SOCIO), {
         'type': 'geojson',
         'data': DATA[dataName(DATA_NAME.SOCIO)]
+    });
+
+    map.addSource(dataName(DATA_NAME.immigrant), {
+        'type': 'geojson',
+        'data': DATA[dataName(DATA_NAME.immigrant)]
+    });
+    map.addSource(dataName(DATA_NAME.income), {
+        'type': 'geojson',
+        'data': DATA[dataName(DATA_NAME.income)]
+    });
+    map.addSource(dataName(DATA_NAME.minority), {
+        'type': 'geojson',
+        'data': DATA[dataName(DATA_NAME.minority)]
+    });
+
+
+    map.addSource(dataName(DATA_NAME.assess), {
+        'type': 'geojson',
+        'data': DATA[dataName(DATA_NAME.assess)]
     });
 }
 
@@ -231,19 +287,23 @@ function loadingRemove()
         .addClass('screen-anim-in');
 }
 
+
+
 map.on("load", () => {
     map.addControl(new mapboxgl.NavigationControl()); // add nav controls
 
-    var count = 0;
-    var dontQuit = false;
+
+
+    let count = 0;
+    let dontQuit = false;
     const timer = setInterval(function() {
         // done fetching all five data files and not terminated ?
-        if (fetched == 5 && dontQuit == false)
+        if (fetched == 9 && dontQuit == false)
         {
             dontQuit = true;
 
             addData();
-            addLayers();
+            initMap();
 
             // after everything has been added give mapbox
             // a seoncd to render the map, then show it
@@ -258,12 +318,10 @@ map.on("load", () => {
             clearInterval(timer);
         }
         count += 1;
-    }, 250);
+    }, 500);
 
     // can do this without the map
-    initMap();
-    initMenu();
-    initInfoPage();
+    initNavBar();
 });
 
 // debug

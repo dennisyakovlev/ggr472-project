@@ -18,7 +18,6 @@
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
 }
-
 @keyframes text-key-anim-in {
     0% {
         opacity: 0;
@@ -29,7 +28,6 @@
         margin-right: 0px;
     }
 }
-
 @keyframes text-key-anim-out {
     0% {
         opacity: 1;
@@ -37,44 +35,157 @@
     }
     100% {
         opacity: 0;
-        margin-right: -5px;
+        margin-right: -10px;
     }
 }
 
-/* MENU ANIMATION */
-.menu-anim-start {
+/* OPACITY and VERTICAL SLIDE ANIMATION */
+.opacity-slide-anim-start {
+    margin-bottom: 8px;
+    opacity: 0;
+}
+.opacity-slide-anim-mid {
+    margin-bottom: 0px;
+    opacity: 1;
+}
+.opacity-slide-anim-in {
+    animation: opacity-slide-key-anim-in 0.2s;
+    animation-timing-function: ease-out;
+animation-fill-mode: forwards;
+}
+.opacity-slide-anim-out {
+    animation: opacity-slide-key-anim-out 0.2s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+@keyframes opacity-slide-key-anim-in {
+    0% {
+        margin-bottom: 8px;
+        opacity: 0;
+    }
+    100% {
+        margin-bottom: 0px;
+        opacity: 1;
+    }
+}
+@keyframes opacity-slide-key-anim-out {
+    0% {
+        margin-bottom: 0px;
+        opacity: 1;
+    }
+    100% {
+        margin-bottom: 8px;
+        opacity: 0;
+    }
+}
+
+/* OPACITY SLIDE ANIMATION */
+.opacity-anim-start {
+    opacity: 0;
+}
+.opacity-anim-mid {
+    margin-bottom: 0px;
+    opacity: 1;
+}
+.opacity-anim-in {
+    animation: opacity-key-anim-in 0.2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.opacity-anim-out {
+    animation: opacity-key-anim-out 0.2s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+@keyframes opacity-key-anim-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes opacity-key-anim-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* VERTICAL MENU ITEM ANIMATION */
+.vertical-menu-anim-start {
+    margin-top: -50px;
+    opacity: 0;
+}
+.vertical-menu-anim-mid {
+    margin-top: 0px;
+    opacity: 1;
+}
+.vertical-menu-anim-in {
+    animation: vertical-menu-key-anim-in 0.2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.vertical-menu-anim-out {
+    animation: vertical-menu-key-anim-out 0.2s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+@keyframes vertical-menu-key-anim-in {
+    0% {
+        margin-top: -50px;
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0px;
+        opacity: 1;
+    }
+}
+@keyframes vertical-menu-key-anim-out {
+    0% {
+        margin-top: 0px;
+        opacity: 1;
+    }
+    100% {
+        margin-top: -50px;
+        opacity: 0;
+    }
+}
+
+/* HORIZONTAL MENU ANIMATION */
+.horizontal-menu-anim-start {
     margin: 0 0 0 0;
     margin-left: -50px;
     opacity: 0;
 }
-.menu-anim-mid {
+.horizontal-menu-anim-mid {
     margin: 0 0 0 0;
     opacity: 1;
     pointer-events: all;
 }
-.menu-anim-in {
-    animation: menu-key-anim-in 0.2s;
+.horizontal-menu-anim-in {
+    animation: horizontal-menu-key-anim-in 0.2s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
 }
-.menu-anim-out {
-    animation: menu-key-anim-out 0.2s;
+.horizontal-menu-anim-out {
+    animation: horizontal-menu-key-anim-out 0.2s;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
 }
-
-@keyframes menu-key-anim-in {
+@keyframes horizontal-menu-key-anim-in {
     0% {
         opacity: 0;
-        margin-left: -25;
+        margin-left: -50px;
     }
     100% {
         opacity: 1;
         margin-left: 0px;
     }
 }
-
-@keyframes menu-key-anim-out {
+@keyframes horizontal-menu-key-anim-out {
     0% {
         opacity: 1;
         margin-right: 0px;
