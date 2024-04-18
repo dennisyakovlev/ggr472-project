@@ -146,11 +146,9 @@ class EnterCounter extends Filter
     {
         const old = this.times;
 
-        console.log(type, e)
         if (type == 'enter' && e.target.id == this.trackId)
             this.times += 1;
         
         return this.times == 0 ? false : true;
-        // old == 0 ? false : true;
     }
 };

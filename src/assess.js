@@ -4,12 +4,15 @@ const chooseStateMapping = [
     DATA_NAME.immigrant,
     DATA_NAME.income,
     DATA_NAME.minority,
-    // DATA_NAME.risk ???
+    DATA_NAME.risk_normal,
+    DATA_NAME.risk_scaled
 ];
 const assessLayerValName = [
     'total_immi_pct',
     'low_income_pct',
-    'visible_minority_pct'
+    'visible_minority_pct',
+    'Combined_Risk_Score',
+    'Scaled_Combined_Risk_Score'
 ];
 
 class Assesser extends Animatable
@@ -17,7 +20,7 @@ class Assesser extends Animatable
     _getTriggerState(isFirst)
     {
         const letter = isFirst ? 'a' : 'b';
-        const trigger = createTrigger(`trigger-secondary-assess-choose-${letter}`, 4);
+        const trigger = createTrigger(`trigger-secondary-assess-choose-${letter}`, 5);
         return trigger.getState('click');
     }
 

@@ -15,23 +15,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-/* 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center; */
 }
-    /* .nav-bar {
-        position: relative;
-        width: 10%;
-        height: 100%;
-
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items: center;
-    } */
         .nav-top {
             top: 0;
             background-color: #343434;
@@ -63,7 +47,7 @@
                 position: relative;
                 width: 80%;
                 height: 5px;
-                margin-top: 45px;
+                margin-top: 70px;
 
                 border-radius: 10px;
                 background-color: white;
@@ -91,11 +75,10 @@
     }
 
 .menu {
+    box-shadow: 1px 1px 5px white;
     background: rgba(235, 227, 227, 0.5);
     backdrop-filter: blur(3px);
     border-radius: 3px;
-    border: 1px solid lightgray;
-    border-style: outset;
 
     display: flex;
     flex-direction: column;
@@ -116,7 +99,7 @@
         font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 198px;
-        left: calc(var(--left-1 + 268.77px));
+        left: calc(var(--left-1) + 268.77px);
         top: 130px;
     }
     #horizontal-menu-secondary-water {
@@ -124,7 +107,7 @@
         font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 198px;
-        left: calc(var(--left-1 + 268.77px));
+        left: calc(var(--left-1) + 268.77px);
         top: 212px;
     }
     #horizontal-menu-secondary-air {
@@ -132,7 +115,7 @@
         font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 116px;
-        left: calc(var(--left-1 + 268.77px));
+        left: calc(var(--left-1) + 268.77px);
         top: 294px;
     }
 #vertical-menu-demo {
@@ -226,7 +209,7 @@
     justify-content: center;
     align-items: center;
 
-    box-shadow: 0px 1px 2px grey;
+    box-shadow: 0px 1px 2px #5b5c5e;
     background: rgba(235, 227, 227, 0.5);
     backdrop-filter: blur(3px);
     cursor: pointer;

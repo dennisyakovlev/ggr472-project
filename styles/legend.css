@@ -74,9 +74,9 @@
     }
 
 .legend {
-    background-color: #E1E1E1;
-    border: 1px solid lightgray;
-    border-style: outset;
+    box-shadow: 1px 1px 5px white;
+    background: rgba(235, 227, 227, 0.5);
+    backdrop-filter: blur(3px);
     border-radius: 5px;
     font-family: 'Helvetica', sans-serif;
 

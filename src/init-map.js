@@ -311,15 +311,17 @@ function initRiskScaled()
 function initAssessChoose(isFirst)
 {
     const letter = isFirst ? 'a' : 'b';
-    const text1 = new SwappableText(`text-0-secondary-assess-choose-${letter}`, [0,3]);
+    const text1 = new SwappableText(`text-0-secondary-assess-choose-${letter}`, [0,4]);
     const text2 = new SwappableText(`text-1-secondary-assess-choose-${letter}`, [0,1]);
     const text3 = new SwappableText(`text-2-secondary-assess-choose-${letter}`, [1,2]);
     const text4 = new SwappableText(`text-3-secondary-assess-choose-${letter}`, [2,3]);
+    const text5 = new SwappableText(`text-4-secondary-assess-choose-${letter}`, [3,4]);
 
-    const trigger = createTrigger(`trigger-secondary-assess-choose-${letter}`, 4);
+    const trigger = createTrigger(`trigger-secondary-assess-choose-${letter}`, 5);
     trigger.addAnimElem({type: 'click', anim: text2});
     trigger.addAnimElem({type: 'click', anim: text3});
     trigger.addAnimElem({type: 'click', anim: text4});
+    trigger.addAnimElem({type: 'click', anim: text5});
     // offset initial text
     const afterId = trigger.addAnimElem({type: 'click', anim: text1});
     trigger.forceCycle('click', afterId, 1);
