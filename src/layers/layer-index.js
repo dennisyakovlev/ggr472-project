@@ -79,7 +79,7 @@ function createPopupHTMLIndex(feature)
     return  `
             <h2>Environmental Risk</h2>
             <p>Census Subdivision Name: ${prop['Census subdivision name']}</p>
-            <p>Average PM2.5 Concentration: ${roundDec(parseFloat(prop['Average PM2.5 concentration']),2)}</p>
+            <p>Average PM2.5 Concentration: ${roundDec(parseFloat(prop['Average PM2.5 concentration']), 2)}</p>
             <p>Number of Active Contaminated Sites: ${prop['Number of active contaminated sites']}</p>
             <p>Water Quality Score: ${prop['Risk score_MEAN NITROGEN (nitrogen + nitrite)'] + prop['Risk score_MEAN TOTAL PHOSPHORUS']}</p>
             <p>Mean Phosphorus: ${prop['Risk score_MEAN TOTAL PHOSPHORUS']}</p>
