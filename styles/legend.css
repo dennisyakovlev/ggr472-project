@@ -74,10 +74,11 @@
     }
 
 .legend {
-    background-color: white;
+    background-color: #E1E1E1;
     border: 1px solid lightgray;
     border-style: outset;
     border-radius: 5px;
+    font-family: 'Helvetica', sans-serif;
 
     display: flex;
     flex-direction: column;
