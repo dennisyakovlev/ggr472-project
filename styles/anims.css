@@ -206,9 +206,6 @@ animation-fill-mode: forwards;
 .screen-anim-in {
     animation: map-anim-in 1s forwards ease-out;
 }
-.screen-anim-in-fast {
-    animation: map-anim-in 0.5s forwards ease-out;
-}
 .screen-anim-out {
     animation: map-anim-out 1s forwards ease-out;
 }

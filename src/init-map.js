@@ -406,18 +406,28 @@ function initInfos()
     }
 }
 
+
+/*  remove the loading screen and show map
+*/
+function loadingRemove()
+{
+    // $('.loader').css('animation', 'l15 1s infinite linear, loader-key-anim-out 1s forwards ease-in');
+    // $('#screen-1').css('''screen-anim-out');
+    // $('#screen-2').removeClass('no-pointer');
+}
+
 function initMap()
 {
-    // enviornmental indicator layers
-    initWaterTreatment(); // first so hover is on bottom
-    initAirStations();
-    initContaimatedSites();
-
     // TODO:
     // to multiplex create a filter which forcefully transitions the previous on
     //      if it exists
     // everything you want to be part of the multiplexer will use the filter, filter
     //      should always return true
+
+    // enviornmental indicator layers
+    initWaterTreatment(); // first so hover is on bottom
+    initAirStations();
+    initContaimatedSites();
 
     // demographic statistic layers
     initImmigrant();
@@ -427,7 +437,6 @@ function initMap()
     // enviornmental risk scores
     initRiskNormal()
     initRiskScaled();
-
 
     // assessment menu
     initAssessChoose(true);
