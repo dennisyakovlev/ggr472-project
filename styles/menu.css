@@ -22,7 +22,7 @@
     }
         .nav-top {
             top: 0;
-            background-color: black;
+            background-color: #343434;
         }
         .nav-bottom {
             bottom: 0;
@@ -44,6 +44,7 @@
                 color: white;
                 font-weight: bold;
                 position: absolute;
+                font-family: 'Helvetica', sans-serif;
             }
             .nav-background {
                 position: relative;
@@ -74,9 +75,11 @@
     height: 280px;
     left: 130px;
     top: 130px;
+    font-family: 'Helvetica', sans-serif;
 }
     #horizontal-menu-secondary-sites {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 198px;
         left: 465px;
@@ -84,6 +87,7 @@
     }
     #horizontal-menu-secondary-water {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 198px;
         left: 465px;
@@ -91,6 +95,7 @@
     }
     #horizontal-menu-secondary-air {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 116px;
         left: 465px;
@@ -98,6 +103,7 @@
     }
 #vertical-menu-demo {
     position: absolute;
+    font-family: 'Helvetica', sans-serif;
     width: 300px;
     height: 280px;
     left: 410px;
@@ -105,6 +111,7 @@
 }
     #horizontal-menu-secondary-immigrant {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 118px;
         left: 745px;
@@ -112,6 +119,7 @@
     }
     #horizontal-menu-secondary-income {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 118px;
         left: 745px;
@@ -119,6 +127,7 @@
     }
     #horizontal-menu-secondary-minority {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 116px;
         left: 745px;
@@ -126,6 +135,7 @@
     }
 #vertical-menu-risk {
     position: absolute;
+    font-family: 'Helvetica', sans-serif;
     width: 300px;
     height: 198px;
     left: 690px;
@@ -133,6 +143,7 @@
 }
     #horizontal-menu-secondary-risk_normal {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 118px;
         left: 1025px;
@@ -140,6 +151,7 @@
     }
     #horizontal-menu-secondary-risk_scaled {
         position: absolute;
+        font-family: 'Helvetica', sans-serif;
         width: 300px;
         height: 116px;
         left: 1025px;
@@ -147,6 +159,7 @@
     }
 #vertical-menu-assess {
     position: absolute;
+    font-family: 'Helvetica', sans-serif;
     width: 300px;
     height: 445px;
     left: 985px;
