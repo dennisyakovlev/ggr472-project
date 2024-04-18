@@ -198,6 +198,7 @@ Promise
                 if (i == fileNames.length)
                 {
                     console.log('done')
+                    initNavBar();
                     initMap();
 
                     $('.loader').css('animation', 'l15 1s infinite linear, loader-key-anim-out 1s forwards ease-in');

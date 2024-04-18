@@ -406,16 +406,6 @@ function initInfos()
     }
 }
 
-
-/*  remove the loading screen and show map
-*/
-function loadingRemove()
-{
-    // $('.loader').css('animation', 'l15 1s infinite linear, loader-key-anim-out 1s forwards ease-in');
-    // $('#screen-1').css('''screen-anim-out');
-    // $('#screen-2').removeClass('no-pointer');
-}
-
 function initMap()
 {
     // TODO:
