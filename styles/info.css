@@ -50,6 +50,14 @@
 }
 #result-text-info-6 {
     width: 400px;
+    height: 440px;
+}
+#result-text-info-7 {
+    width: 400px;
+    height: 380px;
+}
+#result-text-info-8 {
+    width: 400px;
     height: 610px;
     overflow-y: scroll;
 }

@@ -233,6 +233,58 @@ function initMinority()
     initLegendForLayer('minority', layer);
 }
 
+function initRiskNormal()
+{
+    const layer = new MapChloropleth({
+        targetId           : layerName(DATA_NAME.risk_normal),
+        congrouenceClasses : [0,1],
+        secondaryTargetId  : borderName(DATA_NAME.risk_normal),
+        source             : dataName(DATA_NAME.risk_normal),
+        fillVariable       : 'Combined_Risk_Score',
+        fillColors         : ['#FCAE91', '#FB6A4A', '#DE2D26', '#A50F15'],
+        intervals          : INTERVALS[DATA_NAME.risk_normal],
+        border_color       : 'black',
+        border_width       : 0.25,
+        duration           : 250
+    });
+    const trigger = createTrigger('trigger-secondary-risk_normal', 2);
+    trigger.addAnimElem({type: 'click', anim: layer});
+
+    const riskNormalHtml = (feature) => {
+        const prop = feature.properties;
+
+        return  `herherher`;
+    };
+    initPopupForLayer('risk_normal', riskNormalHtml);
+    initLegendForLayer('risk_normal', layer);
+}
+
+function initRiskScaled()
+{
+    const layer = new MapChloropleth({
+        targetId           : layerName(DATA_NAME.risk_scaled),
+        congrouenceClasses : [0,1],
+        secondaryTargetId  : borderName(DATA_NAME.risk_scaled),
+        source             : dataName(DATA_NAME.risk_scaled),
+        fillVariable       : 'Scaled_Combined_Risk_Score',
+        fillColors         : ['#FCAE91', '#FB6A4A', '#DE2D26', '#A50F15'],
+        intervals          : INTERVALS[DATA_NAME.risk_scaled],
+        border_color       : 'black',
+        border_width       : 0.25,
+        duration           : 250
+    });
+    const trigger = createTrigger('trigger-secondary-risk_scaled', 2);
+    trigger.addAnimElem({type: 'click', anim: layer});
+
+    const riskScaledHtml = (feature) => {
+        const prop = feature.properties;
+
+        return  `herherher`;
+    };
+    initPopupForLayer('risk_scaled', riskScaledHtml);
+    initLegendForLayer('risk_scaled', layer);
+}
+
 function initAssessChoose(isFirst)
 {
     const letter = isFirst ? 'a' : 'b';
@@ -307,7 +359,7 @@ function initAssessRun()
 
 function initInfos()
 {
-    for (let i=0; i!=7; ++i)
+    for (let i=0; i!=9; ++i)
     {
         const emptyAnim     = new Empty(null, [0]);
         const filterHover   = new HoverLagFilter();
@@ -336,7 +388,8 @@ function initMap()
     initAirStations();
     initContaimatedSites();
 
-    // to multiplex create a filter which forcefully transition the previous on
+    // TODO:
+    // to multiplex create a filter which forcefully transitions the previous on
     //      if it exists
     // everything you want to be part of the multiplexer will use the filter, filter
     //      should always return true
@@ -345,6 +398,11 @@ function initMap()
     initImmigrant();
     initIncome();
     initMinority();
+
+    // enviornmental risk scores
+    initRiskNormal()
+    initRiskScaled();
+
 
     // assessment menu
     initAssessChoose(true);

@@ -13,15 +13,18 @@ const DATA_NAME = {
     MAIN: 'main',
     SOCIO: 'socio',
 
-    immigrant : 'immigrant',
-    income    : 'income',
-    minority  : 'minority',
+    immigrant   : 'immigrant',
+    income      : 'income',
+    minority    : 'minority',
 
-    sites     : 'sites',
-    water     : 'water',
-    air       : 'air',
+    sites       : 'sites',
+    water       : 'water',
+    air         : 'air',
 
-    assess    : 'asssess'
+    risk_normal : 'risk_normal',
+    risk_scaled : 'risk_scaled',
+
+    assess      : 'asssess'
 };
 /*  helper function for getting names of certain items
 */
@@ -45,9 +48,11 @@ function verifyDataName(dataName)
 
 const DATA = {}; // global data variable of fetched files
 const INTERVALS = { // intervals for the given data, must be same as DATA_NAME vals
-    'immigrant' : [4.39,  13.42, 29.38, 58.36],
-    'income'    : [1.26,  3.83,  9.82,  29.44],
-    'minority'  : [13.96, 41.57, 77.91, 100.01]
+    'immigrant'   : [4.39,  13.42, 29.38, 58.36],
+    'income'      : [1.26,  3.83,  9.82,  29.44],
+    'minority'    : [13.96, 41.57, 77.91, 100.01],
+    'risk_normal' : [8.01,  10.01, 14.01, 20.01],
+    'risk_scaled' : [1.01,  2.01,  3.01,  4.01],
 };
 /*  toggle extras related to some layer on and off
 

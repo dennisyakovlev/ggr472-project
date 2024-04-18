@@ -89,6 +89,24 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
     .catch(err => {
         throw new Error('Problem loading');
     });
+fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/raw_risk_score.geojson')
+    .then(response => response.json())
+    .then(response => {
+        DATA[dataName(DATA_NAME.risk_normal)] = response;
+        fetched += 1;
+    })
+    .catch(err => {
+        throw new Error('Problem loading');
+    });
+fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/scaled_risk_score.geojson')
+    .then(response => response.json())
+    .then(response => {
+        DATA[dataName(DATA_NAME.risk_scaled)] = response;
+        fetched += 1;
+    })
+    .catch(err => {
+        throw new Error('Problem loading');
+    });
 
 /*  add fetched data to map
 */
@@ -141,6 +159,16 @@ function addData()
     map.addSource(dataName(DATA_NAME.assess), {
         'type': 'geojson',
         'data': DATA[dataName(DATA_NAME.assess)]
+    });
+
+
+    map.addSource(dataName(DATA_NAME.risk_normal), {
+        'type': 'geojson',
+        'data': DATA[dataName(DATA_NAME.risk_normal)]
+    });
+    map.addSource(dataName(DATA_NAME.risk_scaled), {
+        'type': 'geojson',
+        'data': DATA[dataName(DATA_NAME.risk_scaled)]
     });
 }
 
@@ -292,13 +320,11 @@ function loadingRemove()
 map.on("load", () => {
     map.addControl(new mapboxgl.NavigationControl()); // add nav controls
 
-
-
     let count = 0;
     let dontQuit = false;
     const timer = setInterval(function() {
         // done fetching all five data files and not terminated ?
-        if (fetched == 9 && dontQuit == false)
+        if (fetched == 11 && dontQuit == false)
         {
             dontQuit = true;
 

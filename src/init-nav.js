@@ -57,5 +57,9 @@ function initNavBar()
     initSecondaryMenu('income');
     initSecondaryMenu('minority');
 
+    initNavTrigger('risk');
+    initSecondaryMenu('risk_normal');
+    initSecondaryMenu('risk_scaled');
+
     initNavTrigger('assess');
 }

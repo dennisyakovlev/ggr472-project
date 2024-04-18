@@ -31,9 +31,9 @@
             <div class="nav-background opacity-slide-anim-start" id="background-nav-demo"></div>
             <p>Demographics</p>
           </div>
-          <div class="nav-item">
-            <p class="text-anim-mid">Envionrmental Risk</p>
-            <p class="text-anim-start">Shown</p>
+          <div class="nav-item" id="trigger-nav-risk">
+            <div class="nav-background opacity-slide-anim-start" id="background-nav-risk"></div>
+            <p>Env. Risk</p>
           </div>
           <div class="nav-item" id="trigger-nav-assess">
             <div class="nav-background opacity-slide-anim-start" id="background-nav-assess"></div>
@@ -404,7 +404,165 @@
         </div>
 
       <!-- related to enviornmental risk -->
-      
+      <div class="menu vertical-menu-anim-start map-front no-pointer" id="vertical-menu-risk">
+        <div class="btn-wrapper">
+          <div class="menu-info" id="trigger-text-info-6">
+            <div class="gg-info text-anim-mid"></div>
+            <div class="close text-anim-start"></div>
+          </div>
+          <div class="button" id="trigger-secondary-risk_normal">
+            <p class="text-anim-start" id="text-a-secondary-risk_normal">Normal Off</p>
+            <p class="text-anim-start" id="text-b-secondary-risk_normal">Normal On</p>
+          </div>
+        </div>
+        <div class="btn-wrapper">
+          <div class="menu-info" id="trigger-text-info-7">
+            <div class="gg-info text-anim-mid"></div>
+            <div class="close text-anim-start"></div>
+          </div>
+          <div class="button" id="trigger-secondary-risk_scaled">
+            <p class="text-anim-start" id="text-a-secondary-risk_scaled">Scaled Off</p>
+            <p class="text-anim-start" id="text-b-secondary-risk_scaled">Scaled On</p>
+          </div>
+        </div>
+      </div>
+        <!-- related to normal risk score -->
+        <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-risk_normal">
+          <div class="btn-wrapper" id="btn-secondary-risk_normal-popup">
+            <div class="button">
+              <p class="text-anim-start" id="text-a-secondary-risk_normal-popup">Popup Enabled</p>
+              <p class="text-anim-start" id="text-b-secondary-risk_normal-popup">Popup Disabled</p>
+            </div>
+          </div>
+        </div>
+        <div class="legend legend-chloro horizontal-menu-anim-start no-pointer map-front" id="legend-risk_normal">
+          <div class="legend-title-wrapper">
+            <p class="legend-title">
+              Low risk_normal <br> Percentage
+            </p>
+          </div>
+          <div class="legend-item pointer" id="legend-risk_normal-0">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-0"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-risk_normal-background-0"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Negligible</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-risk_normal-1">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-1"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-risk_normal-background-1"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Low</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-risk_normal-2">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-2"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-risk_normal-background-2"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Moderate</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-risk_normal-3">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-3"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-risk_normal-background-3"></div>
+            </div>
+            <div class="legend-desc">
+              <p>High</p>
+            </div>
+          </div>
+        </div>
+        <div class="info-text info-text-left no-pointer opacity-anim-start map-front" id="result-text-info-6">
+          <p>
+            This layer displays a comprehensive measure of environmental risk for
+            573 <a href="https://www12.statcan.gc.ca/censusrecensement/2021/ref/dict/az/definition-eng.cfm?ID=geo01C2">census subdivisions</a>
+            in Ontario. The above environmental indicators (nitrogen and phosphorus
+            levels, PM2.5 levels, and number of contaminated sites per CSD) were
+            synthesized into a single measure to present individual risk scores for
+            each census subdivision. Each environmental factor was categorized 
+            into quartiles, with numerical scores assigned based on their quartile
+            ranking. This data was assessed using two methods: a combined risk
+            score and a scaled combined risk score. The combined risk score for
+            each CSD was then calculated by summing up the individual risk scores
+            across the selected environmental indicators.
+            <br><br>
+            Please view the scaled risk score for further reading.
+          </p>
+        </div>
+        <!-- related to scaled risk score -->
+        <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-risk_scaled">
+          <div class="btn-wrapper" id="btn-secondary-risk_scaled-popup">
+            <div class="button">
+              <p class="text-anim-start" id="text-a-secondary-risk_scaled-popup">Popup Enabled</p>
+              <p class="text-anim-start" id="text-b-secondary-risk_scaled-popup">Popup Disabled</p>
+            </div>
+          </div>
+        </div>
+        <div class="legend legend-chloro horizontal-menu-anim-start no-pointer map-front" id="legend-risk_scaled">
+          <div class="legend-title-wrapper">
+            <p class="legend-title">
+              Low risk_scaled <br> Percentage
+            </p>
+          </div>
+          <div class="legend-item pointer" id="legend-risk_scaled-0">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-0"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-risk_scaled-background-0"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Negligible</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-risk_scaled-1">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-1"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-risk_scaled-background-1"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Low</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-risk_scaled-2">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-2"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-risk_scaled-background-2"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Moderate</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-risk_scaled-3">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-3"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-risk_scaled-background-3"></div>
+            </div>
+            <div class="legend-desc">
+              <p>High</p>
+            </div>
+          </div>
+        </div>
+        <div class="info-text info-text-left no-pointer opacity-anim-start map-front" id="result-text-info-7">
+          <p>
+            The scaled risk score offers an alternative assessment. Like the
+            combined risk score, each environmental indicator was categorized into
+            quartiles. However the resulting values were scaled between 1 and 4,
+            providing a different perspective on overall risk.
+            <br><br>
+            These two measures — scaled and non-scaled risk scores — allow for
+            the display of two separate maps and offer a comprehensive
+            understanding of environmental risk in Ontario. The non-scaled score
+            provides a raw assessment of risk levels calculated through each
+            indicator, while the scaled risk score makes the data more interpretable
+            and comparable between census subdivisions.
+          </p>
+        </div>
+
       <!-- related to assesment -->
       <div class="menu vertical-menu-anim-start map-front no-pointer" id="vertical-menu-assess">
         <div class="btn-wrapper" id="trigger-secondary-assess-choose-a">
@@ -487,7 +645,7 @@
           </div>
         </div>
         <div class="btn-wrapper">
-          <div class="menu-info" id="trigger-text-info-6">
+          <div class="menu-info" id="trigger-text-info-8">
             <div class="gg-info text-anim-mid"></div>
             <div class="close text-anim-start"></div>
           </div>
@@ -497,7 +655,7 @@
           </div>
         </div>
       </div>
-      <div class="info-text info-text-left no-pointer opacity-anim-start map-front" id="result-text-info-6">
+      <div class="info-text info-text-left no-pointer opacity-anim-start map-front" id="result-text-info-8">
         <p>
           Users can toggle census subdivisions off and on based on combining
           varying layers in varyfing ways. One gains a deeper understanding
@@ -522,7 +680,9 @@
           whereas using OR requies it be in only one. Finally, there is a run
           button which will display the data as selected by the inputs. To redo
           the assessment, simply click the same button again, modify the input,
-          and run once more! Do be patient, as it may take a second to run.
+          and run once more!
+          <br><br>
+          Do be patient, as it may take a second to run.
         </p>
       </div>
 

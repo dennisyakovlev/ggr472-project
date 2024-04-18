@@ -124,6 +124,27 @@
         left: 745px;
         top: 294px;
     }
+#vertical-menu-risk {
+    position: absolute;
+    width: 300px;
+    height: 198px;
+    left: 690px;
+    top: 130px;
+}
+    #horizontal-menu-secondary-risk_normal {
+        position: absolute;
+        width: 300px;
+        height: 118px;
+        left: 1025px;
+        top: 130px;
+    }
+    #horizontal-menu-secondary-risk_scaled {
+        position: absolute;
+        width: 300px;
+        height: 116px;
+        left: 1025px;
+        top: 212px;
+    }
 #vertical-menu-assess {
     position: absolute;
     width: 300px;
