@@ -304,7 +304,6 @@ map.on("load", () => {
 
             addData();
             initMap();
-            // addLayers();
 
             // after everything has been added give mapbox
             // a seoncd to render the map, then show it

@@ -121,7 +121,6 @@ class MapChloropleth extends MapAnimatable
         this._verifyIntervals();
         this._verifyColors();
 
-        // main chloropleth index data
         map.addLayer({
             'id': this.targetId,
             'type': 'fill',
@@ -133,6 +132,9 @@ class MapChloropleth extends MapAnimatable
                 'fill-opacity-transition': { duration: duration }
             }
         });
+        // have a "hack" for border data we dont want shown. just
+        // say to always use desired border color unless the binary
+        // variable is 0. assumes only [binary_val] is dynamic
         map.addLayer({
             'id': this.secondaryTargetId,
             'type': 'line',
@@ -187,58 +189,6 @@ class MapChloropleth extends MapAnimatable
     }
 };
 
-class MapPopup
-{
-    _init()
-    {
-        const popup = new mapboxgl.Popup({
-            closeButton: false, // disable close button
-            closeOnClick: false // disable close on click
-        });
-    
-        map.on('mousemove', this.targetLayer, (e) => {
-            if (this.mainTrans.getState('click')%2==1 &&
-                this.secondTrans.getState('click')%2==0)
-            {
-                const features = e.features;
-                // is on a feature of the layer ?
-                if (features && features.length > 0)
-                {
-                    map.getCanvas().style.cursor = 'pointer';
-    
-                    const feature = features[0];
-                    const centroid = turf.centroid(feature);
-                    const coordinates = centroid.geometry.coordinates;
-    
-                    popup.setLngLat(coordinates).setHTML(this.func(feature)).addTo(map);
-                }
-                else
-                {
-                    map.getCanvas().style.cursor = '';
-                    popup.remove();
-                }
-            }
-        });
-    
-        map.on('mouseleave', this.targetLayer, (e) => {
-            // always remove popup on layer exit
-            map.getCanvas().style.cursor = '';
-            popup.remove();
-        });
-    }
-
-    constructor(mainTrans, secondTrans, targetLayer, func)
-    {
-        this.mainTrans   = mainTrans;
-        this.secondTrans = secondTrans;
-        this.targetLayer = targetLayer;
-        this.func        = func;
-
-        this._init();
-    }
-
-};
-
 class LegenedItem extends StaticHiglightable
 {
     constructor(targetId, congrouenceClasses, mapPoly)
@@ -263,5 +213,155 @@ class LegenedItem extends StaticHiglightable
             this.mapPoly.setColor(this.index, '#a9a9a9');
             this.mapPoly.render();
         }
+    }
+};
+
+// TODO: the following 2 classes cannot be integreated into the
+//       normal animation system because they rely on mao event,
+//       not jquery events. how can we integreate following to work
+//       with NthTransitionable ?
+
+class MapPopup
+{
+    _init()
+    {
+        const popup = new mapboxgl.Popup({
+            closeButton: false, // disable close button
+            closeOnClick: false // disable close on click
+        });
+    
+        map.on('mousemove', this.targetLayer, (e) => {
+            if (this.mainTrigger.getState('click')%2==1 &&
+                this.secondTrigger.getState('click')%2==0)
+            {
+                const features = e.features;
+                // is on a feature of the layer ?
+                if (features && features.length > 0)
+                {
+                    map.getCanvas().style.cursor = 'pointer';
+    
+                    const feature = features[0];
+                    const centroid = turf.centroid(feature);
+                    const coordinates = centroid.geometry.coordinates;
+    
+                    popup.setLngLat(coordinates).setHTML(this.func(feature)).addTo(map);
+                }
+                else
+                {
+                    map.getCanvas().style.cursor = '';
+                    popup.remove();
+                }
+            }
+        });
+    
+        map.on('mouseleave', this.targetLayer, (e) => {
+            // always remove popup on layer exit
+            map.getCanvas().style.cursor = '';
+
+            popup.remove();
+        });
+    }
+
+    constructor(mainTrigger, secondTrigger, targetLayer, func)
+    {
+        this.mainTrigger   = mainTrigger;
+        this.secondTrigger = secondTrigger;
+        this.targetLayer = targetLayer;
+        this.func        = func;
+
+        this._init();
+    }
+
+};
+
+class WaterHover
+{
+    _init()
+    {
+        map.on('mouseenter', this.waterId, (e) => {
+            if (this.mainTrigger.getState('click') % 2 == 1 &&
+                this.secondTrigger.getState('click') % 2 == 0)
+            {
+                const prop = e.features[0].properties;
+
+                map.getCanvas().style.cursor = 'pointer';
+                
+                map.setPaintProperty(
+                    this.targetId,
+                    'fill-color',
+                    [
+                        'case',
+                        ['==', ['get', 'Water facility name'], `${prop['Name of water treatment facility']}`], this.fillColor,
+                        'transparent'
+                    ]);
+                map.setPaintProperty(
+                    this.secondaryTargetId,
+                    'line-color',
+                    [
+                        'case',
+                        ['==', ['get', 'Water facility name'], `${prop['Name of water treatment facility']}`], this.border_color,
+                        'transparent'
+                    ]);
+            }
+        });
+    
+        map.on('mouseleave', this.waterId, (e) => {
+            // always hide on layer exit
+            map.getCanvas().style.cursor = '';
+
+            map.setPaintProperty(this.targetId, 'fill-color', 'transparent');
+            map.setPaintProperty(this.secondaryTargetId, 'line-color', 'transparent');
+        });
+    }
+
+    constructor({
+        targetId           = null,
+        secondaryTargetId  = null,
+        waterId            = null,
+        source             = null,
+        mainTrigger        = null,
+        secondTrigger      = null,
+        fillColor          = null,
+        border_color       = 'red',
+        border_width       = 2,
+        duration           = 250
+    }={})
+    {
+        // this.mainTrigger       = mainTrigger;
+        // this.secondTrigger     = secondTrigger;
+        this.targetId          = targetId;
+        this.secondaryTargetId = secondaryTargetId;
+        this.waterId           = waterId;
+        this.source            = source;
+        this.mainTrigger       = mainTrigger;
+        this.secondTrigger     = secondTrigger;
+        this.fillColor         = fillColor;
+        this.border_color      = border_color;
+
+        map.addLayer({
+            'id': this.targetId,
+            'type': 'fill',
+            'source': source,
+            'layout': {},
+            'paint': {
+                'fill-color'             : 'transparent',
+                'fill-opacity'           : 1,
+                'fill-opacity-transition': { duration: duration }
+            }
+        });
+        map.addLayer({
+            'id': this.secondaryTargetId,
+            'type': 'line',
+            'source': this.source,
+            'layout': {},
+            'paint': {
+                'line-color': 'transparent',
+                'line-width': border_width,
+                'line-opacity': 1,
+                'line-opacity-transition': { duration: duration }
+            }
+        });
+
+        this._init();
     }
 };

@@ -70,7 +70,7 @@ function initAirStations()
 
 function initWaterTreatment()
 {
-    const layer = new MapPoints({
+    const points = new MapPoints({
         targetId           : layerName(DATA_NAME.water),
         congrouenceClasses : [0,1],
         source             : dataName(DATA_NAME.water),
@@ -81,7 +81,7 @@ function initWaterTreatment()
         duration           : 250
     });
     const trigger = createTrigger('trigger-secondary-water', 2);
-    trigger.addAnimElem({type: 'click', anim: layer});
+    trigger.addAnimElem({type: 'click', anim: points});
 
     const waterHtml = (feature) => {
         const prop = feature.properties;
@@ -94,6 +94,32 @@ function initWaterTreatment()
             `;
     };
     initPopupForLayer('water', waterHtml);
+
+
+
+    // special button for water area coverage
+    const startText = new SwappableText(`text-a-secondary-water-hover`, [0,1]);
+    const afterText = new SwappableText(`text-b-secondary-water-hover`, [0,1]);
+
+    const secondaryTrigger = createTrigger(`btn-secondary-water-hover`, 2);
+    secondaryTrigger.addAnimElem({type: 'click', anim: afterText});
+    // offset initial text
+    const afterId = secondaryTrigger.addAnimElem({type: 'click', anim: startText});
+    secondaryTrigger.forceCycle('click', afterId, 1);
+    startText.rotateRightClasses(1);
+
+    const special = new WaterHover({
+        targetId           : layerName(layerName(DATA_NAME.water)),
+        secondaryTargetId  : borderName(layerName(DATA_NAME.water)),
+        waterId            : layerName(DATA_NAME.water),
+        source             : dataName(DATA_NAME.MAIN),
+        mainTrigger        : trigger,
+        secondTrigger      : secondaryTrigger,
+        fillColor          : '#81d4fa',
+        border_color       : 'black',
+        border_width       : 0.25,
+        duration           : 250
+    });
 }
 
 function initContaimatedSites()
