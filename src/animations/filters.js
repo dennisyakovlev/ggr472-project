@@ -1,5 +1,7 @@
 /*  filters are used in animatables to determine whether
-    to actually cycle an element
+    to actually cycle an element. these can be stateful or
+    stateless. that is, might need new instance of filter
+    for every trigger (stateful)
 */
 class Filter
 {
@@ -63,7 +65,7 @@ class OrFilter extends Filter
     {
         let res = false;
         for (const filter of this.filters)
-            res = res || filter.check(type, states);
+            res = res || filter.check(type, states, e);
         return res;
     }
 };
@@ -77,11 +79,11 @@ class AndFilter extends Filter
         this.filters = filters;
     }
 
-    check(type, states)
+    check(type, states,e )
     {
         let res = true;
         for (const filter of this.filters)
-            res = res && filter.check(type, states);
+            res = res && filter.check(type, states, e);
         return res;
     }
 };
@@ -95,8 +97,60 @@ class NotFilter extends Filter
         this.filter = filter;
     }
 
+    check(type, states, e)
+    {
+        return !this.filter.check(type, states,e );
+    }
+};
+
+/*  do cycle if did not enter the dom element
+*/
+class HoverLagFilter extends Filter
+{
+    constructor()
+    {
+        super();
+
+        this.enterd = false;
+    }
+
     check(type, states)
     {
-        return !this.filter.check(type, states);
+        console.assert(type == 'leave' || type == 'enter');
+
+        if (type == 'enter')
+        {
+            this.enterd = true;
+            return;
+        }
+
+        const old = this.enterd;
+        this.enterd = false;
+        return !old;
+    }
+};
+
+/*  return number of times enter
+*/
+class EnterCounter extends Filter
+{
+    constructor(trackId)
+    {
+        super();
+
+        this.times   = 0;
+        this.trackId = trackId;
+    }
+
+    check(type, states, e)
+    {
+        const old = this.times;
+
+        console.log(type, e)
+        if (type == 'enter' && e.target.id == this.trackId)
+            this.times += 1;
+        
+        return this.times == 0 ? false : true;
+        // old == 0 ? false : true;
     }
 };

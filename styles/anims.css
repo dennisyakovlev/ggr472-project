@@ -79,13 +79,15 @@ animation-fill-mode: forwards;
     }
 }
 
-/* OPACITY SLIDE ANIMATION */
+/* OPACITY ANIMATION */
 .opacity-anim-start {
     opacity: 0;
+    /* pointer-events: none; */
 }
 .opacity-anim-mid {
     margin-bottom: 0px;
     opacity: 1;
+    /* pointer-events: all; */
 }
 .opacity-anim-in {
     animation: opacity-key-anim-in 0.2s;
@@ -100,21 +102,25 @@ animation-fill-mode: forwards;
 @keyframes opacity-key-anim-in {
     0% {
         opacity: 0;
+        /* pointer-events: none; */
     }
     100% {
         opacity: 1;
+        /* pointer-events: all; */
     }
 }
 @keyframes opacity-key-anim-out {
     0% {
         opacity: 1;
+        /* pointer-events: all; */
     }
     100% {
         opacity: 0;
+        /* pointer-events: none; */
     }
 }
 
-/* VERTICAL MENU ITEM ANIMATION */
+/* VERTICAL MENU ANIMATION */
 .vertical-menu-anim-start {
     margin-top: -50px;
     opacity: 0;
@@ -196,46 +202,6 @@ animation-fill-mode: forwards;
     }
 }
 
-/* MAP-INFO ANIMATION */
-.mapinfo-anim-start {
-    opacity: 0;
-    pointer-events: none;
-}
-.mapinfo-anim-in {
-    animation: mapinfo-key-anim-in 0.2s forwards;
-    animation-timing-function: ease-in;
-}
-.mapinfo-anim-out {
-    animation: mapinfo-key-anim-out 0.2s forwards;
-    animation-timing-function: ease-in;
-}
-
-@keyframes mapinfo-key-anim-in {
-    0% {
-        opacity: 0;
-        pointer-events: all;
-    }
-    100% {
-        opacity: 1;
-        pointer-events: all;
-    }
-}
-
-@keyframes mapinfo-key-anim-out {
-    0% {
-        opacity: 1;
-        pointer-events: all;
-    }
-    100% {
-        opacity: 0;
-        pointer-events: none;
-    }
-}
-
-.no-pointer {
-    pointer-events: none;
-}
-
 /* SCREEN ANIMATION */
 .screen-anim-in {
     animation: map-anim-in 1s forwards ease-out;
@@ -246,7 +212,6 @@ animation-fill-mode: forwards;
 .screen-anim-out {
     animation: map-anim-out 1s forwards ease-out;
 }
-
 @keyframes map-anim-in {
     0% {
         opacity: 0;

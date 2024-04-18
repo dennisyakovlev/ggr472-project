@@ -1,0 +1,55 @@
+.info-text {
+    position: absolute;
+    bottom: 40px;
+
+    background: rgba(235, 227, 227, 0.8 );
+    backdrop-filter: blur(3px);
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    border-style: outset;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+}
+    .info-text > p {
+        font-size: 18px;
+        margin: 25px 25px 25px 25px;
+    }
+.info-text-right {
+    right: 40px;
+}
+.info-text-left {
+    left: 40px;
+}
+
+#result-text-info-0 {
+    width: 400px;
+    height: 290px;
+}
+#result-text-info-1 {
+    width: 400px;
+    height: 515px;
+}
+#result-text-info-2 {
+    width: 400px;
+    height: 310px;
+}
+#result-text-info-3 {
+    width: 400px;
+    height: 330px;
+}
+#result-text-info-4 {
+    width: 400px;
+    height: 225px;
+}
+#result-text-info-5 {
+    width: 400px;
+    height: 390px;
+}
+#result-text-info-6 {
+    width: 400px;
+    height: 610px;
+    overflow-y: scroll;
+}

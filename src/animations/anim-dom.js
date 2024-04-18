@@ -187,3 +187,40 @@ class StaticHiglightable extends DomAnimatable
                 .addClass('opacity-anim-mid opacity-anim-out no-pointer');
     }
 };
+
+/*  animation which switches the opacity of an element between
+    0 and 1. used for hovering
+*/
+class StaticHiglightableHover extends DomAnimatable
+{
+
+    _verifyInit()
+    {
+        const classes = $(this.elem).attr('class').split(/\s+/);
+        for (const reqClass of ['opacity-anim-start'])
+            if (classes.find(e => e == reqClass) === undefined)
+                return false;
+        
+        return true;
+    }
+
+    constructor(targetId, congrouenceClasses)
+    {
+        super(targetId, congrouenceClasses);
+
+        console.assert(this._verifyInit());
+    }
+
+    transition(type, congClass)
+    {
+        if (type == 'enter') // on
+            $(this.elem)
+                .removeClass('opacity-anim-mid opacity-anim-out no-pointer')
+                .addClass(`opacity-anim-in opacity-anim-start`);
+        if (type == 'leave') // off
+            $(this.elem)
+                .removeClass('opacity-anim-start opacity-anim-in')
+                .addClass('opacity-anim-mid opacity-anim-out no-pointer');
+    }
+};
+

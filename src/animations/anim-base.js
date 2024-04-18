@@ -13,7 +13,7 @@ class NthTransitionable
         {
             const oldStates = structuredClone(this.states);
             setTimeout(et => {
-                if (obj.filter == null || obj.filter.check(type, oldStates))
+                if (obj.filter == null || obj.filter.check(type, oldStates, e))
                 {
                     obj.instance.transition(type, oldStates[type], e);
                 }

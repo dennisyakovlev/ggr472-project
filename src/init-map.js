@@ -305,6 +305,30 @@ function initAssessRun()
     text1.rotateRightClasses(1);
 }
 
+function initInfos()
+{
+    for (let i=0; i!=7; ++i)
+    {
+        const emptyAnim     = new Empty(null, [0]);
+        const filterHover   = new HoverLagFilter();
+        const counter       = new EnterCounter(`trigger-text-info-${i}`); // use to disable text until info hovered
+
+        const menuSecond    = new StaticHiglightableHover(`result-text-info-${i}`, [0]);
+        
+        const trigger = createTrigger(`trigger-text-info-${i}`, 1);
+        // trigger.addAnimElem({type: 'click', anim: menuSecond});
+        trigger.addAnimElem({type: 'enter', anim: menuSecond, filter: counter});
+        trigger.addAnimElem({type: 'leave', anim: menuSecond, filter: filterHover, delay: 1000});
+    
+        // account for both cases of hiding info text
+        //  1. leave button and dont enter secondary text
+        //  2. leave secondary text
+        const fakeTrigger = createTrigger(`result-text-info-${i}`, 1);
+        fakeTrigger.addAnimElem({type: 'enter', anim: emptyAnim, filter: new AndFilter([counter, filterHover])});
+        fakeTrigger.addAnimElem({type: 'leave', anim: menuSecond, filter: counter});
+    }
+}
+
 function initMap()
 {
     // enviornmental indicator layers
@@ -329,4 +353,7 @@ function initMap()
     initAssessQuartile(false);
     initAssessOp();
     initAssessRun();
+
+    // all infos
+    initInfos();
 }

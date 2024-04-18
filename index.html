@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./styles/menu.css">
     <link rel="stylesheet" href="./styles/loader.css">
     <link rel="stylesheet" href="./styles/legend.css">
+    <link rel="stylesheet" href="./styles/info.css">
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet'/>
   </head>
   <body>
@@ -44,7 +45,7 @@
       <!-- related to envionmental indicators -->
       <div class="menu vertical-menu-anim-start map-front no-pointer" id="vertical-menu-env">
         <div class="btn-wrapper">
-          <div class="menu-info" class="trigger-text-info-0">
+          <div class="menu-info" id="trigger-text-info-0">
             <div class="gg-info text-anim-mid"></div>
             <div class="close text-anim-start"></div>
           </div>
@@ -54,7 +55,7 @@
           </div>
         </div>
         <div class="btn-wrapper">
-          <div class="menu-info">
+          <div class="menu-info" id="trigger-text-info-1">
             <div class="gg-info text-anim-mid"></div>
             <div class="close text-anim-start"></div>
           </div>
@@ -64,7 +65,7 @@
           </div>
         </div>
         <div class="btn-wrapper">
-          <div class="menu-info">
+          <div class="menu-info" id="trigger-text-info-2">
             <div class="gg-info text-anim-mid"></div>
             <div class="close text-anim-start"></div>
           </div>
@@ -89,8 +90,19 @@
             </div>
           </div>
         </div>
-        <div class="info-text" id="result-text-info-0">
-
+        <div class="info-text info-text-right no-pointer opacity-anim-start map-front" id="result-text-info-0">
+          <p>
+            This layer displays the location of 528 active contaminated sites across
+            Ontario, categorized based on their priority level for action. 132 sites are
+            classified as low priority, 287 are classified as medium priority, and 109
+            are classified as high priority. These categories are based on criteria
+            defined in the Canadian Council of Ministers of the Environment (CCME)
+            National Classification System for Contaminated Sites guidance 
+            document.
+            <br><br>
+            <a href="https://ccme.ca/en/res/ncscs_guidance_e.pdf">source</a>,
+            <a href="https://www.tbs-sct.gc.ca/fcsi-rscf/home-accueileng.aspx">data source</a>
+          </p>
         </div>
         <!-- related to water facilites -->
         <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-water">
@@ -107,6 +119,29 @@
             </div>
           </div>
         </div>
+        <div class="info-text info-text-right no-pointer opacity-anim-start map-front" id="result-text-info-1">
+          <p>
+            This layer displays the location of 21 drinking water intake facilities
+            across Ontario and the average nitrogen and phosphorus values
+            measured in 2019. These sampling locations regularly test the water for
+            various chemicals and contaminants throughout the year, including
+            ammonia, chloride, and chlorophyll. For our risk analysis, we identified
+            phosphorus and nitrogen as chemicals of interest due to their role in
+            eutrophication.
+            <br><br>
+            Eutrophication is the process of nutrient accumulation, primarily
+            phosphorus and nitrogen, in aquatic ecosystems. This leads to the
+            increased growth of algae and plant matter, resulting in harmful algal
+            blooms (HAB) and low-oxygen (hypoxic) waters. These conditions have
+            adverse effects on marine life and can negatively impact human health.
+            These adverse effects include respiratory problems, rashes, and
+            stomach or liver illnesses.
+            <br><br>
+            <a href="https://login.library.utoronto.ca/index.php?url=https://www.ncbi.nlm.nih.gov/pmc/">source</a>,
+            <a href="https://iopscience.iop.org/article/10.1088/1755-1315/548/5/052053">source</a>,
+            <a href="https://data.ontario.ca/dataset/lake-water-quality-atdrinking-water-intakes">data source</a>
+          </p>
+        </div>
         <!-- related to air monitoring sites -->
         <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-air">
           <div class="btn-wrapper" id="btn-secondary-air-popup">
@@ -116,11 +151,25 @@
             </div>
           </div>
         </div>
+        <div class="info-text info-text-right no-pointer opacity-anim-start map-front" id="result-text-info-2">
+          <p>
+            This layer displays the location of 38 air quality monitoring stations in
+            Ontario and the average PM2.5 values measured in 2022. Fine
+            particulate matter, or PM2.5, is an air pollutant that is either emitted
+            from external sources (primary particles) or formed in the atmosphere
+            through chemical processes (secondary particles). Short-term exposure
+            to PM2.5 has been associated with premature mortality, increased
+            hospital admissions, acute and chronic bronchitis, and asthma attacks.
+            <br><br>
+            <a href="https://ww2.arb.ca.gov/resources/inhalable-particulate-matterand-health">source</a>,
+            <a href="https://data.ontario.ca/dataset/annual-air-pollutantstatistics/resource/320328c9-7850-4003-bae7-c719d3de6b08">data source</a>
+          </p>
+        </div>
 
       <!-- related to demographic characteristics -->
       <div class="menu vertical-menu-anim-start map-front no-pointer" id="vertical-menu-demo">
         <div class="btn-wrapper">
-          <div class="menu-info">
+          <div class="menu-info" id="trigger-text-info-3">
             <div class="gg-info text-anim-mid"></div>
             <div class="close text-anim-start"></div>
           </div>
@@ -130,17 +179,17 @@
           </div>
         </div>
         <div class="btn-wrapper">
-          <div class="menu-info">
+          <div class="menu-info" id="trigger-text-info-4">
             <div class="gg-info text-anim-mid"></div>
             <div class="close text-anim-start"></div>
           </div>
           <div class="button" id="trigger-secondary-income">
-            <p class="text-anim-start" id="text-a-secondary-income">Income Off</p>
-            <p class="text-anim-start" id="text-b-secondary-income">Income On</p>
+            <p class="text-anim-start" id="text-a-secondary-income">Low Income Off</p>
+            <p class="text-anim-start" id="text-b-secondary-income">Low Income On</p>
           </div>
         </div>
         <div class="btn-wrapper">
-          <div class="menu-info">
+          <div class="menu-info" id="trigger-text-info-5">
             <div class="gg-info text-anim-mid"></div>
             <div class="close text-anim-start"></div>
           </div>
@@ -202,6 +251,22 @@
             </div>
           </div>
         </div>
+        <div class="info-text info-text-right no-pointer opacity-anim-start map-front" id="result-text-info-3">
+          <p>
+            Demographic indicators were obtained from the 2021 Canadian Census
+            of Population. This census data was processed to calculate the
+            percentage of a given population in each CSD.
+            <br><br>
+            Refers to a person who is, or who has ever
+            been, a landed immigrant or permanent resident. Such a person has
+            been granted the right to live in Canada permanently by immigration
+            authorities. Immigrants who have obtained Canadian citizenship by
+            naturalization are included in this group
+            <br><br>
+            <a href="https://www23.statcan.gc.ca/imdb/p3Var.pl?Function=Unit&Id=85107">source</a>,
+            <a href="https://www.tbs-sct.gc.ca/fcsi-rscf/home-accueileng.aspx">data source</a>
+          </p>
+        </div>
         <!-- related to income -->
         <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-income">
           <div class="btn-wrapper" id="btn-secondary-income-popup">
@@ -254,6 +319,19 @@
             </div>
           </div>
         </div>
+        <div class="info-text info-text-right no-pointer opacity-anim-start map-front" id="result-text-info-4">
+          <p>
+            Demographic indicators were obtained from the 2021 Canadian Census
+            of Population. This census data was processed to calculate the
+            percentage of a given population in each CSD.
+            <br><br>
+            Represents a fixed percentage (50%) of
+            median adjusted after-tax income of private households.
+            <br><br>
+            <a href="https://www12.statcan.gc.ca/census-recensement/2021/ref/dict/az/Definition-eng.cfm?ID=fam021">source</a>,
+            <a href=" https://www12.statcan.gc.ca/census-recensement/indexeng.cfm?MM=1">data source</a>
+          </p>
+        </div>
         <!-- related to minority -->
         <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-minority">
           <div class="btn-wrapper" id="btn-secondary-minority-popup">
@@ -305,6 +383,24 @@
               <p>High</p>
             </div>
           </div>
+        </div>
+        <div class="info-text info-text-right no-pointer opacity-anim-start map-front" id="result-text-info-5">
+          <p>
+            Demographic indicators were obtained from the 2021 Canadian Census
+            of Population. This census data was processed to calculate the
+            percentage of a given population in each CSD.
+            <br><br>
+            Refers to whether a person belongs to a visible
+            minority group as defined by the Employment Equity Act. The
+            Employment Equity Act defines visible minorities as "persons, other than
+            Aboriginal peoples, who are non-Caucasian in race or non-white in
+            colour". The visible minority population consists mainly of the following
+            groups: South Asian, Chinese, Black, Filipino, Arab, Latin American,
+            Southeast Asian, West Asian, Korean and Japanese.
+            <br><br>
+            <a href="https://www23.statcan.gc.ca/imdb/p3Var.pl?Function=DEC&Id=45152">source</a>,
+            <a href=" https://www12.statcan.gc.ca/census-recensement/indexeng.cfm?MM=1">data source</a>
+          </p>
         </div>
 
       <!-- related to enviornmental risk -->
@@ -391,7 +487,7 @@
           </div>
         </div>
         <div class="btn-wrapper">
-          <div class="menu-info">
+          <div class="menu-info" id="trigger-text-info-6">
             <div class="gg-info text-anim-mid"></div>
             <div class="close text-anim-start"></div>
           </div>
@@ -400,6 +496,34 @@
             <p class="text-anim-start" id="text-b-secondary-assess-run">Done, Reset?</p>
           </div>
         </div>
+      </div>
+      <div class="info-text info-text-left no-pointer opacity-anim-start map-front" id="result-text-info-6">
+        <p>
+          Users can toggle census subdivisions off and on based on combining
+          varying layers in varyfing ways. One gains a deeper understanding
+          of the layers are related to each other through this assessment.
+          More specifically, this interactive feature allows users to easily
+          identify areas that may require targeted interventions to ensure
+          environmental justice for vulnerable populations.
+          <br><br>
+          There are two buttons which when clicked scroll through the
+          available layer options, the label shown indicates the layer that will
+          be selected for assessment.
+          <br><br>
+          Below each of those buttons are selectable
+          by clickable items. An item is selected when it is colored. The colors
+          correspond to quartile as seen in the layer legend, which lowest to highest
+          being left to right. These items when selected indicate that all census
+          subdivisons within that quartile for the layer indicated by the
+          above button should be chosen in the assesment.
+          <br><br>
+          There is then a button indicating how to combine the chosen subdivisions.
+          Using AND means a subdivision should be in the quartiles of both layers,
+          whereas using OR requies it be in only one. Finally, there is a run
+          button which will display the data as selected by the inputs. To redo
+          the assessment, simply click the same button again, modify the input,
+          and run once more! Do be patient, as it may take a second to run.
+        </p>
       </div>
 
       <!-- main map -->
@@ -413,7 +537,7 @@
 
       <!-- related to contaimed sites -->
       <!-- NOTE: if have time, use -->
-      <div class="legend map-front mapinfo-sites mapinfo-anim-out" id="legend-sites">
+      <!-- <div class="legend map-front mapinfo-sites mapinfo-anim-out" id="legend-sites">
         <p class="legend-title">
           Risk Score
         </p>
@@ -497,7 +621,7 @@
             <p id="legend-sites-desc-7"></p>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </body>
 
