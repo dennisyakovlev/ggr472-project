@@ -1,3 +1,10 @@
+:root {
+    --left-1: 13.92%;
+    --left-2: 34.18%;
+    --left-3: 54.6%;
+    --left-4: 74.73%;
+}
+
 .nav-bar-wrapper {
     position: absolute;
     left: 0;
@@ -6,20 +13,25 @@
     z-index: 999999;
 
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+/* 
+    display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
-    .nav-bar {
+    /* .nav-bar {
         position: relative;
-        width: 90%;
+        width: 10%;
         height: 100%;
 
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         align-items: center;
-    }
+    } */
         .nav-top {
             top: 0;
             background-color: black;
@@ -28,6 +40,7 @@
             bottom: 0;
         }
         .nav-item {
+            position: absolute;
             width: 160px;
             height: 40px;
             cursor: pointer;
@@ -54,6 +67,27 @@
                 border-radius: 10px;
                 background-color: white;
             }
+    /* measurement are for width of 1410 */
+    #trigger-nav-env {
+        left: var(--left-1);
+
+        /* left: 196.23px; */
+    }
+    #trigger-nav-demo {
+        left: var(--left-2);
+
+        /* left: 482px; */
+    }
+    #trigger-nav-risk {
+        left: var(--left-3);
+
+        /* left: 769.87px; */
+    }
+    #trigger-nav-assess {
+        left: var(--left-4);
+
+        /* left: 1053.66px; */
+    }
 
 .menu {
     background: rgba(235, 227, 227, 0.5);
@@ -72,84 +106,84 @@
     position: absolute;
     width: 300px;
     height: 280px;
-    left: 130px;
+    left: calc(var(--left-1) - 66.23px);
     top: 130px;
 }
     #horizontal-menu-secondary-sites {
         position: absolute;
         width: 300px;
         height: 198px;
-        left: 465px;
+        left: calc(var(--left-1 + 268.77px));
         top: 130px;
     }
     #horizontal-menu-secondary-water {
         position: absolute;
         width: 300px;
         height: 198px;
-        left: 465px;
+        left: calc(var(--left-1 + 268.77px));
         top: 212px;
     }
     #horizontal-menu-secondary-air {
         position: absolute;
         width: 300px;
         height: 116px;
-        left: 465px;
+        left: calc(var(--left-1 + 268.77px));
         top: 294px;
     }
 #vertical-menu-demo {
     position: absolute;
     width: 300px;
     height: 280px;
-    left: 410px;
+    left: calc(var(--left-2) - 72px);
     top: 130px;
 }
     #horizontal-menu-secondary-immigrant {
         position: absolute;
         width: 300px;
         height: 118px;
-        left: 745px;
+        left: calc(var(--left-2) + 263px);
         top: 130px;
     }
     #horizontal-menu-secondary-income {
         position: absolute;
         width: 300px;
         height: 118px;
-        left: 745px;
+        left: calc(var(--left-2) + 263px);
         top: 212px;
     }
     #horizontal-menu-secondary-minority {
         position: absolute;
         width: 300px;
         height: 116px;
-        left: 745px;
+        left: calc(var(--left-2) + 263px);
         top: 294px;
     }
 #vertical-menu-risk {
     position: absolute;
     width: 300px;
     height: 198px;
-    left: 690px;
+    left: calc(var(--left-3) - 79.87px);
     top: 130px;
 }
     #horizontal-menu-secondary-risk_normal {
         position: absolute;
         width: 300px;
         height: 118px;
-        left: 1025px;
+        left: calc(var(--left-3) + 255.13px);
         top: 130px;
     }
     #horizontal-menu-secondary-risk_scaled {
         position: absolute;
         width: 300px;
         height: 116px;
-        left: 1025px;
+        left: calc(var(--left-3) + 255.13px);
         top: 212px;
     }
 #vertical-menu-assess {
     position: absolute;
     width: 300px;
     height: 445px;
-    left: 985px;
+    left: calc(var(--left-4) - 68.66px);
     top: 130px;
 }
     .menu-assess-next {
