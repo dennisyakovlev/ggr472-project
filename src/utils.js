@@ -11,9 +11,9 @@ const map = new mapboxgl.Map({
 */
 const DATA_NAME = {
     MAIN: 'main',
-    SITES: 'sites',
-    WATER: 'water',
-    AIR: 'air',
+    sites: 'sites',
+    water: 'water',
+    air: 'air',
     SOCIO: 'socio'
 };
 /*  helper function for getting names of certain items

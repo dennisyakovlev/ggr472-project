@@ -9,7 +9,6 @@ class MapAnimatable extends Animatable
 {
 };
 
-
 class MapPoints extends MapAnimatable
 {
     constructor({
@@ -58,25 +57,60 @@ class MapPoints extends MapAnimatable
         
         if (toOpacity != -1)
         {
-            map.setPaintProperty(layerName(DATA_NAME.AIR), 'circle-opacity', toOpacity);
-            map.setPaintProperty(layerName(DATA_NAME.AIR), 'circle-stroke-opacity', toOpacity);
+            map.setPaintProperty(this.targetId, 'circle-opacity', toOpacity);
+            map.setPaintProperty(this.targetId, 'circle-stroke-opacity', toOpacity);
         }
     }
 };
 
-class MapPopup extends MapAnimatable
+class MapPopup
 {
-    constructor({
-        targetId           = null,
-        congrouenceClasses = null})
+    _init()
     {
-        super(targetId, congrouenceClasses);
+        const popup = new mapboxgl.Popup({
+            closeButton: false, // disable close button
+            closeOnClick: false // disable close on click
+        });
+    
+        map.on('mousemove', this.targetLayer, (e) => {
+            if (this.mainTrans.getState('click')%2==1 &&
+                this.secondTrans.getState('click')%2==0)
+            {
+                const features = e.features;
+                // is on a feature of the layer ?
+                if (features && features.length > 0)
+                {
+                    map.getCanvas().style.cursor = 'pointer';
+    
+                    const feature = features[0];
+                    const centroid = turf.centroid(feature);
+                    const coordinates = centroid.geometry.coordinates;
+    
+                    popup.setLngLat(coordinates).setHTML(this.func(feature)).addTo(map);
+                }
+                else
+                {
+                    map.getCanvas().style.cursor = '';
+                    popup.remove();
+                }
+            }
+        });
+    
+        map.on('mouseleave', this.targetLayer, (e) => {
+            // always remove popup on layer exit
+            map.getCanvas().style.cursor = '';
+            popup.remove();
+        });
     }
 
-    transition(type, congClass)
+    constructor(mainTrans, secondTrans, targetLayer, func)
     {
-        console.log('HEREs')
+        this.mainTrans   = mainTrans;
+        this.secondTrans = secondTrans;
+        this.targetLayer = targetLayer;
+        this.func        = func;
+
+        this._init();
     }
+
 };
-
-// ... boundary, fill, point, etc.

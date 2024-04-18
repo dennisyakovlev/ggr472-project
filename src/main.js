@@ -15,7 +15,7 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
 fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/contaminated_sites.geojson')
     .then(response => response.json())
     .then(response => {
-        DATA[dataName(DATA_NAME.SITES)] = response;
+        DATA[dataName(DATA_NAME.sites)] = response;
         fetched += 1;
     })
     .catch(err => {
@@ -25,7 +25,7 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
 fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/water_facilities.geojson')
     .then(response => response.json())
     .then(response => {
-        DATA[dataName(DATA_NAME.WATER)] = response;
+        DATA[dataName(DATA_NAME.water)] = response;
         fetched += 1;
     })
     .catch(err => {
@@ -36,7 +36,7 @@ fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/da
 fetch('https://raw.githubusercontent.com/dennisyakovlev/ggr472-project/master/data/pollution.geojson')
     .then(response => response.json())
     .then(response => {
-        DATA[dataName(DATA_NAME.AIR)] = response;
+        DATA[dataName(DATA_NAME.air)] = response;
         fetched += 1;
     })
     .catch(err => {
@@ -64,21 +64,21 @@ function addData()
     });
 
     // contaminated sites
-    map.addSource(dataName(DATA_NAME.SITES), {
+    map.addSource(dataName(DATA_NAME.sites), {
         'type': 'geojson',
-        'data': DATA[dataName(DATA_NAME.SITES)]
+        'data': DATA[dataName(DATA_NAME.sites)]
     });
 
     // treatment WATER
-    map.addSource(dataName(DATA_NAME.WATER), {
+    map.addSource(dataName(DATA_NAME.water), {
         'type': 'geojson',
-        'data': DATA[dataName(DATA_NAME.WATER)]
+        'data': DATA[dataName(DATA_NAME.water)]
     });
 
     // air monitoring
-    map.addSource(dataName(DATA_NAME.AIR), {
+    map.addSource(dataName(DATA_NAME.air), {
         'type': 'geojson',
-        'data': DATA[dataName(DATA_NAME.AIR)]
+        'data': DATA[dataName(DATA_NAME.air)]
     });
 
     // sociodemographic

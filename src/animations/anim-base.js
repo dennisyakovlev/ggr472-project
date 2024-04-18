@@ -10,15 +10,13 @@ class NthTransitionable
     
     _doAction(e, type)
     {
-        console.log(type, this.events)
         for (const obj of this.events[this.states[type]][type])
         {
             const oldStates = structuredClone(this.states);
-            setTimeout(e => {
+            setTimeout(et => {
                 if (obj.filter == null || obj.filter.check(type, oldStates))
                 {
-                    console.log(obj)
-                    obj.instance.transition(type, oldStates[type]);
+                    obj.instance.transition(type, oldStates[type], e);
                 }
             }, obj.delay);
         }
@@ -46,9 +44,9 @@ class NthTransitionable
     }
 
     /*  increment state for dom element with id [triggerId]
-        and run added animations on a [modulo] cycle 
+        and run added animations on a [modulo] cycle.
     */
-    constructor(triggerId, modulo)
+    constructor(triggerId, modulo, elem = null)
     {
         console.assert(modulo >= 1);
         console.assert(!_animatables.hasOwnProperty(triggerId));
@@ -56,6 +54,7 @@ class NthTransitionable
         this.modulo = modulo;
 
         this.triggerId = triggerId;
+        this.element   = $(`#${this.triggerId}`);
         this.events = [];
         for (let i=0; i!=this.modulo; ++i) // do not use fill since doesnt clone
             this.events.push(structuredClone({
@@ -76,22 +75,22 @@ class NthTransitionable
         // we want to pass down e so forced to use function(e) instead of e =>
         //      as using this in later gives class instance
         // we also want to call [_doAction] on the instance, use _animatables
-        $(`#${this.triggerId}`).on('click', function(e) {
+        this.element.on('click', function(e) {
             const id = $(this).attr('id');
             if (id in _animatables) _animatables[id]._doAction(e, 'click');
             else throw new Error(`didn't find ${id} in _animatables`)
         });
-        $(`#${this.triggerId}`).on('mouseenter', function(e) {
+        this.element.on('mouseenter', function(e) {
             const id = $(this).attr('id');
             if (id in _animatables) _animatables[id]._doAction(e, 'enter');
             else throw new Error(`didn't find ${id} in _animatables`)
         });
-        $(`#${this.triggerId}`).on('mouseleave', function(e) {
+        this.element.on('mouseleave', function(e) {
             const id = $(this).attr('id');
             if (id in _animatables) _animatables[id]._doAction(e, 'leave');
             else throw new Error(`didn't find ${id} in _animatables`)
         });
-        $(`#${this.triggerId}`).on('mouseover', function(e) {
+        this.element.on('mouseover', function(e) {
             const id = $(this).attr('id');
             if (id in _animatables) _animatables[id]._doAction(e, 'over');
             else throw new Error(`didn't find ${id} in _animatables`)
@@ -158,6 +157,14 @@ class NthTransitionable
         }
 
         return cycled;
+    }
+
+    getState(type)
+    {
+        if (this._checkType(type) == false)
+            throw new Error(`given type [${type}] is bad`);
+
+        return this.states[type];
     }
 };
 
