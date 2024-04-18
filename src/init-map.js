@@ -70,34 +70,11 @@ function initAirStations()
 
 function initWaterTreatment()
 {
-    const points = new MapPoints({
-        targetId           : layerName(DATA_NAME.water),
-        congrouenceClasses : [0,1],
-        source             : dataName(DATA_NAME.water),
-        fill               : '#01579b',
-        radius             : 5,
-        border_color       : 'white',
-        border_width       : 1,
-        duration           : 250
-    });
     const trigger = createTrigger('trigger-secondary-water', 2);
-    trigger.addAnimElem({type: 'click', anim: points});
-
-    const waterHtml = (feature) => {
-        const prop = feature.properties;
-
-        return  `
-            <h2>Water Quality Measuring Station</h2>
-            <p>Name: ${prop['Name of water treatment facility']}</p>
-            <p>Average Nitrogen Levels: ${prop['Average nitrogen levels']}</p>
-            <p>Average Phosphorus Levels: ${prop['Average phosphorus levels']}</p>
-            `;
-    };
-    initPopupForLayer('water', waterHtml);
 
 
 
-    // special button for water area coverage
+    // ----------- special button for water area coverage -----------
     const startText = new SwappableText(`text-a-secondary-water-hover`, [0,1]);
     const afterText = new SwappableText(`text-b-secondary-water-hover`, [0,1]);
 
@@ -120,6 +97,33 @@ function initWaterTreatment()
         border_width       : 0.25,
         duration           : 250
     });
+    // ----------- end -----------
+
+
+
+    const points = new MapPoints({
+        targetId           : layerName(DATA_NAME.water),
+        congrouenceClasses : [0,1],
+        source             : dataName(DATA_NAME.water),
+        fill               : '#01579b',
+        radius             : 5,
+        border_color       : 'white',
+        border_width       : 1,
+        duration           : 250
+    });
+    trigger.addAnimElem({type: 'click', anim: points});
+
+    const waterHtml = (feature) => {
+        const prop = feature.properties;
+
+        return  `
+            <h2>Water Quality Measuring Station</h2>
+            <p>Name: ${prop['Name of water treatment facility']}</p>
+            <p>Average Nitrogen Levels: ${prop['Average nitrogen levels']}</p>
+            <p>Average Phosphorus Levels: ${prop['Average phosphorus levels']}</p>
+            `;
+    };
+    initPopupForLayer('water', waterHtml);
 }
 
 function initContaimatedSites()
@@ -304,8 +308,8 @@ function initAssessRun()
 function initMap()
 {
     // enviornmental indicator layers
+    initWaterTreatment(); // first so hover is on bottom
     initAirStations();
-    initWaterTreatment();
     initContaimatedSites();
 
     // to multiplex create a filter which forcefully transition the previous on
