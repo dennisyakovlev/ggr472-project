@@ -116,15 +116,15 @@ class SwappableText extends DomAnimatable
 };
 
 /*  animation which switches the opacity of an element between
-    0 and 1
+    0 and 1 and slightly vertically slides it
 */
-class Higlightable extends DomAnimatable
+class MovingHiglightable extends DomAnimatable
 {
 
     _verifyInit()
     {
         const classes = $(this.elem).attr('class').split(/\s+/);
-        for (const reqClass of ['background-anim-start'])
+        for (const reqClass of ['opacity-slide-anim-start'])
             if (classes.find(e => e == reqClass) === undefined)
                 return false;
         
@@ -142,11 +142,48 @@ class Higlightable extends DomAnimatable
     {
         if (congClass == this.congClasses[0]) // on
             $(this.elem)
-                .removeClass('background-anim-mid background-anim-out no-pointer')
-                .addClass(`background-anim-in background-anim-start`);
+                .removeClass('opacity-slide-anim-mid opacity-slide-anim-out no-pointer')
+                .addClass(`opacity-slide-anim-in opacity-slide-anim-start`);
         if (congClass == this.congClasses[1]) // off
             $(this.elem)
-                .removeClass('background-anim-start background-anim-in')
-                .addClass('background-anim-mid background-anim-out no-pointer');
+                .removeClass('opacity-slide-anim-start opacity-slide-anim-in')
+                .addClass('opacity-slide-anim-mid opacity-slide-anim-out no-pointer');
+    }
+};
+
+
+/*  animation which switches the opacity of an element between
+    0 and 1
+*/
+class StaticHiglightable extends DomAnimatable
+{
+
+    _verifyInit()
+    {
+        const classes = $(this.elem).attr('class').split(/\s+/);
+        for (const reqClass of ['opacity-anim-start'])
+            if (classes.find(e => e == reqClass) === undefined)
+                return false;
+        
+        return true;
+    }
+
+    constructor(targetId, congrouenceClasses)
+    {
+        super(targetId, congrouenceClasses);
+
+        console.assert(this._verifyInit());
+    }
+
+    transition(type, congClass)
+    {
+        if (congClass == this.congClasses[0]) // on
+            $(this.elem)
+                .removeClass('opacity-anim-mid opacity-anim-out no-pointer')
+                .addClass(`opacity-anim-in opacity-anim-start`);
+        if (congClass == this.congClasses[1]) // off
+            $(this.elem)
+                .removeClass('opacity-anim-start opacity-anim-in')
+                .addClass('opacity-anim-mid opacity-anim-out no-pointer');
     }
 };

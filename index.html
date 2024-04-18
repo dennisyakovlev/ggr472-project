@@ -57,11 +57,11 @@
       <div class="nav-bar-wrapper nav-top">
         <div class="nav-bar"> 
           <div class="nav-item" id="trigger-nav-env">
-            <div class="nav-background background-anim-start" id="background-nav-env"></div>
+            <div class="nav-background opacity-slide-anim-start" id="background-nav-env"></div>
             <p>Indicators</p>
           </div>
           <div class="nav-item" id="trigger-nav-demo">
-            <div class="nav-background background-anim-start" id="background-nav-demo"></div>
+            <div class="nav-background opacity-slide-anim-start" id="background-nav-demo"></div>
             <p>Demographics</p>
           </div>
           <div class="nav-item">
@@ -197,7 +197,7 @@
           <div class="legend-item pointer" id="legend-immigrant-0">
             <div class="legend-pic-wrapper">
               <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-0"></div>
-              <div class="legend-pic2 legend-pic-background background-anim-start" id="legend-immigrant-background-0"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-immigrant-background-0"></div>
             </div>
             <div class="legend-desc">
               <p>Negligible</p>
@@ -206,7 +206,7 @@
           <div class="legend-item pointer" id="legend-immigrant-1">
             <div class="legend-pic-wrapper">
               <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-1"></div>
-              <div class="legend-pic2 legend-pic-background background-anim-start" id="legend-immigrant-background-1"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-immigrant-background-1"></div>
             </div>
             <div class="legend-desc">
               <p>Low</p>
@@ -215,7 +215,7 @@
           <div class="legend-item pointer" id="legend-immigrant-2">
             <div class="legend-pic-wrapper">
               <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-2"></div>
-              <div class="legend-pic2 legend-pic-background background-anim-start" id="legend-immigrant-background-2"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-immigrant-background-2"></div>
             </div>
             <div class="legend-desc">
               <p>Moderate</p>
@@ -224,7 +224,7 @@
           <div class="legend-item pointer" id="legend-immigrant-3">
             <div class="legend-pic-wrapper">
               <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-3"></div>
-              <div class="legend-pic2 legend-pic-background background-anim-start" id="legend-immigrant-background-3"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-immigrant-background-3"></div>
             </div>
             <div class="legend-desc">
               <p>High</p>
@@ -233,19 +233,105 @@
         </div>
         <!-- related to income -->
         <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-income">
-          <div class="btn-wrapper">
-            <div class="button" id="btn-secondary-income">
-              <p class="text-anim-mid">Generate Hexgrid</p>
-              <p class="text-anim-start">Clear Hexgrid</p>
+          <div class="btn-wrapper" id="btn-secondary-income-popup">
+            <div class="button">
+              <p class="text-anim-start" id="text-a-secondary-income-popup">Popup Enabled</p>
+              <p class="text-anim-start" id="text-b-secondary-income-popup">Popup Disabled</p>
+            </div>
+          </div>
+        </div>
+        <div class="legend legend-chloro horizontal-menu-anim-start no-pointer map-front" id="legend-income">
+          <div class="legend-title-wrapper">
+            <p class="legend-title">
+              Low Income <br> Percentage
+            </p>
+          </div>
+          <div class="legend-item pointer" id="legend-income-0">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-0"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-income-background-0"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Negligible</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-income-1">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-1"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-income-background-1"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Low</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-income-2">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-2"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-income-background-2"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Moderate</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-income-3">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-3"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-income-background-3"></div>
+            </div>
+            <div class="legend-desc">
+              <p>High</p>
             </div>
           </div>
         </div>
         <!-- related to minority -->
         <div class="menu horizontal-menu-anim-start map-front no-pointer" id="horizontal-menu-secondary-minority">
-          <div class="btn-wrapper">
-            <div class="button" id="btn-secondary-minority">
-              <p class="text-anim-mid">Generate Hexgrid</p>
-              <p class="text-anim-start">Clear Hexgrid</p>
+          <div class="btn-wrapper" id="btn-secondary-minority-popup">
+            <div class="button">
+              <p class="text-anim-start" id="text-a-secondary-minority-popup">Popup Enabled</p>
+              <p class="text-anim-start" id="text-b-secondary-minority-popup">Popup Disabled</p>
+            </div>
+          </div>
+        </div>
+        <div class="legend legend-chloro horizontal-menu-anim-start no-pointer map-front" id="legend-minority">
+          <div class="legend-title-wrapper">
+            <p class="legend-title">
+              Low Minority <br> Percentage
+            </p>
+          </div>
+          <div class="legend-item pointer" id="legend-minority-0">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-0"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-minority-background-0"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Negligible</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-minority-1">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-1"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-minority-background-1"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Low</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-minority-2">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-2"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-minority-background-2"></div>
+            </div>
+            <div class="legend-desc">
+              <p>Moderate</p>
+            </div>
+          </div>
+          <div class="legend-item pointer" id="legend-minority-3">
+            <div class="legend-pic-wrapper">
+              <div class="legend-pic2 legend-pic-foreground legend-chloro-pic-3"></div>
+              <div class="legend-pic2 legend-pic-background opacity-anim-start" id="legend-minority-background-3"></div>
+            </div>
+            <div class="legend-desc">
+              <p>High</p>
             </div>
           </div>
         </div>

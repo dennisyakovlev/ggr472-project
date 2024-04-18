@@ -148,26 +148,59 @@ function initImmigrant()
     };
     initPopupForLayer('immigrant', immigrantHtml);
     initLegendForLayer('immigrant', layer);
-
-    /*  need to link layer with legend, have
-            - animatible legend item, takes a MapFill animatible
-            - upon transition, the legend animatable will update an rerender the layer
-    */
-
-    // need to link legend dom item to button
-    // const trigger = createTrigger();
-
-    // const quartile1 = new LegenedItem();
 }
 
 function initIncome()
 {
+    const layer = new MapPolygons({
+        targetId           : layerName(DATA_NAME.income),
+        congrouenceClasses : [0,1],
+        secondaryTargetId  : borderName(DATA_NAME.income),
+        source             : dataName(DATA_NAME.income),
+        fillVariable       : 'low_income_pct',
+        fillColors         : ['#FCAE91', '#FB6A4A', '#DE2D26', '#A50F15'],
+        intervals          : [1.26, 3.83, 9.82, 29.44],
+        border_color       : 'black',
+        border_width       : 0.25,
+        duration           : 250
+    });
+    const trigger = createTrigger('trigger-secondary-income', 2);
+    trigger.addAnimElem({type: 'click', anim: layer});
+
+    const incomeHtml = (feature) => {
+        const prop = feature.properties;
+
+        return  `hawhaw`;
+    };
+    initPopupForLayer('income', incomeHtml);
+    initLegendForLayer('income', layer);
 
 }
 
 function initMinority()
 {
+    const layer = new MapPolygons({
+        targetId           : layerName(DATA_NAME.minority),
+        congrouenceClasses : [0,1],
+        secondaryTargetId  : borderName(DATA_NAME.minority),
+        source             : dataName(DATA_NAME.minority),
+        fillVariable       : 'visible_minority_pct',
+        fillColors         : ['#FCAE91', '#FB6A4A', '#DE2D26', '#A50F15'],
+        intervals          : [13.96, 41.57, 77.91, 100.01],
+        border_color       : 'black',
+        border_width       : 0.25,
+        duration           : 250
+    });
+    const trigger = createTrigger('trigger-secondary-minority', 2);
+    trigger.addAnimElem({type: 'click', anim: layer});
 
+    const minorityHtml = (feature) => {
+        const prop = feature.properties;
+
+        return  `herherher`;
+    };
+    initPopupForLayer('minority', minorityHtml);
+    initLegendForLayer('minority', layer);
 }
 
 function initMap()

@@ -234,7 +234,7 @@ class MapPopup
 
 };
 
-class LegenedItem extends Higlightable
+class LegenedItem extends StaticHiglightable
 {
     constructor(targetId, congrouenceClasses, mapPoly)
     {

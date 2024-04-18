@@ -18,7 +18,6 @@
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
 }
-
 @keyframes text-key-anim-in {
     0% {
         opacity: 0;
@@ -29,7 +28,6 @@
         margin-right: 0px;
     }
 }
-
 @keyframes text-key-anim-out {
     0% {
         opacity: 1;
@@ -37,30 +35,30 @@
     }
     100% {
         opacity: 0;
-        margin-right: -5px;
+        margin-right: -10px;
     }
 }
 
-/* BACKGROUND OPACITY ANIMATION */
-.background-anim-start {
+/* OPACITY and VERTICAL SLIDE ANIMATION */
+.opacity-slide-anim-start {
     margin-bottom: 8px;
     opacity: 0;
 }
-.background-anim-mid {
+.opacity-slide-anim-mid {
     margin-bottom: 0px;
     opacity: 1;
 }
-.background-anim-in {
-    animation: background-key-anim-in 0.2s;
+.opacity-slide-anim-in {
+    animation: opacity-slide-key-anim-in 0.2s;
     animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
+animation-fill-mode: forwards;
 }
-.background-anim-out {
-    animation: background-key-anim-out 0.2s;
+.opacity-slide-anim-out {
+    animation: opacity-slide-key-anim-out 0.2s;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
 }
-@keyframes background-key-anim-in {
+@keyframes opacity-slide-key-anim-in {
     0% {
         margin-bottom: 8px;
         opacity: 0;
@@ -70,13 +68,48 @@
         opacity: 1;
     }
 }
-@keyframes background-key-anim-out {
+@keyframes opacity-slide-key-anim-out {
     0% {
         margin-bottom: 0px;
         opacity: 1;
     }
     100% {
         margin-bottom: 8px;
+        opacity: 0;
+    }
+}
+
+/* OPACITY SLIDE ANIMATION */
+.opacity-anim-start {
+    opacity: 0;
+}
+.opacity-anim-mid {
+    margin-bottom: 0px;
+    opacity: 1;
+}
+.opacity-anim-in {
+    animation: opacity-key-anim-in 0.2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.opacity-anim-out {
+    animation: opacity-key-anim-out 0.2s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+@keyframes opacity-key-anim-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes opacity-key-anim-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
         opacity: 0;
     }
 }

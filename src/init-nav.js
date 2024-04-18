@@ -65,7 +65,7 @@ function initSecondaryMenu(name)
 function initNavTrigger(name)
 {
     const navMenuvertical   = new VerticalMenu(`vertical-menu-${name}`, [0,1]);
-    const navBtnHighlight   = new Higlightable(`background-nav-${name}`, [0,1]);
+    const navBtnHighlight   = new MovingHiglightable(`background-nav-${name}`, [0,1]);
 
     const navTransitionable = createTrigger(`trigger-nav-${name}`, 2);
     navTransitionable.addAnimElem({type: 'click', anim: navMenuvertical});
