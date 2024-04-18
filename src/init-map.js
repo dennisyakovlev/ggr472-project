@@ -126,7 +126,7 @@ function initContaimatedSites()
 
 function initImmigrant()
 {
-    const layer = new MapPolygons({
+    const layer = new MapChloropleth({
         targetId           : layerName(DATA_NAME.immigrant),
         congrouenceClasses : [0,1],
         secondaryTargetId  : borderName(DATA_NAME.immigrant),
@@ -152,7 +152,7 @@ function initImmigrant()
 
 function initIncome()
 {
-    const layer = new MapPolygons({
+    const layer = new MapChloropleth({
         targetId           : layerName(DATA_NAME.income),
         congrouenceClasses : [0,1],
         secondaryTargetId  : borderName(DATA_NAME.income),
@@ -179,7 +179,7 @@ function initIncome()
 
 function initMinority()
 {
-    const layer = new MapPolygons({
+    const layer = new MapChloropleth({
         targetId           : layerName(DATA_NAME.minority),
         congrouenceClasses : [0,1],
         secondaryTargetId  : borderName(DATA_NAME.minority),
@@ -203,6 +203,88 @@ function initMinority()
     initLegendForLayer('minority', layer);
 }
 
+function initAssessChoose(isFirst)
+{
+    const letter = isFirst ? 'a' : 'b';
+    const text1 = new SwappableText(`text-0-secondary-assess-choose-${letter}`, [0,3]);
+    const text2 = new SwappableText(`text-1-secondary-assess-choose-${letter}`, [0,1]);
+    const text3 = new SwappableText(`text-2-secondary-assess-choose-${letter}`, [1,2]);
+    const text4 = new SwappableText(`text-3-secondary-assess-choose-${letter}`, [2,3]);
+
+    const trigger = createTrigger(`trigger-secondary-assess-choose-${letter}`, 4);
+    trigger.addAnimElem({type: 'click', anim: text2});
+    trigger.addAnimElem({type: 'click', anim: text3});
+    trigger.addAnimElem({type: 'click', anim: text4});
+    // offset initial text
+    const afterId = trigger.addAnimElem({type: 'click', anim: text1});
+    trigger.forceCycle('click', afterId, 1);
+    text1.rotateRightClasses(1);
+}
+function initAssessQuartile(isFirst)
+{
+    const letter = isFirst ? 'a' : 'b';
+
+    for (let i=0; i!=4; ++i)
+    {
+        const quartile = new StaticHiglightable(`secondary-assess-quartile-${letter}-background-${i}`, [0,1]);
+        const trigger  = new NthTransitionable(`trigger-secondary-assess-quartile-${letter}-${i}`, 2);
+        
+        const afterId = trigger.addAnimElem({type: 'click', anim: quartile});
+        trigger.forceCycle('click', afterId, 1);
+        quartile.rotateRightClasses(1);
+    }
+}
+function initAssessOp()
+{
+    const text1 = new SwappableText('text-0-secondary-assess-op', [0,1]);
+    const text2 = new SwappableText('text-1-secondary-assess-op', [0,1]);
+    
+    const trigger = createTrigger('trigger-secondary-assess-op', 2);
+    trigger.addAnimElem({type: 'click', anim: text2});
+    // offset initial text
+    const afterId = trigger.addAnimElem({type: 'click', anim: text1});
+    trigger.forceCycle('click', afterId, 1);
+    text1.rotateRightClasses(1);
+}
+function initAssessRun()
+{
+    const text1    = new SwappableText('text-a-secondary-assess-run', [0,1]);
+    const text2    = new SwappableText('text-b-secondary-assess-run', [0,1]);
+    const assesser = new Assesser('', [0]);
+    
+    const trigger = createTrigger('trigger-secondary-assess-run', 2);
+    trigger.addAnimElem({type: 'click', anim: text2});
+    trigger.addAnimElem({type: 'click', anim: assesser});
+    // offset initial text
+    const afterId = trigger.addAnimElem({type: 'click', anim: text1});
+    trigger.forceCycle('click', afterId, 1);
+    text1.rotateRightClasses(1);
+}
+function initAssessLayer()
+{
+    const layer = new MapChloropleth({
+        targetId           : layerName(DATA_NAME.assess),
+        congrouenceClasses : [0,1],
+        secondaryTargetId  : borderName(DATA_NAME.assess),
+        source             : dataName(DATA_NAME.assess),
+        fillVariable       : 'low_income_pct',
+        fillColors         : ['white', 'black'],
+        intervals          : [0, 1],
+        border_color       : 'black',
+        border_width       : 0.25,
+        duration           : 250
+    });
+    const trigger = createTrigger('trigger-secondary-assess-run', 2);
+    trigger.addAnimElem({type: 'click', anim: layer});
+
+    /*  get the associated mappoly depending on what is selected by
+        the buttons. get intervals, find intersection, then update
+        special map poly for this layer
+
+        extend the button aimatable and add impl for class
+    */
+}
+
 function initMap()
 {
     // enviornmental indicator layers
@@ -219,4 +301,13 @@ function initMap()
     initImmigrant();
     initIncome();
     initMinority();
+
+    // assessment menu
+    initAssessChoose(true);
+    initAssessChoose(false);
+    initAssessQuartile(true);
+    initAssessQuartile(false);
+    initAssessOp();
+    initAssessRun();
+    initAssessLayer();
 }

@@ -62,7 +62,7 @@ class MapPoints extends MapAnimatable
     }
 };
 
-class MapPolygons extends MapAnimatable
+class MapChloropleth extends MapAnimatable
 {
     _verifyIntervals()
     {

@@ -20,6 +20,8 @@ const DATA_NAME = {
     sites     : 'sites',
     water     : 'water',
     air       : 'air',
+
+    assess    : 'asssess'
 };
 /*  helper function for getting names of certain items
 */

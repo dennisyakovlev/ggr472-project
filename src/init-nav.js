@@ -83,4 +83,6 @@ function initNavBar()
     initSecondaryMenu('immigrant');
     initSecondaryMenu('income');
     initSecondaryMenu('minority');
+
+    initNavTrigger('assess');
 }
