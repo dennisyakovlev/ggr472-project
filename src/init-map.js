@@ -1,3 +1,5 @@
+const roundTo = 2;
+
 /*  add toggalable popup functionality for some layer
 */
 function initPopupForLayer(dataName, htmlFunc)
@@ -40,32 +42,32 @@ function initLegendForLayer(dataName, mapPoly)
     }
 }
 
-function initAirStations()
+function initContaimatedSites()
 {
     const layer = new MapPoints({
-        targetId           : layerName(DATA_NAME.air),
+        targetId           : layerName(DATA_NAME.sites),
         congrouenceClasses : [0,1],
-        source             : dataName(DATA_NAME.air),
-        fill               : '#03a9f4',
-        radius             : 5,
-        border_color       : 'white',
+        source             : dataName(DATA_NAME.sites),
+        fill               : '#AF9B46',
+        radius             : 3,
+        border_color       : 'black',
         border_width       : 1,
         duration           : 250
     });
-    const trigger = createTrigger('trigger-secondary-air', 2);
+    const trigger = createTrigger('trigger-secondary-sites', 2);
     trigger.addAnimElem({type: 'click', anim: layer});
 
-    const airHtml = (feature) => {
+    const sitesHtml = (feature) => {
         const prop = feature.properties;
 
         return  `
-                <h2>Air Quality Measuring Station</h2>
-                <p>City: ${prop['City']}</p>
-                <p>Average PM2.5 Concentration: ${prop['Average PM2.5 Concentration in 2022']}</p>
-                <p>Location: ${prop['Location of Air Monitoring Station']}</p>
-                `;
+            <h2>Federal Contaminated Site</h2>
+            <p>Name: ${prop['Site name']}</p>
+            <p>Priority level: ${prop['Priority level']}</p>
+            <p>Census Subdivision: ${prop['Census subdivision name']}</p>
+            `;
     };
-    initPopupForLayer('air', airHtml);
+    initPopupForLayer('sites', sitesHtml);
 }
 
 function initWaterTreatment()
@@ -118,40 +120,40 @@ function initWaterTreatment()
 
         return  `
             <h2>Water Quality Measuring Station</h2>
-            <p>Name: ${prop['Name of water treatment facility']}</p>
-            <p>Average Nitrogen Levels: ${prop['Average nitrogen levels']}</p>
-            <p>Average Phosphorus Levels: ${prop['Average phosphorus levels']}</p>
+            <p>Facility Name: ${prop['Name of water treatment facility']}</p>
+            <p>Average Nitrogen Levels: ${roundDec(parseFloat(prop['Average nitrogen levels']), roundTo)}</p>
+            <p>Average Phosphorus Levels: ${roundDec(parseFloat(prop['Average phosphorus levels']), roundTo * 2)}</p>
             `;
     };
     initPopupForLayer('water', waterHtml);
 }
 
-function initContaimatedSites()
+function initAirStations()
 {
     const layer = new MapPoints({
-        targetId           : layerName(DATA_NAME.sites),
+        targetId           : layerName(DATA_NAME.air),
         congrouenceClasses : [0,1],
-        source             : dataName(DATA_NAME.sites),
-        fill               : '#AF9B46',
-        radius             : 3,
-        border_color       : 'black',
+        source             : dataName(DATA_NAME.air),
+        fill               : '#03a9f4',
+        radius             : 5,
+        border_color       : 'white',
         border_width       : 1,
         duration           : 250
     });
-    const trigger = createTrigger('trigger-secondary-sites', 2);
+    const trigger = createTrigger('trigger-secondary-air', 2);
     trigger.addAnimElem({type: 'click', anim: layer});
 
-    const sitesHtml = (feature) => {
+    const airHtml = (feature) => {
         const prop = feature.properties;
 
         return  `
-            <h2>Federal Contaminated Site</h2>
-            <p>Name: ${prop['Site name']}</p>
-            <p>Priority level: ${prop['Priority level']}</p>
-            <p>Census Subdivision: ${prop['Census subdivision name']}</p>
-            `;
+                <h2>Air Quality Measuring Station</h2>
+                <p>City: ${prop['City']}</p>
+                <p>Location: ${prop['Location of Air Monitoring Station']}</p>
+                <p>Average PM2.5 Concentration: ${roundDec(parseFloat(prop['Average PM2.5 Concentration in 2022']), roundTo)}</p>
+                `;
     };
-    initPopupForLayer('sites', sitesHtml);
+    initPopupForLayer('air', airHtml);
 }
 
 function initImmigrant()
@@ -174,7 +176,11 @@ function initImmigrant()
     const immigrantHtml = (feature) => {
         const prop = feature.properties;
 
-        return  `hehe`;
+        return  `
+            <h2>Immgrant Statistics</h2>
+            <p>Census Subdivision: ${prop['CSDNAME']}</p>
+            <p>Immigrants as POP: ${roundDec(parseFloat(prop['total_immi_pct']), roundTo)}</p>
+            `;
     };
     initPopupForLayer('immigrant', immigrantHtml);
     initLegendForLayer('immigrant', layer);
@@ -200,11 +206,14 @@ function initIncome()
     const incomeHtml = (feature) => {
         const prop = feature.properties;
 
-        return  `hawhaw`;
+        return  `
+            <h2>Low Income Statistics</h2>
+            <p>Census Subdivision: ${prop['CSDNAME']}</p>
+            <p>Low Income Households as POP: ${roundDec(parseFloat(prop['low_income_pct']), roundTo)}</p>
+            `;
     };
     initPopupForLayer('income', incomeHtml);
     initLegendForLayer('income', layer);
-
 }
 
 function initMinority()
@@ -227,7 +236,11 @@ function initMinority()
     const minorityHtml = (feature) => {
         const prop = feature.properties;
 
-        return  `herherher`;
+        return  `
+            <h2>Minority Statistics</h2>
+            <p>Census Subdivision: ${prop['CSDNAME']}</p>
+            <p>Minorities as POP: ${roundDec(parseFloat(prop['visible_minority_pct']), roundTo)}</p>
+            `;
     };
     initPopupForLayer('minority', minorityHtml);
     initLegendForLayer('minority', layer);
@@ -253,7 +266,12 @@ function initRiskNormal()
     const riskNormalHtml = (feature) => {
         const prop = feature.properties;
 
-        return  `herherher`;
+        return  `
+            <h2>Scaled Risk Score</h2>
+            <p>Census Subdivision: ${prop['CSDNAME']}</p>
+            <p>Scaled Risk Score: ${prop['Combined_Risk_Score']}</p>
+            <p>Average PM2.5 concentration: ${roundDec(parseFloat(prop['Average PM2.5 concentration']), roundTo)}</p> 
+            `;
     };
     initPopupForLayer('risk_normal', riskNormalHtml);
     initLegendForLayer('risk_normal', layer);
@@ -279,7 +297,12 @@ function initRiskScaled()
     const riskScaledHtml = (feature) => {
         const prop = feature.properties;
 
-        return  `herherher`;
+        return  `
+            <h2>Raw Risk Score</h2>
+            <p>Census Subdivision: ${prop['CSDNAME']}</p>
+            <p>Scaled Risk Score: ${prop['Scaled_Combined_Risk_Score']}</p>
+            <p>Average PM2.5 concentration: ${roundDec(parseFloat(prop['Average PM2.5 concentration']), roundTo)}</p> 
+            `;
     };
     initPopupForLayer('risk_scaled', riskScaledHtml);
     initLegendForLayer('risk_scaled', layer);
